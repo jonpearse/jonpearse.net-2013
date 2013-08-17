@@ -1,0 +1,23 @@
+%header
+  %h2 Sign in
+
+= form_for resource, :as => resource_name, :url => session_path(resource_name), :class => 'login' do |f|
+  %ol
+    %li.text.cf
+      = f.label :login, 'Log in'
+      = f.text_field :login
+      
+    %li.text.cf
+      = f.label :password
+      = f.password_field :password
+      - if devise_mapping.recoverable? && controller_name != 'passwords'
+        %small= link_to "Forgot your password?", new_password_path(resource_name)
+    
+    - if devise_mapping.rememberable?
+      %li.check.cf
+        %label
+          = f.check_box :remember_me
+          Remember me
+          
+  .buttons
+    %button{ :type => 'submit', :class => '-primary' } Sign in

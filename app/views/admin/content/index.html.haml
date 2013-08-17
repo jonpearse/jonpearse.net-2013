@@ -1,0 +1,22 @@
+%h1=  admin_t(@content_object, :manage)
+
+= render :partial => 'admin/common/status'
+
+= render :partial => 'quicksearch'
+
+- if createable?
+  = link_to admin_t(@content_object, :create_p), { :action => :new }, :class => 'button -create icon -plus -green'
+   
+- if @content.empty?
+  %p.nothing
+    = admin_t(@content_object, :none)
+    - if createable?
+      = admin_t(@content_object, :none_p, :url => url_for( :action => :new )).html_safe
+- else
+  %table{ :class => "list -#{@content_object}" }
+    %thead
+      = render :partial => 'list_head'
+    %tbody
+      - @content.each do |content|
+        = render :partial => 'list_row', :locals => { :content => content }
+  = will_paginate @content, :inner_window => 2, :outer_window => 0

@@ -1,0 +1,81 @@
+article.article,
+article.page {
+    margin-bottom: 75px;
+        
+    header {
+        margin-bottom: 1.5em;
+        
+        h1,h2 { margin: 0 0 .2em; a { color: #444; &:hover { color: $link; }}}
+        h2 { font-size: 1.4em; line-height: 1em; }
+        p,dl  { font-size: .8em; line-height: 1.4em; }
+        
+        dt,dd,ul,li { float: left; display: block; }
+        dt { margin-right: .5em; }
+        dd { margin-right: 2em; }
+        li { padding: 0 .5em; background: #FFF; border-radius: .2em; margin-right: .3em; box-shadow: rgba(0,0,0,.1) 1px 1px 1px 0; }
+        
+        &[max-width~="500px"] dt { clear: left; }
+    }
+    .content {
+        
+        p.more { margin-top: 2em; }
+        a.iso {
+            font-size:0.9em;
+            color: #FFF;
+            background: $link;
+            border-radius: 3px; 
+            padding: .2em .7em .3em; 
+            text-shadow: rgba(0,0,0,.2) 0 1px 1px,
+                         rgba(255,255,255,.8) 0 0 0;
+        }
+    }
+    
+    // article with lead image
+    &.-has-masthead {
+        margin-bottom: 100px;
+        padding-top: 36%;
+        position: relative;
+        
+        &>* { margin-left: 75px; margin-right: 75px; }
+            
+        header { padding-top: 30px; }
+        
+        .masthead {
+            position: absolute;
+            margin: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding-top: 36%;
+            height: 1px;
+            background-color: rgba(0,0,0,.8);
+        }
+        
+        .pull {
+            &.-left { margin-left: -75px; }
+            &.-right { margin-right: -75px; }
+        }
+    }
+    
+    &[max-width~="700px"]>* { margin: 0 0 50px; }
+    &[max-width~="400px"] {
+        margin: 0 0 20px;
+        header { margin-bottom: .75em; h2 { font-size: 1.2em; }}
+    }
+    
+    &.-has-masthead[max-width~="700px"] {
+        padding-top: 250px;
+        header { padding-top: 20px; }
+        .masthead { padding: 0; height: 250px; }
+        .pull {
+            &.-left { margin-left: 0; }
+            &.-right { margin-right: 0; }
+        }
+    }
+    &.-has-masthead[max-width~="400px"] {
+        padding-top: 145px;
+        
+        header { padding-top: 15px; }
+        .masthead { height: 145px; }
+    }
+}

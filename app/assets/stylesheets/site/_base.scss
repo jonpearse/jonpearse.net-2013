@@ -1,0 +1,24 @@
+$link: #e44849;
+
+.cf:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.a11y { position: absolute; height: 1px; width: 1px; opacity: 0.00001; overflow: hidden; }
+
+%misty-box {
+    margin: 0 0 1em;
+    background: transparentize(darken($link, 10%), .9);
+    border-radius: 3px;
+    padding: .1em 1em;
+    text-shadow: rgba(0,0,0,.2) 0 1px 1px;
+    font-size: .9em;
+    line-height: 1.3em;
+    box-shadow: transparentize($link, .7) 0 0 0 1px;
+    
+    html.-no-rgba & { background: #f1dede; outline: 1px solid #efc0c1; }
+}

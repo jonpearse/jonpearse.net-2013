@@ -1,0 +1,5 @@
+%nav.section{ :role => 'menu' }
+  %strong Blog
+  %ul
+    %li=  link_to_with_current 'Articles', admin_articles_path
+    %li=  link_to_with_current 'Categories', admin_categories_path

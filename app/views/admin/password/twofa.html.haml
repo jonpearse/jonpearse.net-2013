@@ -1,0 +1,8 @@
+%h1 Two-factor authentication
+
+= render :partial => 'admin/common/status'
+
+- if @user.twofa_enabled?
+  = render :partial => 'admin/password/twofa/enabled'
+- else
+  = render :partial => 'admin/password/twofa/disabled'

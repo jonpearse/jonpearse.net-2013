@@ -1,0 +1,49 @@
+.lb-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    
+    .lb-masq {
+        position: absolute;
+        top: 0; 
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 12;
+        background: rgba(0,0,0,0.5);
+    }
+    
+    .lb-wrapper {
+        position: absolute;
+        background: #FFF;
+        z-index: 15;
+        box-shadow: rgba(0,0,0,0.5) 0 10px 30px;
+        
+        &.lb-preview .lb-content { padding-bottom: 1px; overflow: hidden; }
+    }
+    
+    .lb-main-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        height: 30px;
+        width: 30px;
+        background: asset_url('lightbox/icons.png', image) top left no-repeat;
+        text-indent: -500em;
+    }
+    
+    .lb-content {
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: 15px;
+        width: 750px;
+        height: 350px;
+        font-size: 0.91em;
+        
+        table { width: 100%; th.act { width: 100px; }}
+        
+    }
+}

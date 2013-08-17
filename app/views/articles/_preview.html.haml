@@ -1,0 +1,21 @@
+%article.cf.preview.article{ :id => "article-#{article.id}", :class => article.masthead.nil? ? nil : ' -has-masthead' }
+  %header
+    %h2=  link_to article.title, article
+    %p
+      %time{ :datetime => article.published_on.strftime('%FT%T'), :pubdate => true }= form_date article.published_on
+
+  - unless article.masthead.nil?
+    = render :partial => 'application/masthead', :locals => { :media => article.masthead, :link => article_path(article) }
+
+  .content.type
+    - if full
+      - if article.teaser_rendered.nil?
+        ~ remove_media(article.body_rendered).html_safe
+        
+      - else
+        ~ process_media(article.teaser_rendered).html_safe
+        %p.more= link_to "Continue reading", article, :title => "Continue reading ‘#{article.title}’", :class => 'iso'  
+        
+    - else
+      ~ article.extract_rendered.html_safe
+  

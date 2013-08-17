@@ -1,0 +1,7 @@
+@mixin interface-bar-colour-set($color, $border: null) {
+    @if $border == null {
+        $border: darken($color, 10%);
+    }
+    background-color: $color;
+    border-color: $border;
+}

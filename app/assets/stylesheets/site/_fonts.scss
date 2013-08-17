@@ -1,0 +1,4 @@
+
+@include font-face('Lato', 'lato-light', normal, $asset_pipeline:true);
+@include font-face('Lato', 'lato-lightitalic', normal, italic, $asset_pipeline:true);
+@include font-face('Lato', 'lato-bold', bold, $asset_pipeline:true);

@@ -1,0 +1,58 @@
+button,
+input[type=submit],
+input[type=reset],
+.button {
+    font-size: 1em;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid $uiBorder;
+    color: $body;
+    margin: 0 5px;
+    cursor: pointer;
+    
+    text-shadow: rgba(0,0,0,0.1) 0 1px 1px;
+    box-shadow: rgba(0,0,0,0.1) 0 0 10px inset;
+    background: #FFF;
+    @include linear-gradient(rgba(0,0,0,0.1), rgba(255,255,255,0.05) 25%, rgba(0,0,0,0.1));
+    
+    &:hover  { @include linear-gradient(rgba(0,0,0,0.05), rgba(255,255,255,.1) 25%, rgba(0,0,0,0.05)); }
+    &:active { @include linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,.05) 25%, rgba(0,0,0,0.15)); }
+    
+    &.-primary {
+        @include interface-bar-colour-set($ifNotice);
+        text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
+        font-weight: bold;
+        color: #FFF;
+        padding: 0.75em 1.5em;
+        margin: -0.25em 0;
+    }
+    &.-small {
+        font-size: 0.91em;
+        padding: 0.3em 0.8em;
+        color: lighten($body, 10%);
+    }
+    
+    &.-blue {
+        @include interface-bar-colour-set($ifNotice);
+        text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
+        color: #FFF;
+        font-weight: bold;
+    }
+    &.-green { 
+        @include interface-bar-colour-set($ifInfo);
+        text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
+        color: #FFF;
+        font-weight: bold;
+    }
+    &.-red { 
+        @include interface-bar-colour-set($ifError);
+        text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
+        color: #FFF;
+        font-weight: bold;
+    }
+    
+    &.-centred { margin: 0 auto; }
+
+    
+}

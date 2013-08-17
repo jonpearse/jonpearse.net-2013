@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ApplicationController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            ApplicationController 
+            
+                <span class="parent">&lt; 
+                    
+                    ActionController::Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/controllers/application_controller_rb.html">app/controllers/application_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Root application controller. This provides a number of useful functions
+that’re common to all controllers.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-after_sign_in_path_for">after_sign_in_path_for</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-after_sign_out_path_for">after_sign_out_path_for</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-forbidden">forbidden</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-not_found">not_found</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-unauthorised">unauthorised</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>meta_description</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>og_image</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-after_sign_in_path_for">
+            
+              <b>after_sign_in_path_for</b>(user)
+            
+            <a href="../classes/ApplicationController.html#method-i-after_sign_in_path_for" name="method-i-after_sign_in_path_for" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Utility function that overrides devise’s default functionality after a user
+logs in. In this case, if it’s the user’s first time, they are bounced to a
+first-time log in page (see <a
+href="Admin/PasswordController.html#method-i-first_time">Admin::PasswordController#first_time</a>)</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-after_sign_in_path_for_source')" id="l_method-i-after_sign_in_path_for_source">show</a>
+                
+              </p>
+              <div id="method-i-after_sign_in_path_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">after_sign_in_path_for</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">first_time?</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:alert</span>] = <span class="ruby-string">&quot;Because this is your first time here, you'll need to change your password&quot;</span>
+    <span class="ruby-identifier">admin_first_login_path</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">admin_root_path</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-after_sign_out_path_for">
+            
+              <b>after_sign_out_path_for</b>(user)
+            
+            <a href="../classes/ApplicationController.html#method-i-after_sign_out_path_for" name="method-i-after_sign_out_path_for" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Utility function that overrides devise’s default functionality after a user
+logs out.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-after_sign_out_path_for_source')" id="l_method-i-after_sign_out_path_for_source">show</a>
+                
+              </p>
+              <div id="method-i-after_sign_out_path_for_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">after_sign_out_path_for</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">new_user_session_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-forbidden">
+            
+              <b>forbidden</b>()
+            
+            <a href="../classes/ApplicationController.html#method-i-forbidden" name="method-i-forbidden" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience function that renders a 403 page</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-forbidden_source')" id="l_method-i-forbidden_source">show</a>
+                
+              </p>
+              <div id="method-i-forbidden_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">forbidden</span>
+  <span class="ruby-identifier">render_error</span> <span class="ruby-number">403</span>, <span class="ruby-value">:forbidden</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-not_found">
+            
+              <b>not_found</b>()
+            
+            <a href="../classes/ApplicationController.html#method-i-not_found" name="method-i-not_found" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience function that renders a 404 page</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-not_found_source')" id="l_method-i-not_found_source">show</a>
+                
+              </p>
+              <div id="method-i-not_found_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">not_found</span>
+  <span class="ruby-identifier">render_error</span> <span class="ruby-number">404</span>, <span class="ruby-value">:not_found</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-unauthorised">
+            
+              <b>unauthorised</b>()
+            
+            <a href="../classes/ApplicationController.html#method-i-unauthorised" name="method-i-unauthorised" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience function that renders a 401 page</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-unauthorised_source')" id="l_method-i-unauthorised_source">show</a>
+                
+              </p>
+              <div id="method-i-unauthorised_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">unauthorised</span>
+  <span class="ruby-identifier">render_error</span> <span class="ruby-number">401</span>, <span class="ruby-value">:unauthorized</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

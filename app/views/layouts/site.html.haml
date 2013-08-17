@@ -1,0 +1,36 @@
+!!!
+%html{ :lang => 'en-GB' }
+  %head
+    %meta{ :charset => 'utf-8' }
+    %title
+      - unless @page_title.nil?
+        = "#{@page_title} :: "
+      jonpearse.net
+      
+    %meta{ :"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
+    %meta{ :name => "viewport", :content => "width=device-width,initial-scale=1,maximum-scale=1" }
+    
+    -# meta stuff
+    %meta{ :name => "description", :content => strip_tags(@meta_description) }    
+    %meta{ :property => "og:image", :content => image_url(@og_image) }
+    
+    = stylesheet_link_tag 'screen', :media => 'screen'
+    = javascript_include_tag 'modernizr'
+    = csrf_meta_tags
+
+  %body
+    #sense
+    #container
+      %header.chrome.cf
+        .i.cf
+          %h1=  link_to_unless_current "Jon Pearse", root_path
+          = render :partial => 'layouts/site/nav'
+    
+      %main
+        = yield
+      
+      = render :partial => 'layouts/site/footer'
+      
+    = javascript_include_tag 'site'
+    - if Rails.env.production?
+      = render :partial => 'layouts/site/ga'

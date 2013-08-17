@@ -1,0 +1,73 @@
+= form_for [:admin, @content], :as => :content do |f|
+  %ol
+    %li.text.cf{ :class => (@content.error_class :title )}
+      = f.label :title, "Title"
+      = f.text_field :title
+      - if @content.has_error? :title
+        %em.error= @content.error_messages :title
+    
+    %li.text.cf{ :class => (@content.error_class :url_slug )}
+      = f.label :url_slug, "URL"
+      = f.text_field :url_slug, :class => 'medium', :maxlength => 64
+      - if @content.has_error? :url_slug
+        %em.error= @content.error_messages :url_slug
+        
+    %li.output.cf{ :class => (@content.error_class :full_url )}
+      = f.label :full_url, "Full URL"
+      = "/#{@content.full_url}"
+      - if @content.has_error? :full_url
+        %em.error= @content.error_messages :full_url
+    
+    %li.text.cf{ :class => (@content.error_class :extract )}
+      = f.label :extract, "Excerpt"
+      = f.text_field :extract, :maxlength => 160, :class => 'large'
+      - if @content.has_error? :extract
+        %em.error= @content.error_messages :extract
+
+    %li.text.cf{ :class => (@content.error_class :body )}
+      = f.label :body, "Body"
+      = f.text_area :body, :class => 'huge'
+      - if @content.has_error? :body
+        %em.error= @content.error_messages :body
+        
+    %li.content_selector.cf{ :class => (@content.error_class :masthead_id ), :data => { :model => 'media', :filter => 'type=banner' }}
+      = f.label :masthead_id, "Masthead"
+      = f.number_field :masthead_id
+      - if @content.has_error? :masthead_id
+        %em.error= @content.error_messages :masthead_id
+        
+    %li.fieldset.-inline.cf
+      %h2 Categories
+      %ul
+        - Category.order('title').each do |c|
+          %li.check.cf
+            %label
+              %input{ :type => :checkbox, :name => 'content[category_ids][]', :value => c.id, :checked => @content.categories.include?(c) ? true : nil }
+              = c.title
+    
+    %li.fieldset.cf
+      %h2 Options
+      %ol
+        %li.check.cf{ :class => (@content.error_class :published )}
+          %label
+            = f.check_box :published
+            published
+          - if @content.has_error? :published
+            %em.error= @content.error_messages :published
+            
+        %li.text.cf{ :class => (@content.error_class :published_on )}
+          = f.label :published_on, "Publish date"
+          = f.text_field :published_on, :type => 'date'
+          - if @content.has_error? :published_on
+            %em.error= @content.error_messages :published_on
+    
+        -#%li.check.cf{ :class => (@content.error_class :commentable )}
+          %label
+            = f.check_box :commentable
+            can comment
+          - if @content.has_error? :commentable
+            %em.error= @content.error_messages :commentable
+
+  .buttons
+    %button{ :type => :submit, :class => '-primary' } Save
+    %button{ :type => :submit, :class => 'icon -eye-open', :name => 'preview', :data => { :remote => true }}  Preview

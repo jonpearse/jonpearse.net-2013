@@ -1,0 +1,17 @@
+- if @articles.size == 0
+  %p.info There are no drafts to show
+- else
+  %ol
+    - @articles.each do |a|
+      %li.cf
+        %article
+          %header
+            %h3= link_to a.title, article_path(a)
+          .content
+            = a.extract_rendered.html_safe
+          %footer
+            %ul
+              %li=  link_to 'Preview', preview_admin_article_path(a), :class => 'button -small icon -eye-open'
+              %li=  link_to 'Edit', edit_admin_article_path(a), :class => 'button -small icon -edit -blue'
+              %li=  link_to 'Publish', admin_publish_article_path(a, :home => true), :method => :post, :class => 'button -small icon -thumbs-up-alt -green'
+              %li=  link_to 'Delete', admin_article_path(a, :home => true), :method => :delete, :confirm => 'Are you sure you wish to delete this draft—this cannot be undone', :class => 'button -small icon -remove-circle -red'

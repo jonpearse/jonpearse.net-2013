@@ -1,0 +1,4 @@
+- printable = @content_object.to_s.underscore
+- path      = send(:"preview_admin_#{printable}_path")
+
+window.open('#{path}?live', 'admin-preview', 'height=700,width=700,status=0,location=0,toolbar=0');

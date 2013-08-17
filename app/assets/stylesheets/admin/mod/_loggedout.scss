@@ -1,0 +1,41 @@
+body.logged-out {
+    padding: 0;
+    main {
+        background: transparent none;
+        padding: 0;
+        border-radius: 0;
+        display: block;
+        float: none;
+        width: 100%;
+        min-height: 100%;
+    }
+    section.dialog {
+        width: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -160px;
+        margin-left: -220px;
+        background: #FFF;
+        form {
+            margin: 0; 
+            border: 0;
+            padding-top: 20px;
+            
+            li {
+                padding-left: 100px;
+                &.text label { width: 90px; margin-left: -100px; }
+            }
+            
+            .buttons { text-align: center; padding-left: 15px; }
+            
+            &.twofa_enter {
+                padding-left: 140px;
+                img { float: left; margin-left: -125px; }
+                
+                input[type=number] { font-size: 1.4em; line-height: 1.65em; width: 4em; }
+                button { margin-left: .5em; top: -.1em; position: relative; }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+- if @articles.size == 0
+  %p.info You’ve not published any articles…
+- else
+  %ol
+    - @articles.each do |a|
+      %li.cf
+        %article
+          %header
+            %h3= link_to a.title, article_path(a)
+            %small=  a.published_on.strftime('%-e %b, %Y')
+          .content
+            = a.extract_rendered.html_safe
+          %footer
+            %ul
+              %li= link_to 'View', article_path(a), :class => 'button -small -blue icon -search'
+              %li= link_to 'Edit', edit_admin_article_path(a), :class => 'button -small -blue icon -edit'
+              %li= link_to 'Unpublish', admin_unpublish_article_path(a, :home => true), :method => :post, :class => 'button -small -red icon -remove-circle'

@@ -1,0 +1,9 @@
+#content-selector{ :class => "-#{@content_object.to_s.downcase}" }
+  - if createable?
+    = render :partial => 'admin/content/choose/nav'
+  
+  .content
+    - if params.key?('upload') and createable?
+      = render :partial => 'form', :locals => { :remote => true }
+    - else
+      = render :partial => 'admin/content/choose/list'

@@ -1,0 +1,9 @@
+h1. jonpearse.net
+
+This is the source code behind my website at "jonpearse.net":http://jonpearse.net. I’ve decided to publish the source following a "recent talk":https://speakerdeck.com/nrrrdcore/open-source-needs-more-design-superheroes by "Julie Ann Horvath":http://julieannhorvath.com/ at "HybridConf 2013":http://www.hybridconf.net/ because… well, why not.
+
+Have a look, pull it a part, point and laugh, do whatever… and if there’s anything you think I’m doing Very Wrong Indeed, drop me a line.
+
+…
+
+Share and enjoy!

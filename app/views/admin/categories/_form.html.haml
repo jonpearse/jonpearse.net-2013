@@ -1,0 +1,29 @@
+= form_for [:admin, @content], :as => :content do |f|
+  %ol
+    %li.text.cf{ :class => (@content.error_class :title )}
+      = f.label :title, "Title"
+      = f.text_field :title, :maxlength => 32
+      - if @content.has_error? :title
+        %em.error= @content.error_messages :title
+    
+    %li.text.cf{ :class => (@content.error_class :url_slug )}
+      = f.label :url_slug, "URL slug"
+      = f.text_field :url_slug, :maxlength => 32
+      - if @content.has_error? :url_slug
+        %em.error= @content.error_messages :url_slug
+    
+    %li.text.cf{ :class => (@content.error_class :description )}
+      = f.label :description, "Description"
+      = f.text_field :description, :maxlength => 160
+      - if @content.has_error? :description
+        %em.error= @content.error_messages :description
+    
+    %li.check.cf{ :class => (@content.error_class :published )}
+      %label
+        = f.check_box :published
+        Published
+      - if @content.has_error? :published
+        %em.error= @content.error_messages :published
+  
+  .buttons
+    %button{ :type => :submit, :class => '-primary' } Save

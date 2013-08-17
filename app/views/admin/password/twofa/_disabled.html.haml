@@ -1,0 +1,13 @@
+%p
+  You can enable two-factor authentication for your account using Google Authenticator. To do this, scan the barcode
+  below and check the box.
+
+= form_for [:admin, @user], :url => admin_twofa_path, :html => { :method => :put, :class => 'twofa', :id => 'twofa_enable' } do |f|
+  = google_authenticator_qrcode @user
+
+  %label
+    = f.check_box :gauth_enabled, :checked => nil
+    I wish to enable two-factor authentication on my account
+
+  .buttons
+    %button{ :type => 'submit', :class => '-primary', :name => 'Commit' } Enable

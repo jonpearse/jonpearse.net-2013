@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>String</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            String 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/lib/core_ext/string_rb.html">lib/core_ext/string.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Nice utility class that extends Ruby’s core <a
+href="http://www.ruby-doc.org/core-1.9.3/String.html">String</a> class with
+some useful-ish extras.</p>
+
+<p>Or something</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-normalize">normalize</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-numeric-3F">numeric?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-slugify">slugify</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-uncountable-3F">uncountable?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-normalize">
+            
+              <b>normalize</b>()
+            
+            <a href="../classes/String.html#method-i-normalize" name="method-i-normalize" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns a normalised version of the string, where all UTF-8/accented/weird
+characters are converted to their nearest ASCII equivalents. This requires
+the <a href="https://github.com/norman/babosa">Babosa</a> gem to be
+installed and available.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-normalize_source')" id="l_method-i-normalize_source">show</a>
+                
+              </p>
+              <div id="method-i-normalize_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/core_ext/string.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">normalize</span>
+  <span class="ruby-identifier">to_slug</span>.<span class="ruby-identifier">transliterate</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-numeric-3F">
+            
+              <b>numeric?</b>()
+            
+            <a href="../classes/String.html#method-i-numeric-3F" name="method-i-numeric-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns whether or not the string appears to be numeric (ie, is a sequence
+of numbers possibly starting ‘-’)</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-numeric-3F_source')" id="l_method-i-numeric-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-numeric-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/core_ext/string.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">numeric?</span>
+  (<span class="ruby-keyword">self</span> <span class="ruby-operator">=~</span> (<span class="ruby-regexp">/\A[+-]?\d+\Z/</span>)) <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-slugify">
+            
+              <b>slugify</b>()
+            
+            <a href="../classes/String.html#method-i-slugify" name="method-i-slugify" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Produces a slugified version of this string safe for use in URLs.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-slugify_source')" id="l_method-i-slugify_source">show</a>
+                
+              </p>
+              <div id="method-i-slugify_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/core_ext/string.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">slugify</span>
+  <span class="ruby-identifier">normalize</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[^\sa-z0-9\-\_]/</span>,<span class="ruby-string">''</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\s+/</span>,<span class="ruby-string">'-'</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/--+/</span>, <span class="ruby-string">'-'</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-uncountable-3F">
+            
+              <b>uncountable?</b>()
+            
+            <a href="../classes/String.html#method-i-uncountable-3F" name="method-i-uncountable-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns whether this string is uncountable or not—ie, whether the plural
+and singular forms are identical. This is borrowed from Rails core and
+provided here to be useful.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-uncountable-3F_source')" id="l_method-i-uncountable-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-uncountable-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File lib/core_ext/string.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">uncountable?</span>
+  
+  (<span class="ruby-identifier">pluralize</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">singularize</span>)
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

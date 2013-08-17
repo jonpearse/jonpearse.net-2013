@@ -1,0 +1,29 @@
+= form_for [:admin, @content], :as => :content do |f|
+  %ol
+    %li.text.cf{ :class => (@content.error_class :title )}
+      = f.label :title, "Title"
+      = f.text_field :title, :maxlength => 32
+      - if @content.has_error? :title
+        %em.error= @content.error_messages :title
+    
+    %li.text.cf{ :class => (@content.error_class :url_slug )}
+      = f.label :url_slug, "URL"
+      = f.text_field :url_slug, :maxlength => 64
+      - if @content.has_error? :url_slug
+        %em.error= @content.error_messages :url_slug
+        
+    %li.text.cf{ :class => (@content.error_class :body )}
+      = f.label :body, "Content"
+      = f.text_area :body, :class => 'large'
+      - if @content.has_error? :body
+        %em.error= @content.error_messages :body
+        
+    %li.content_selector.cf{ :class => (@content.error_class :masthead_id ), :data => { :"content-type" => 'media', :"select-params" => "type=banner" }}
+      = f.label :masthead_id, "Masthead"
+      = f.number_field :masthead_id
+      - if @content.has_error? :masthead_id
+        %em.error= @content.error_messages :masthead_id
+  
+  .buttons
+    %button{ :type => :submit, :class => '-primary' } Save
+    %button{ :type => :submit, :class => 'icon -eye-open', :name => 'preview', :data => { :remote => true }}  Preview

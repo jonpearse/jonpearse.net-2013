@@ -1,0 +1,10 @@
+- @activeNav ||= params[:controller]
+
+%nav
+  %ul.cf
+    %li
+      = link_to_with_current 'Home', root_path
+    %li
+      = link_to 'Archive', articles_path, :class => (params[:controller] == 'articles' and params[:action] != 'index' ? 'current' : nil)
+    %li
+      = link_to 'About', '/about', :class => (@activeNav == 'page' and !@page.nil? and @page.url_slug == 'about' ? 'current' : nil)

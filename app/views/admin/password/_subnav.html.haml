@@ -1,0 +1,4 @@
+%nav.section{ :role => 'menu' }
+  %ul
+    %li=  link_to_unless_current 'Change password', admin_change_password_path
+    %li=  link_to_unless_current 'Two-Factor Auth', admin_twofa_path

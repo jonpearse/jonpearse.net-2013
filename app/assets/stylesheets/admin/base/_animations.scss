@@ -1,0 +1,32 @@
+@include keyframes(fade-and-zip)
+{
+    from    { opacity: 1; @include transform(scale(1,1)); }
+    to      { opacity: 0; @include transform(scale(1,0)); }
+}
+@include keyframes(spin)
+{
+    from    { @include transform(rotate(  0deg)); }
+    to      { @include transform(rotate(360deg)); }
+}
+
+@include keyframes(pulse-border-error)
+{
+    from    { border-color: #bbb; }
+    20%     { border-color: #f66; }
+    40%     { border-color: #bbb; }
+    60%     { border-color: #f66; }
+    80%     { border-color: #bbb; }
+    to      { border-color: #F66; }
+}
+
+@include keyframes(pulse-border-yft)
+{
+    from    { border-color: #bbb; }
+    10%      { border-color: #1465b5; }
+    20%     { border-color: #bbb; }
+    30%     { border-color: #1465b5; }
+    40%     { border-color: #bbb; }
+    50%     { border-color: #1465b5; }
+    60%     { border-color: #1465b5; }
+    to      { border-color: #bbb; }
+}

@@ -1,0 +1,7 @@
+%section.archive.-bigfirst.cf
+  - idx = 0
+  %ol
+    - @articles.each do |article|
+      %li.item
+        = render :partial => 'preview', :locals => { :article => article, :full => (idx == 0) }
+        - idx += 1

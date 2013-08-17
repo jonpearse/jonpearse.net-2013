@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>RedCloth::Formatters::HTML</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            RedCloth::Formatters::HTML 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/config/initializers/redcloth_extensions_rb.html">config/initializers/redcloth_extensions.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>B</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-br">br</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-code">code</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>H</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-hr">hr</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-image">image</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-link">link</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-br">
+            
+              <b>br</b>(opts)
+            
+            <a href="../../../classes/RedCloth/Formatters/HTML.html#method-i-br" name="method-i-br" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>HTML5 linebreaks</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-br_source')" id="l_method-i-br_source">show</a>
+                
+              </p>
+              <div id="method-i-br_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File config/initializers/redcloth_extensions.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">br</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">hard_breaks</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">&quot;&lt;br&gt;\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-code">
+            
+              <b>code</b>(opts)
+            
+            <a href="../../../classes/RedCloth/Formatters/HTML.html#method-i-code" name="method-i-code" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-code_source')" id="l_method-i-code_source">show</a>
+                
+              </p>
+              <div id="method-i-code_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File config/initializers/redcloth_extensions.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">code</span>(<span class="ruby-identifier">opts</span>)
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">inspect</span>
+
+  <span class="ruby-ivar">@in_bc</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword">nil</span>
+  
+  <span class="ruby-comment"># if we're inline, grab the bracketed language off the front</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@in_bc</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>].<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/^\[([A-z]+?)\]\s+/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:lang</span>] = <span class="ruby-node">$1</span>; <span class="ruby-string">''</span> }
+  <span class="ruby-keyword">end</span>
+        
+  <span class="ruby-comment"># if we have a language, start formatting</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:lang</span>]
+    <span class="ruby-identifier">require</span> <span class="ruby-string">'coderay'</span>
+    
+    <span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>] = <span class="ruby-constant">CodeRay</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>], <span class="ruby-identifier">opts</span>[<span class="ruby-value">:lang</span>].<span class="ruby-identifier">to_sym</span>).<span class="ruby-identifier">html</span>(<span class="ruby-value">:wrap</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>)
+    
+    <span class="ruby-comment"># split by lines </span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@in_bc</span>
+      <span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>].<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/^\.$/</span>, <span class="ruby-string">''</span>)
+      <span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-value">:text</span>].<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;&lt;span class=\&quot;code-line\&quot;&gt;#{l}&lt;/span&gt;&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+    <span class="ruby-keyword">end</span>
+    
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># if we have a counter param</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:style</span>]
+    <span class="ruby-identifier">opts</span>[<span class="ruby-value">:style</span>].<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/start:(\d+)/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;counter-reset: code-hilite #{($1.to_i - 1)}&quot;</span> }
+  <span class="ruby-keyword">end</span>
+      
+  <span class="ruby-comment"># finally, output based on whether we're inline or not</span>
+  <span class="ruby-ivar">@in_bc</span> <span class="ruby-operator">?</span> 
+      <span class="ruby-node">&quot;\n&lt;code#{pba(opts)}&gt;#{opts[:text]}&lt;/code&gt;&quot;</span> <span class="ruby-operator">:</span>
+      <span class="ruby-node">&quot;&lt;code&gt;#{opts[:text]}&lt;/code&gt;&quot;</span>        
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-hr">
+            
+              <b>hr</b>(opts)
+            
+            <a href="../../../classes/RedCloth/Formatters/HTML.html#method-i-hr" name="method-i-hr" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Produce HTML5 breaks</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-hr_source')" id="l_method-i-hr_source">show</a>
+                
+              </p>
+              <div id="method-i-hr_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File config/initializers/redcloth_extensions.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">hr</span> (<span class="ruby-identifier">opts</span>)
+  <span class="ruby-string">&quot;&lt;div class=\&quot;hr\&quot;&gt;&lt;hr&gt;&lt;/div&gt;\n&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-image">
+            
+              <b>image</b>(opts)
+            
+            <a href="../../../classes/RedCloth/Formatters/HTML.html#method-i-image" name="method-i-image" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Produce HTML5 images</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-image_source')" id="l_method-i-image_source">show</a>
+                
+              </p>
+              <div id="method-i-image_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File config/initializers/redcloth_extensions.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:align</span>)
+  <span class="ruby-identifier">opts</span>[<span class="ruby-value">:alt</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-value">:title</span>]
+  <span class="ruby-identifier">img</span> = <span class="ruby-node">&quot;&lt;img src=\&quot;#{escape_attribute opts[:src]}\&quot;#{pba(opts)} alt=\&quot;#{escape_attribute opts[:alt].to_s}\&quot;&gt;&quot;</span>  
+  <span class="ruby-identifier">img</span> = <span class="ruby-node">&quot;&lt;a href=\&quot;#{escape_attribute opts[:href]}\&quot;&gt;#{img}&lt;/a&gt;&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-value">:href</span>]
+  <span class="ruby-identifier">img</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-link">
+            
+              <b>link</b>( opts )
+            
+            <a href="../../../classes/RedCloth/Formatters/HTML.html#method-i-link" name="method-i-link" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>override for link, so external links open in a new window</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-link_source')" id="l_method-i-link_source">show</a>
+                
+              </p>
+              <div id="method-i-link_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File config/initializers/redcloth_extensions.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">link</span>( <span class="ruby-identifier">opts</span> )
+  <span class="ruby-identifier">target</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-value">:href</span>].<span class="ruby-identifier">start_with?</span>(<span class="ruby-string">'http://'</span>,<span class="ruby-string">'https://'</span>) <span class="ruby-operator">?</span> <span class="ruby-string">' target=&quot;_blank&quot;'</span> <span class="ruby-operator">:</span> <span class="ruby-string">''</span>
+  
+  <span class="ruby-node">&quot;&lt;a href=\&quot;#{escape_attribute opts[:href]}\&quot;#{pba(opts)}#{target}&gt;#{opts[:name]}&lt;/a&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

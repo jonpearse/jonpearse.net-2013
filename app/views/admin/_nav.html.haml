@@ -1,0 +1,13 @@
+- @current_section ||= controller_name
+%nav.chrome.cf{ :role => 'menu' }
+  %ul
+    %li{ :class => @current_section == 'dashboard' ? 'current' : nil }
+      =  link_to  'Dashboard', admin_root_path, :class => 'icon -fixed-width -dashboard'
+    %li{ :class => @current_section == 'blog' ? 'current' : nil }
+      =  link_to  'Blog', admin_articles_path, :class => 'icon -fixed-width -book'
+    %li{ :class => @current_section == 'pages' ? 'current' : nil }
+      =  link_to  'Pages', admin_pages_path, :class => 'icon -fixed-width -file-alt'
+    %li{ :class => @current_section == 'media' ? 'current' : nil }
+      =  link_to  'Media', admin_media_index_path, :class => 'icon -fixed-width -picture'
+    -#%li{ :class => @current_section == 'snippets' ? 'current' : nil }
+      =  link_to  'Snippets', '#', :class => 'icon -fixed-width -code'

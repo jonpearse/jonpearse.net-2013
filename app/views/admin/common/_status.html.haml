@@ -1,0 +1,4 @@
+- unless flash.empty?
+  %ul.flashes
+    - flash.each do |type,value|
+      %li{ :class => type.to_s+(type == 'error' ? '' : ' -can-dismiss' ) }= value

@@ -1,0 +1,36 @@
+form li.content_selector {
+    span.display {
+        float: left;
+        display: block;
+        padding: 20px;
+        width: 130px;
+        min-height: 130px;
+        text-align: center;
+        background: #EEE;
+        border: 1px solid #CCC;
+    }
+    a.button { display: block; width: 60px; margin: 0 0 1em 190px; text-align: center; }
+}
+
+.lb-container .lb-media-select {
+    .lb-content { overflow: visible; height: 500px; }
+    nav {
+        margin: -15px -15px 15px -15px;
+        @extend %subnav;
+        border-radius: 0;
+    }
+    .content { overflow-y: auto; }
+    
+    ul.content_select {
+        li { float: left; margin: 0 20px 20px 0; }
+        a { 
+            text-align: center;
+            display: block;
+            width: 130px;
+            padding: 10px;
+            min-height: 130px;
+            background: #EEE;
+            border: 1px solid #CCC;
+        }
+    }
+}

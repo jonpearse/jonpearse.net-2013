@@ -1,0 +1,97 @@
+@charset "UTF-8";
+@import "bourbon";
+@import "ext/reset", "ext/fontawesome", "site/fonts", "site/type", "site/base";
+
+html,body { height: 100%; }
+body {
+    font: normal 1.25em/1.4em Lato,Arial,sans-serif;
+    background: #F6F6F6 asset_url('bg.png', image);
+    color: #444;
+}
+
+#container { min-height: 100%; position: relative; padding: 0 20px; }
+
+header.chrome .i,
+footer.chrome .i,
+main {
+    margin: 0 auto;
+    width: auto !important;
+    width: 1050px;
+    max-width: 1050px;
+}
+
+a {
+    color: $link;
+    text-decoration: none;
+    @include transition(color 200ms);
+    &:hover { text-decoration: underline; color: lighten($link, 10%); }
+}
+.chrome a {
+    color: #000;
+    @include transition(all 300ms);
+    
+    &:hover { color: darken($link, 5%); text-decoration: none; }
+}
+
+header.chrome {
+    color: #000;
+    background: #FFF;
+    border-top: 15px solid #000;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin: 0 -20px 50px;
+    box-shadow: rgba(255,255,255,.6) 0 1px 0 0;
+    padding: 0 20px;
+    
+    h1 { margin: 0; float: left; font-size: 1.4em; line-height: 55px; }
+    
+    nav {
+        padding-bottom: 10px;
+        float: right;
+        li {
+            float: left; 
+            border-right: 1px solid rgba(0,0,0,0.1);
+            &:last-child { border-right: 0; }
+            a:hover,
+            a.current { border-top: 5px solid #000; padding-top: 10px; }
+        }
+        a {
+            display: block;
+            padding: 15px 10px 10px;
+        }
+    }
+}
+
+main {  padding-bottom: 35px; display: block; }
+
+footer.chrome {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFF;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    box-shadow: rgba(255,255,255,0.6) 0 -1px 0 0;
+    padding: 10px;
+    text-align: right;
+    font-size: .8em;
+    text-shadow: rgba(0,0,0,.2) 0 0 1px;
+    
+    strong { font-weight: normal; }
+    p,ul,li { display: inline; margin: 0; }
+    p { 
+        float: left;
+        margin: 0;
+        strong:after { content: ":: "; font-weight: normal; padding: 0 0.5em; }
+    }
+    li {
+        margin-left: 0.5em;
+        &:before { content: "- "; padding-right: 0.5em; }
+        &:first-child:before { content: ""; padding: 0; }
+        a:before { color: #444; }
+        
+        &.t a:before { color: #4099FF; }
+    }
+}
+
+@import "site/mod/*";
+@import "site/breaks";

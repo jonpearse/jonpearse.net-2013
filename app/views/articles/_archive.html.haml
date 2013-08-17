@@ -1,0 +1,25 @@
+- unless @archive.empty?
+  %section.archive-by-month.cf
+    %header
+      %h2 Archive by month
+    %ol
+      - now = DateTime.now
+      - @archive.each_pair do |year, months|
+        %li
+          = link_to year, articles_path(:year => year)
+          (#{months[:_total]})
+          %ol
+            - display = false
+            - max = (year == now.year) ? now.month : 12
+            
+            - for month in Range.new(1, max)
+              - if !display and !months.key?(month)
+                - next
+              - display = true
+              
+              %li
+                - if months.key?(month)
+                  = link_to t('date.abbr_month_names')[month], articles_path(:year => year, :month => format('%02d', month))
+                  (#{months[month]})
+                - else
+                  = t('date.abbr_month_names')[month]

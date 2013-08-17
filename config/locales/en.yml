@@ -1,0 +1,19 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  admin:
+    prompt:
+      manage: "Manage %{model_p}"
+      create: "New %{model}"
+      edit:   "Edit %{model} #%{id}"
+      select: "Select %{model}"
+      
+      create_p: "Create new %{model}"
+      none:   "There are no %{model_p}"
+      none_p: '—why not <a href="%{url}">create one</a>'
+  
+  site:
+    desc: >
+      Hi! I’m a freelance web interaction developer specialising in the creation of beautiful, functional and usable
+      websites that enable, empower and engage with their users.

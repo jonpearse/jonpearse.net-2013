@@ -1,0 +1,21 @@
+%article.cf.article{ :id => "article-#{@article.id}", :class => @article.masthead.nil? ? nil : ' -has-masthead' }
+  %header.cf
+    %h1=  @article.title
+    %dl.cf
+      - unless @article.published_on.nil?
+        %dt.a11y  Posted
+        %dd.icon.-calendar-empty
+          %time{ :datetime => @article.published_on.strftime('%FT%T'), :pubdate => true }= form_date @article.published_on
+      
+      - unless @article.categories.empty?
+        %dt.icon.-fixed-with.-tags Filed under
+        %dd
+          %ul
+            - @article.categories.each do |c|
+              %li=  link_to c.title.downcase, category_path(c)
+
+  - unless @article.masthead.nil?
+    = render :partial => 'application/masthead', :locals => { :media => @article.masthead }
+    
+  .content.type
+    ~ process_media(@article.body_rendered).html_safe

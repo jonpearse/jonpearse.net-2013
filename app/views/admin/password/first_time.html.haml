@@ -1,0 +1,20 @@
+%h2 Hi There!
+
+= render :partial => 'admin/common/status'
+
+= form_for [:admin, @user], :url => admin_first_login_path do |f|
+  %ol                
+    %li.text.cf{ :class => (@user.error_class :password )}
+      = f.label :password, 'Password'
+      = f.password_field :password, :autocomplete => 'off'
+      - if @user.has_error? :password
+        %em.error= @user.error_messages :password
+        
+    %li.text.cf{ :class => (@user.error_class :password_confirmation )}
+      = f.label :password_confirmation, 'Confirm'
+      = f.password_field :password_confirmation, :autocomplete => 'off'
+      - if @user.has_error? :password_confirmation
+        %em.error= @user.error_messages :password_confirmation
+
+  .buttons
+    %button{ :type => 'submit', :class => 'major', :name => 'Commit' } Save

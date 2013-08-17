@@ -1,0 +1,29 @@
+= render :partial => 'admin/content/quicksearch'
+
+- if @media.empty?
+  %p.nothing 
+    There are no #{@content_object_name.downcase.pluralize}
+    - if createable?
+      = link_to "- why not create one?", send(:"new_admin_#{printable}_path")
+- else
+  %table{ :class => "list -media -select" }
+    %thead
+      %tr
+        %th{ :scope => 'col' }= sortable('title')
+        %th{ :scope => 'col' }= sortable('file_file_name', 'Filename')
+        %th{ :scope => 'col', :class => 'small' }= sortable('media_type', 'Format')
+        %th{ :scope => 'col', :class => 'act'  }
+    %tbody
+      - @media.each do |m|
+        %tr{ :id => "media-#{m.id}" }
+          %th{ :scope => 'row' }
+            = image_tag m.file.url(:thumb), :alt => ''
+            = m.title
+          %td
+            = m.file.original_filename
+          %td.small
+            = m.media_type
+          %td.act
+            %a{ :href => '#', :class => 'button -small -blue act-select', :data => { :"content-id" => m.id, :"field-id" => params[:populate] }}  Select
+
+  = will_paginate @media, :inner_window => 2, :outer_window => 0

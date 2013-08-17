@@ -1,0 +1,4 @@
+%nav
+  %ul
+    %li{ :class => params.key?('upload') ? nil : 'current' }=  link_to 'select', { :action => :choose }, :class => 'icon -search', :data => { :remote => true }
+    %li{ :class => params.key?('upload') ? 'current' : nil }=  link_to 'upload', { :action => :choose, :upload => true }, :class => 'icon -plus', :data => { :remote => true }

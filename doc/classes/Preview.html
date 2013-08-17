@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Preview</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Preview 
+            
+                <span class="parent">&lt; 
+                    
+                    ActiveRecord::Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/models/preview_rb.html">app/models/preview.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>OK, so previews are a little bit of a kludge… a more normal way might be to
+add a @:preview@ flag to each individual model class, and then have some
+kinda weird duplication/versioning system to handle it.</p>
+
+<p>This is a mess.</p>
+
+<p>The other normal way of doing this would be to store the model instance
+currently being edited in the session, which means you don’t have to
+involve mucking around in databases.</p>
+
+<p>This is dirty, non-performant (because Rails sessions are stored in
+cookies), and it is <em>very</em> easy to exceed the session size limit…
+not good.</p>
+
+<p>Instead, I’ve created a preview model which is instantiated and used to
+store the ‘preview’ state of the content being edited that we can replay it
+into a new instance of that content model at a later date.</p>
+
+<p>Of course, I could have just changed session handling to use the database,
+but that seemed a little easy…</p>
+
+<p>:D</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-acquire">acquire</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-c-clean">clean</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-clean_old">clean_old</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-store">store</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-acquire">
+            
+              <b>acquire</b>( model_name, user )
+            
+            <a href="../classes/Preview.html#method-c-acquire" name="method-c-acquire" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>This should be called instead of the constructor, and will return a
+suitable instance of this class tailored to what you’re trying to do.</p>
+
+<p>If there’s already a preview for the content/user combination, it’ll return
+that. Otherwise, it’ll return a new object keyed to that content/user.</p>
+
+<h3 id="method-c-acquire-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>model_name
+<dd>
+<p>the name of the ActiveRecord model class to get a preview for</p>
+</dd><dt>user
+<dd>
+<p>the currently logged-in user</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-acquire_source')" id="l_method-c-acquire_source">show</a>
+                
+              </p>
+              <div id="method-c-acquire_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/preview.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">acquire</span>( <span class="ruby-identifier">model_name</span>, <span class="ruby-identifier">user</span> )
+  
+  <span class="ruby-identifier">preview</span> = <span class="ruby-identifier">find_by_model_name_and_user_id</span>(<span class="ruby-identifier">model_name</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>)
+  
+  <span class="ruby-identifier">preview</span> = <span class="ruby-identifier">new</span>({ <span class="ruby-value">:model_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">model_name</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span> }) <span class="ruby-keyword">if</span> <span class="ruby-identifier">preview</span>.<span class="ruby-identifier">nil?</span>
+  
+  <span class="ruby-identifier">preview</span>      
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-clean">
+            
+              <b>clean</b>( model_name, user )
+            
+            <a href="../classes/Preview.html#method-c-clean" name="method-c-clean" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Cleans all previews for the given ActiveRecord model and user.</p>
+
+<h3 id="method-c-clean-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>model_name
+<dd>
+<p>the name of the ActiveRecord model class to get a preview for</p>
+</dd><dt>user
+<dd>
+<p>the currently logged-in user</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-clean_source')" id="l_method-c-clean_source">show</a>
+                
+              </p>
+              <div id="method-c-clean_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/preview.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clean</span>( <span class="ruby-identifier">model_name</span>, <span class="ruby-identifier">user</span> )
+  
+  <span class="ruby-identifier">delete_all</span> <span class="ruby-value">:model_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">model_name</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-c-clean_old">
+            
+              <b>clean_old</b>()
+            
+            <a href="../classes/Preview.html#method-c-clean_old" name="method-c-clean_old" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Utility function that removes all previews older than two hours,
+irrespective of model and user.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-clean_old_source')" id="l_method-c-clean_old_source">show</a>
+                
+              </p>
+              <div id="method-c-clean_old_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/preview.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">clean_old</span>
+  
+  <span class="ruby-identifier">delete_all</span> [ <span class="ruby-string">'created_on &lt; ?'</span>, <span class="ruby-number">2</span>.<span class="ruby-identifier">hours</span>.<span class="ruby-identifier">ago</span> ]
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-store">
+            
+              <b>store</b>( d )
+            
+            <a href="../classes/Preview.html#method-i-store" name="method-i-store" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Updates the preview state of the current object.</p>
+
+<h3 id="method-i-store-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>d
+<dd>
+<p>the data to store in this preview</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-store_source')" id="l_method-i-store_source">show</a>
+                
+              </p>
+              <div id="method-i-store_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/models/preview.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">store</span>( <span class="ruby-identifier">d</span> )
+
+  <span class="ruby-identifier">update_attribute</span>( <span class="ruby-value">:model_data</span>, <span class="ruby-identifier">d</span> )
+
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

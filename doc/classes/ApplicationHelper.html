@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ApplicationHelper</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../css/github.css" type="text/css" media="screen" />
+<script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Module</span> 
+            ApplicationHelper 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/app/helpers/application_helper_rb.html">app/helpers/application_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Provides view functions used all over the site.</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-article_path">article_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-category_path">category_path</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>F</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-form_date">form_date</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-image_url">image_url</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>L</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-link_to_with_current">link_to_with_current</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-process_media">process_media</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>R</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-remove_media">remove_media</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+        
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-article_path">
+            
+              <b>article_path</b>( article )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-article_path" name="method-i-article_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience function that returns the URL path for the provided article.</p>
+
+<h3 id="method-i-article_path-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>article
+<dd>
+<p>the <a href="Article.html">Article</a> to generate the path to</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-article_path_source')" id="l_method-i-article_path_source">show</a>
+                
+              </p>
+              <div id="method-i-article_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">article_path</span>( <span class="ruby-identifier">article</span> )
+  <span class="ruby-identifier">_article_path</span>(<span class="ruby-value">:slug</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">article</span>.<span class="ruby-identifier">full_url</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-category_path">
+            
+              <b>category_path</b>( category )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-category_path" name="method-i-category_path" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Convenience function that returns the URL path for the provided category.</p>
+
+<h3 id="method-i-category_path-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>article
+<dd>
+<p>the <a href="Category.html">Category</a> to generate the path to</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-category_path_source')" id="l_method-i-category_path_source">show</a>
+                
+              </p>
+              <div id="method-i-category_path_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">category_path</span>( <span class="ruby-identifier">category</span> )
+  <span class="ruby-identifier">_category_path</span>(<span class="ruby-value">:slug</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">category</span>.<span class="ruby-identifier">url_slug</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-form_date">
+            
+              <b>form_date</b>( date )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-form_date" name="method-i-form_date" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Formats a date into the form “Mar 5th, 2013”</p>
+
+<h3 id="method-i-form_date-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>date
+<dd>
+<p>the DateTime object to format</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-form_date_source')" id="l_method-i-form_date_source">show</a>
+                
+              </p>
+              <div id="method-i-form_date_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">form_date</span>( <span class="ruby-identifier">date</span> )
+  <span class="ruby-identifier">date</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-node">&quot;%b #{date.day.ordinalize}, %Y&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-image_url">
+            
+              <b>image_url</b>( path )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-image_url" name="method-i-image_url" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Wraps ActionView::Helpers::AssetUrlHelper#image_path and returns an
+absolute URL to a specific image, including current hostname and protocol.</p>
+
+<h3 id="method-i-image_url-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>path
+<dd>
+<p>the path to the image we wish to get the URL for</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-image_url_source')" id="l_method-i-image_url_source">show</a>
+                
+              </p>
+              <div id="method-i-image_url_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">image_url</span>( <span class="ruby-identifier">path</span> )
+  <span class="ruby-node">&quot;#{root_url}#{image_path(path)}&quot;</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/([0-9a-z])\/\//</span>, <span class="ruby-string">'\1/'</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-link_to_with_current">
+            
+              <b>link_to_with_current</b>( text, path, options = {} )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-link_to_with_current" name="method-i-link_to_with_current" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Wraps ActionView::Helpers::UrlHelper#link_to to produce a link with an
+additional ‘current’ style if it links to the page currently being viewed.
+This is useful for navigation sections</p>
+
+<h3 id="method-i-link_to_with_current-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>text
+<dd>
+<p>the text to link</p>
+</dd><dt>path
+<dd>
+<p>the path to link to</p>
+</dd><dt>options
+<dd>
+<p>an array of additional options—see ActionView::Helpers::UrlHelper#link_to
+for more information.</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-link_to_with_current_source')" id="l_method-i-link_to_with_current_source">show</a>
+                
+              </p>
+              <div id="method-i-link_to_with_current_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">link_to_with_current</span>( <span class="ruby-identifier">text</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span> = {} )
+  <span class="ruby-comment"># default options</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:class</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">''</span>
+  
+  <span class="ruby-comment"># if we're on the current page, add a 'current' style</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_page?</span>(<span class="ruby-identifier">path</span>)
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:class</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">' current'</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># pass off</span>
+  <span class="ruby-identifier">link_to</span> <span class="ruby-identifier">text</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-process_media">
+            
+              <b>process_media</b>( markup )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-process_media" name="method-i-process_media" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Goes through text and replaces any dynamic references to <a
+href="Media.html">Media</a> items with appropriate markup.</p>
+
+<h3 id="method-i-process_media-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>markup
+<dd>
+<p>the markup to parse</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-process_media_source')" id="l_method-i-process_media_source">show</a>
+                
+              </p>
+              <div id="method-i-process_media_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">process_media</span>( <span class="ruby-identifier">markup</span> )
+  
+  <span class="ruby-identifier">processed</span> = <span class="ruby-keyword">false</span>
+  
+  <span class="ruby-comment"># render images</span>
+  <span class="ruby-identifier">markup</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/\$(?:\&amp;(g|l)t;(!)?:)?media\.(\d+)(?:#(.*?))?\$/</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>    
+    <span class="ruby-identifier">processed</span> = <span class="ruby-keyword">true</span>
+    
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-comment"># load media</span>
+      <span class="ruby-identifier">media</span> = <span class="ruby-constant">Media</span>.<span class="ruby-identifier">find</span>(<span class="ruby-node">$3</span>)
+      
+      <span class="ruby-comment"># locals</span>
+      <span class="ruby-identifier">align</span>   = <span class="ruby-node">$1</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">'center'</span> <span class="ruby-operator">:</span> (<span class="ruby-node">$1</span> <span class="ruby-operator">==</span> <span class="ruby-string">'l'</span> <span class="ruby-operator">?</span> <span class="ruby-string">'left'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'right'</span>)
+      <span class="ruby-identifier">caption</span> = <span class="ruby-node">$4</span>
+      <span class="ruby-identifier">pull</span>    = <span class="ruby-operator">!</span><span class="ruby-node">$2</span>.<span class="ruby-identifier">nil?</span>
+      
+      <span class="ruby-comment"># return code</span>
+      <span class="ruby-identifier">render</span>( <span class="ruby-value">:partial</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;media/#{media.media_type}&quot;</span>, <span class="ruby-value">:locals</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-value">:media</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">media</span>, <span class="ruby-value">:align</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">align</span>, <span class="ruby-value">:caption</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">caption</span>, <span class="ruby-value">:pull</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pull</span> } )
+    <span class="ruby-keyword">rescue</span>
+      <span class="ruby-comment"># something went wrong, so return nothing</span>
+      <span class="ruby-string">''</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-comment"># tidy markup…</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">processed</span>
+    <span class="ruby-identifier">markup</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/&lt;p&gt;&lt;aside/</span>, <span class="ruby-string">'&lt;aside'</span>)
+    <span class="ruby-identifier">markup</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp">/&lt;\/aside&gt;\s?(&lt;\/p&gt;|&lt;br&gt;|&lt;br \/&gt;)/</span>, <span class="ruby-string">'&lt;/aside&gt;'</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">markup</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-remove_media">
+            
+              <b>remove_media</b>( markup )
+            
+            <a href="../classes/ApplicationHelper.html#method-i-remove_media" name="method-i-remove_media" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>The exact opposite of <a
+href="ApplicationHelper.html#method-i-process_media">process_media</a>—this
+goes through markup and removes dynamic references to <a
+href="Media.html">Media</a> items.</p>
+
+<h3 id="method-i-remove_media-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>markup
+<dd>
+<p>the markup from which to remove <a href="Media.html">Media</a> references</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-remove_media_source')" id="l_method-i-remove_media_source">show</a>
+                
+              </p>
+              <div id="method-i-remove_media_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">remove_media</span>( <span class="ruby-identifier">markup</span> )
+  <span class="ruby-identifier">markup</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/\$(?:\&amp;(g|l)t;(!)?:)?media\.(\d+)(?:#(.*?))?\$/</span>, <span class="ruby-string">''</span>)
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

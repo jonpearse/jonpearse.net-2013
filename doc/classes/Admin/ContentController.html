@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Admin::ContentController</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/github.css" type="text/css" media="screen" />
+<script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            <span class="type">Class</span> 
+            Admin::ContentController 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="AdminController.html">Admin::AdminController</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/app/controllers/admin/content_controller_rb.html">app/controllers/admin/content_controller.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>Rather messy superclass that abstracts all basic CRUD-type behaviour into
+one place. This means model-specific controllers can be <em>way</em>
+simpler.</p>
+
+<p>On the flip-side, this class is full of kludge and unpleasantness and is
+probably a good example of how not to do things. It was a good learning
+experience, though…</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+    <!-- Method ref -->
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+      
+        <dt>A</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-after_create">after_create</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-after_destroy">after_destroy</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-after_update">after_update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>C</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-choose">choose</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-choose_clause">choose_clause</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-create">create</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-createable-3F">createable?</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>D</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-destroy">destroy</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>E</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-edit">edit</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-embed">embed</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>I</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-index">index</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>N</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-new">new</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-c-new">new</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>P</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-preview">preview</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>S</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-search_clause">search_clause</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-searchable-3F">searchable?</a>,
+              </li>
+            
+              
+              <li>
+                <a href="#method-i-show">show</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+        <dt>U</dt>
+        <dd>
+          <ul>
+            
+              
+              <li>
+                <a href="#method-i-update">update</a>
+              </li>
+            
+          </ul>
+        </dd>
+      
+    </dl>
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+      <!-- Section attributes -->
+      <div class="sectiontitle">Attributes</div>
+      <table border='0' cellpadding='5'>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>allow_create</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>content_object</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>default_sort_column</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+          <tr valign='top'>
+            <td class='attr-rw'>
+              [RW]
+            </td>
+            <td class='attr-name'>default_sort_direction</td>
+            <td class='attr-desc'></td>
+          </tr>
+        
+      </table>
+    
+
+
+    <!-- Methods -->
+    
+      <div class="sectiontitle">Class Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-c-new">
+            
+              <b>new</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-c-new" name="method-c-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-c-new_source')" id="l_method-c-new_source">show</a>
+                
+              </p>
+              <div id="method-c-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">initialize</span>
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_sort_column</span>    = <span class="ruby-string">'created_on'</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_sort_direction</span> = <span class="ruby-string">'d'</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">allow_create</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_sort_column</span> = <span class="ruby-string">'id'</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                  
+      <div class="sectiontitle">Instance Public methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-choose">
+            
+              <b>choose</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-choose" name="method-i-choose" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Allows a user to ‘choose’ an item of content. The functionality is broadly
+similar to <a href="ContentController.html#method-i-index">index</a>, but
+may have additional filtering logic so we can restrict what the user sees.</p>
+
+<p>There are probably better ways of doing this…</p>
+
+<h3 id="method-i-choose-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>sb
+<dd>
+<p>the column by which to sort the list</p>
+</dd><dt>sd
+<dd>
+<p>the direction in which to sort the list (either ‘u’ or ‘d’, defaults to
+‘d’)</p>
+</dd><dt>page
+<dd>
+<p>the page of content to show</p>
+</dd><dt>q
+<dd>
+<p>an optional search keyword</p>
+</dd></dl>
+
+<p>Note: different controllers may specify additional parameters suited to
+their requirements. See the <a
+href="ContentController.html#method-i-choose_clause">choose_clause</a>
+method for more information</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-choose_source')" id="l_method-i-choose_source">show</a>
+                
+              </p>
+              <div id="method-i-choose_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">choose</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">createable?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">'upload'</span>)
+    <span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">conditions</span> = (<span class="ruby-identifier">searchable?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">'q'</span>)) <span class="ruby-operator">?</span> <span class="ruby-identifier">search_clause</span> <span class="ruby-operator">:</span> [<span class="ruby-string">'1 = 1'</span>]
+  
+    <span class="ruby-comment"># overlay local params</span>
+    <span class="ruby-identifier">choose_clause</span> <span class="ruby-identifier">conditions</span>
+      
+    <span class="ruby-comment"># now grab order parm   </span>
+    <span class="ruby-identifier">order</span> = <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">sort_direction</span> <span class="ruby-operator">==</span> <span class="ruby-string">'u'</span> <span class="ruby-operator">?</span> <span class="ruby-string">'ASC'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'DESC'</span>)    
+  
+    <span class="ruby-comment"># query</span>
+    <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">paginate</span>(
+      <span class="ruby-value">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">conditions</span>,
+      <span class="ruby-value">:order</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">order</span>,
+      <span class="ruby-value">:page</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
+    )
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-create">
+            
+              <b>create</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-create" name="method-i-create" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Callback from <a href="ContentController.html#method-i-new">new</a>,
+attempt to persist the new content. If this fails, the template for <a
+href="ContentController.html#method-i-new">new</a> is rendered with
+appropriate messaging.</p>
+
+<h3 id="method-i-create-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>content
+<dd>
+<p>a hash containing the content to be persisted</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-create_source')" id="l_method-i-create_source">show</a>
+                
+              </p>
+              <div id="method-i-create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">create</span>
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:content</span>]
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">'preview'</span>)
+    <span class="ruby-identifier">prepare_preview</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">save</span>    
+    <span class="ruby-identifier">clean_previews</span>
+    
+    <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-keyword">do</span> 
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-value">:created</span>)
+        <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">after_create</span>(<span class="ruby-ivar">@content</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">js</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:new</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-destroy">
+            
+              <b>destroy</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-destroy" name="method-i-destroy" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Destroys (unpersists) the content with the given ID. This has no checking
+and assumes that you meant to do it…</p>
+
+<h3 id="method-i-destroy-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-destroy_source')" id="l_method-i-destroy_source">show</a>
+                
+              </p>
+              <div id="method-i-destroy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">destroy</span>
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-value">:deleted</span>)
+  
+  <span class="ruby-identifier">clean_previews</span>
+
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">after_destroy</span>(<span class="ruby-ivar">@content</span>) <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-edit">
+            
+              <b>edit</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-edit" name="method-i-edit" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Edit the content specified by the given ID. This hooks into preview
+functionality, and will attempt to load the latest version of the content,
+which may differ from what is persisted in the database.</p>
+
+<h3 id="method-i-edit-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-edit_source')" id="l_method-i-edit_source">show</a>
+                
+              </p>
+              <div id="method-i-edit_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">edit</span>
+
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">acquire_content_object</span>
+
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-embed">
+            
+              <b>embed</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-embed" name="method-i-embed" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Extracts and displays the content with the given ID in an ‘embeddable’
+manner, otherwise identical to <a
+href="ContentController.html#method-i-show">show</a></p>
+
+<h3 id="method-i-embed-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-embed_source')" id="l_method-i-embed_source">show</a>
+                
+              </p>
+              <div id="method-i-embed_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">embed</span>
+  <span class="ruby-identifier">show</span>
+  
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">xhr?</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-index">
+            
+              <b>index</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-index" name="method-i-index" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Displays a list of content, optionally sorted by criteria that will vary
+from model to model</p>
+
+<h3 id="method-i-index-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>sb
+<dd>
+<p>the column by which to sort the list</p>
+</dd><dt>sd
+<dd>
+<p>the direction in which to sort the list (either ‘u’ or ‘d’, defaults to
+‘d’)</p>
+</dd><dt>page
+<dd>
+<p>the page of content to show</p>
+</dd><dt>q
+<dd>
+<p>an optional search keyword</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-index_source')" id="l_method-i-index_source">show</a>
+                
+              </p>
+              <div id="method-i-index_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">index</span>
+  <span class="ruby-identifier">order</span> = <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">sort_direction</span> <span class="ruby-operator">==</span> <span class="ruby-string">'u'</span> <span class="ruby-operator">?</span> <span class="ruby-string">'ASC'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'DESC'</span>)    
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">'q'</span>) <span class="ruby-operator">?</span>
+              <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">search_clause</span>).<span class="ruby-identifier">paginate</span>( <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] ).<span class="ruby-identifier">order</span>( <span class="ruby-identifier">order</span> ) <span class="ruby-operator">:</span>
+              <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">paginate</span>( <span class="ruby-value">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] ).<span class="ruby-identifier">order</span>( <span class="ruby-identifier">order</span> )
+              
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:json</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@content</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-new">
+            
+              <b>new</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-new" name="method-i-new" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Create a new item of content.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-new_source')" id="l_method-i-new_source">show</a>
+                
+              </p>
+              <div id="method-i-new_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">new</span>
+  
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">acquire_content_object</span>
+
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-preview">
+            
+              <b>preview</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-preview" name="method-i-preview" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Previews the content with the given ID.</p>
+
+<h3 id="method-i-preview-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd><dt>live
+<dd>
+<p>attempt to show the latest version of the content, which may not be what is
+persisted in the database (optional)</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-preview_source')" id="l_method-i-preview_source">show</a>
+                
+              </p>
+              <div id="method-i-preview_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">preview</span>
+  
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">acquire_content_object</span>
+  
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'preview'</span>
+  
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-show">
+            
+              <b>show</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-show" name="method-i-show" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Extracts and displays the content with the provided ID</p>
+
+<h3 id="method-i-show-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-show_source')" id="l_method-i-show_source">show</a>
+                
+              </p>
+              <div id="method-i-show_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">show</span>
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-update">
+            
+              <b>update</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-update" name="method-i-update" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Callback from <a href="ContentController.html#method-i-update">update</a>:
+attempt to persist changes to the specified content. If this fails, the
+template for <a href="ContentController.html#method-i-update">update</a> is
+rendered with appropriate messaging.</p>
+
+<h3 id="method-i-update-label-Expected+parameters">Expected parameters</h3>
+<dl class="rdoc-list label-list"><dt>id
+<dd>
+<p>the ID of the <a href="../Article.html">Article</a> to publish</p>
+</dd><dt>content
+<dd>
+<p>a hash containing the content to be persisted</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-update_source')" id="l_method-i-update_source">show</a>
+                
+              </p>
+              <div id="method-i-update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 175</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">update</span>
+  
+  <span class="ruby-comment"># Grab our content and attempt to update it</span>
+  <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content_object</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">assign_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:content</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-string">'preview'</span>)
+    <span class="ruby-identifier">prepare_preview</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-identifier">t</span>(<span class="ruby-value">:edited</span>)
+    
+    <span class="ruby-identifier">clean_previews</span>
+  
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">after_update</span>(<span class="ruby-ivar">@content</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:edit</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+              
+      <div class="sectiontitle">Instance Protected methods</div>
+      
+        <div class="method">
+          <div class="title method-title" id="method-i-after_create">
+            
+              <b>after_create</b>( c )
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-after_create" name="method-i-after_create" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns the path to which the user should be redirected after content has
+been created. This is provided so subclasses can override default behaviour
+as required.</p>
+
+<h3 id="method-i-after_create-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>c
+<dd>
+<p>the recently-created content</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-after_create_source')" id="l_method-i-after_create_source">show</a>
+                
+              </p>
+              <div id="method-i-after_create_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">after_create</span>( <span class="ruby-identifier">c</span> )
+  <span class="ruby-identifier">get_index_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-after_destroy">
+            
+              <b>after_destroy</b>( c )
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-after_destroy" name="method-i-after_destroy" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns the path to which the user should be redirected after content has
+been destroyed. This is provided so subclasses can override default
+behaviour as required.</p>
+
+<h3 id="method-i-after_destroy-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>c
+<dd>
+<p>the recently-destroyed content</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-after_destroy_source')" id="l_method-i-after_destroy_source">show</a>
+                
+              </p>
+              <div id="method-i-after_destroy_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">after_destroy</span>( <span class="ruby-identifier">c</span> )
+  <span class="ruby-identifier">get_index_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-after_update">
+            
+              <b>after_update</b>( c )
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-after_update" name="method-i-after_update" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns the path to which the user should be redirected after content has
+been updated. This is provided so subclasses can override default behaviour
+as required.</p>
+
+<h3 id="method-i-after_update-label-Parameters">Parameters</h3>
+<dl class="rdoc-list label-list"><dt>c
+<dd>
+<p>the recently-updated content</p>
+</dd></dl>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-after_update_source')" id="l_method-i-after_update_source">show</a>
+                
+              </p>
+              <div id="method-i-after_update_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">after_update</span>( <span class="ruby-identifier">c</span> )
+  <span class="ruby-identifier">get_index_path</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-choose_clause">
+            
+              <b>choose_clause</b>( conditions )
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-choose_clause" name="method-i-choose_clause" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-choose_clause_source')" id="l_method-i-choose_clause_source">show</a>
+                
+              </p>
+              <div id="method-i-choose_clause_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 263</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">choose_clause</span>( <span class="ruby-identifier">conditions</span> )
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-createable-3F">
+            
+              <b>createable?</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-createable-3F" name="method-i-createable-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns whether this controller should allow the linked content to be
+controllable.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-createable-3F_source')" id="l_method-i-createable-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-createable-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">createable?</span>
+  <span class="ruby-identifier">allow_create</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-search_clause">
+            
+              <b>search_clause</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-search_clause" name="method-i-search_clause" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns some kind of content/string that can be used as a @:condition@ for
+ActiveRecord#all that allows searching on the appropriate content for this
+controller.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-search_clause_source')" id="l_method-i-search_clause_source">show</a>
+                
+              </p>
+              <div id="method-i-search_clause_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">search_clause</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+        
+        <div class="method">
+          <div class="title method-title" id="method-i-searchable-3F">
+            
+              <b>searchable?</b>()
+            
+            <a href="../../classes/Admin/ContentController.html#method-i-searchable-3F" name="method-i-searchable-3F" class="permalink">Link</a>
+          </div>
+          
+          
+            <div class="description">
+              <p>Returns whether this content is searchable. By default, this will return
+false if <a
+href="ContentController.html#method-i-search_clause">search_clause</a> is
+nil.</p>
+            </div>
+          
+          
+          
+          
+          
+            
+            <div class="sourcecode">
+              
+              <p class="source-link">
+                Source: 
+                <a href="javascript:toggleSource('method-i-searchable-3F_source')" id="l_method-i-searchable-3F_source">show</a>
+                
+              </p>
+              <div id="method-i-searchable-3F_source" class="dyn-source">
+                <pre><span class="ruby-comment"># File app/controllers/admin/content_controller.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword ruby-title">searchable?</span>
+  <span class="ruby-operator">!</span><span class="ruby-identifier">search_clause</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+              </div>
+            </div>
+            
+          </div>
+                    </div>
+
+    </div>
+  </body>
+</html>    

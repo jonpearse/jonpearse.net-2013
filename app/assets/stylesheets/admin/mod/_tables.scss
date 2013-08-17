@@ -1,0 +1,61 @@
+table {
+    width: 99%;
+    margin: 0 0 20px;
+    border-collapse: collapse;
+    background: #FFF;
+    
+    td,th {
+        padding: 0.5em;
+        @include box-sizing(border-box);
+        text-align: left; 
+        border: 1px solid $uiBorder;
+        border-width: 0 1px;
+        vertical-align: top;
+        
+        &.small  { width: 80px; text-align: center; }
+        &.medium { width: 200px; }
+        &.act    { width: 100px; text-align: center; }
+        
+        &:first-child { border-left: 0; }
+        &:last-child  { border-right: 0; }
+    }
+    thead th {
+        border-bottom: 1px solid $uiBorder;
+        font-size: 1.1em;
+        line-height: 1em;
+        height: 1em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        @include linear-gradient(#eee,#e0e0e0);
+    }
+    
+    tbody {
+        th {
+            font-weight: normal;
+            a, strong { font-weight: bold; }
+        }
+        .bool {
+            &.-ok { color: $ifInfo; }
+            &.-remove { color: $ifError; }
+        }
+        .bool, td.act .icon { @extend %icon-large; }
+        td.act .icon {
+            @extend %icon-large-fixed;
+            margin-left: 10px;
+            &:before { margin: 0; text-align: center; }
+                        
+            &.-edit:hover  { color: $ifInfo;  }
+            &.-trash:hover { color: $ifError; }
+            
+            &:first-child { margin-left: 0; }
+        }
+        tr {
+            border-bottom: 1px solid lighten($uiBorder, 20%);
+            
+            &:nth-child(2n) { background: rgba(0,0,0,0.05); }
+            
+            &:last-child { border-color: $uiBorder; }
+        }
+    }
+}

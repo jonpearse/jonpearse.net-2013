@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>preview.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            preview.rb
+        </h1>
+        <ul class="files">
+            <li>app/models/preview.rb</li>
+            <li>Last modified: 2013-08-17 18:08:50 +0100</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>OK, so previews are a little bit of a kludge… a more normal way might be to
+add a @:preview@ flag to each individual model class, and then have some
+kinda weird duplication/versioning system to handle it.</p>
+
+<p>This is a mess.</p>
+
+<p>The other normal way of doing this would be to store the model instance
+currently being edited in the session, which means you don’t have to
+involve mucking around in databases.</p>
+
+<p>This is dirty, non-performant (because Rails sessions are stored in
+cookies), and it is <em>very</em> easy to exceed the session size limit…
+not good.</p>
+
+<p>Instead, I’ve created a preview model which is instantiated and used to
+store the ‘preview’ state of the content being edited that we can replay it
+into a new instance of that content model at a later date.</p>
+
+<p>Of course, I could have just changed session handling to use the database,
+but that seemed a little easy…</p>
+
+<p>:D</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+    <!-- Namespace -->
+    <div class="sectiontitle">Namespace</div>
+    <ul>
+      
+        <li>
+          <span class="type">CLASS</span>
+          <a href="../../../classes/Preview.html">Preview</a>
+        </li>
+      
+    </ul>
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

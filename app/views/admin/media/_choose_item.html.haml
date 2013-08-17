@@ -1,0 +1,4 @@
+%li{ :id => "media-#{content.id}" }
+  %a.select{ :href => url_for( :action => :select, :id => content.id ), :data => { :"content-id" => content.id }}
+    = image_tag content.file.url(:thumb), :alt => ''
+    %strong=  content.title

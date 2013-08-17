@@ -1,0 +1,19 @@
+%footer.chrome
+  .i
+    %p
+      %strong.fn Jon Pearse
+      Developer /
+      %abbr{:title => 'Interaction Designer' } IxD
+
+    %ul
+      %li.p
+        %strong.a11y  Phone
+        %span.tel.icon.-phone 0701 424 5537
+    
+      %li.e
+        %strong.a11y  Email
+        = mail_to 'hello@jonpearse.net', 'hello@jonpearse.net', :class => 'icon -envelope'
+  
+      %li.t
+        %strong.a11y  Twitter
+        = link_to '@jonpearse', 'http://twitter.com/jonpearse', :class => 'icon -twitter', :target => '_blank'
