@@ -25,7 +25,7 @@ JjpLite::Application.routes.draw do
     match '2fa'         => 'password#twofa',      :as => 'twofa',  :via => [:get, :put]
     
     get   'password'    => 'password#edit',       :as => 'change_password'
-    put   'password'    => 'password#update',     :as => 'save_password'
+    patch 'password'    => 'password#update',     :as => 'save_password'
     
     # dashboard feeds
     get   'feeds/articles'  => 'dashboard#latest_articles', :as => 'articles_feed'

@@ -1,3 +1,4 @@
+- preview ||= false
 %article.cf.article{ :id => "article-#{@article.id}", :class => @article.masthead.nil? ? nil : ' -has-masthead' }
   %header.cf
     %h1=  @article.title
@@ -17,7 +18,7 @@
             - @article.categories.each do |c|
               %li=  link_to c.title.downcase, category_path(c)
       
-      - if @article.commentable or @article.num_comments > 0
+      - if (@article.commentable or @article.num_comments > 0) and !preview
         %dt.a11y Comments
         %dd
           = fa_icon 'comments'
@@ -28,8 +29,8 @@
               = pluralize(@article.num_comments, "comment")
           - unless @article.commentable
             %small (closed)
-      
-      - if current_user
+
+      - if current_user && !preview
         %dt.a11y  Actions
         %dd
           %ul.actions
@@ -48,7 +49,9 @@
     %footer
       %small
         %strong Header image:
-        = link_to_unless @article.masthead.attribution_url.nil?, @article.masthead.attribution_text, @article.masthead.attribution_url, :target => '_blank'
+        = link_to_unless @article.masthead.attribution_url.blank?, @article.masthead.attribution_text.html_safe, @article.masthead.attribution_url, :target => '_blank'
+        - unless @article.masthead.attribution_license.nil?
+          = fa_icon @article.masthead.attribution_license.icon, :title => @article.masthead.attribution_license.title, :class => 'lix'
     
   - unless @comments.nil?
     - if @article.commentable or (@article.num_comments > 0)

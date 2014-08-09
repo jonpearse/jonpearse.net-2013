@@ -16,6 +16,7 @@ class Media < ActiveRecord::Base
   
   # relations
   has_and_belongs_to_many :galleries
+  belongs_to :attribution_license, :foreign_key => :attribution_license_id, :class_name => "MediaLicense"
     
   # hooks
   has_attached_file :file,

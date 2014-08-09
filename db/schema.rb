@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807202222) do
+ActiveRecord::Schema.define(version: 20140809184820) do
 
   create_table "articles", force: true do |t|
     t.string   "title",            limit: 64
@@ -85,11 +85,11 @@ ActiveRecord::Schema.define(version: 20140807202222) do
   add_index "galleries_media", ["gallery_id", "media_id"], name: "index_galleries_media_on_gallery_id_and_media_id", unique: true, using: :btree
 
   create_table "media", force: true do |t|
-    t.string   "title",             limit: 64
-    t.string   "alt_text",          limit: 160, null: false
+    t.string   "title",                  limit: 64
+    t.string   "alt_text",               limit: 160, null: false
     t.string   "title_text"
-    t.string   "media_type",        limit: 16
-    t.string   "default_align",     limit: 16
+    t.string   "media_type",             limit: 16
+    t.string   "default_align",          limit: 16
     t.datetime "created_on"
     t.datetime "updated_on"
     t.string   "file_file_name"
@@ -97,8 +97,14 @@ ActiveRecord::Schema.define(version: 20140807202222) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "attribution_text"
-    t.string   "attribution_url",   limit: 128
+    t.string   "attribution_url",        limit: 128
     t.string   "file_meta"
+    t.integer  "attribution_license_id"
+  end
+
+  create_table "media_licenses", force: true do |t|
+    t.string "title", limit: 64
+    t.string "icon",  limit: 32
   end
 
   create_table "pages", force: true do |t|

@@ -275,7 +275,7 @@ class Admin::ContentController < Admin::AdminController
     def choose_clause( conditions )
     end
     
-    def object_params
+    def object_params( data = nil )
       
       # basic names
       accepted_params = content_object.column_names.map { |field| field.to_sym }
@@ -283,7 +283,10 @@ class Admin::ContentController < Admin::AdminController
       # additional params
       accepted_params.concat additional_params
       
-      params.require(:content).permit(accepted_params)
+      # sink
+      data ||= params.require(:content)
+      
+      data.permit(accepted_params)
     end
     
     def additional_params
@@ -332,7 +335,7 @@ class Admin::ContentController < Admin::AdminController
 
         # if so, recall preview data into the object
         if preview.persisted?
-          content.assign_attributes( preview.model_data )
+          content.assign_attributes object_params(preview.model_data)
           content.run_callbacks(:save) { false }
         end
         

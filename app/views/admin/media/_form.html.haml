@@ -63,9 +63,19 @@
       
         %li.text.cf{ :class => (@content.error_class :attribution_url )}
           = f.label :attribution_url, "URL"
-          = f.url_field :attribution_url
+          = f.url_field :attribution_url, :class => 'medium'
           - if @content.has_error? :attribution_url
             %em.error= @content.error_messages :attribution_url
+            
+        %li.select.cf{ :class => (@content.error_class :attribution_license_id )}
+          = f.label :attribution_license_id, "License"
+          = f.select :attribution_license_id do
+            %option None/unknown
+            - MediaLicense.all.each do |lix|
+              %option{ :value => lix.id, :selected => (@content.attribution_license_id == lix.id) }=  lix.title
+            
+          - if @content.has_error? :attribution_license_id
+            %em.error= @content.error_messages :attribution_license_id
   
   .buttons
     %button{ :type => :submit, :class => '-primary' } Save

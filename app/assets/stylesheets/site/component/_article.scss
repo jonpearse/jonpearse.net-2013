@@ -37,8 +37,11 @@ article.page {
         }
     }
     
-    footer { margin-bottom: .5em; }
-    
+    footer {
+        margin-bottom: .5em; 
+        i.lix { margin-left: .2em; }
+    }
+        
     // article with lead image
     &.-has-masthead {
         position: relative;
@@ -62,6 +65,7 @@ article.page {
         height: 1px;
         margin: 0;
         background-color: rgba(0,0,0,.8);
+        box-shadow: rgba(0,0,0,.15) 0 1px 5px 0;
     }
     
     // special cases

@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
   validates :name, :length => { :maximum => 32 }
   validates :email, 
             :length => { :maximum => 64 }, 
-            :format => { :with => /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'\*\+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ }
+            :format => { :with => /[a-z0-9!\#\$%&'*\+\/=\?\^_`\{\|\}~\-]+(?:\.[a-z0-9!\#\$%&'\*\+\/=\?\^_`\{\|\}~\-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ }
   validates :website,
             :length => { :maximum => 64 },
             :allow_blank => true

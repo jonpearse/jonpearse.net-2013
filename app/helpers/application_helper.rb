@@ -132,7 +132,7 @@ module ApplicationHelper
   
   def google_authenticator_qrcode(user,qualifier=nil)
     username = username_from_email(user.email)
-    app =   Rack::Utils.escape "jjp-lite"+("/dev" if Rails.env=='development')
+    app =   Rack::Utils.escape "jjp-lite"+(Rails.env=='development' ? '/dev' : '')
     data = "otpauth://totp/#{app}#{qualifier}?secret=#{user.gauth_secret}"
     data = Rack::Utils.escape(data)
     url = "https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=#{data}"

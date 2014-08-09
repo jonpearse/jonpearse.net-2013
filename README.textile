@@ -1,8 +1,34 @@
 h1. jonpearse.net
 
-This is the source code behind my website at "jonpearse.net":http://jonpearse.net. I’ve decided to publish the source following a "recent talk":https://speakerdeck.com/nrrrdcore/open-source-needs-more-design-superheroes by "Julie Ann Horvath":http://julieannhorvath.com/ at "HybridConf 2013":http://www.hybridconf.net/ because… well, why not.
+This is the source code behind my website at "jonpearse.net":http://jonpearse.net. 
 
-Have a look, pull it a part, point and laugh, do whatever… and if there’s anything you think I’m doing Very Wrong Indeed, drop me a line.
+I decided to publish it after seeing "Julie Ann Horvath":http://julieannhorvath.com/ speak at "HybridConf 2013":http://www,hybridconf.net/ because I started out in this game by hacking at other people’s code, so I thought it fair to let others do the same to me.
+
+Have a look, pull it apart: be inspired or point and laugh. Feel free to take anything you want and reuse it elsewhere. If you think I’m doing something Wrong, or you have any suggestions, "ping me a line":mailto:hello@jonpearse.net.
+
+h2. Sales Pitch (sorry)
+
+I’m a freelance developer based out of Cardiff in the UK. I’m usually fairly busy at any given time, but I’m always on the lookout for exciting new people to work with.
+If you like what you’ve seen here and want to talk to me about how I might be able to help you out, please "get in touch":mailto:hello@jonpearse.net: I’d love to hear from you!
+
+h2. Updates
+
+h3. August 9th, 2014
+
+* updated to use Rails 4.1
+* added commenting to articles
+* added media galleries
+* added attributions to media
+* dropped ≤IE8 support (and other browsers of the same vintage)
+* rewrote a bunch of front-end CSS
+* changed heading fonts
+* switched to using optimised FontAwesome on public part of site
+* rewrote a bunch of back-end code to be nicer/cleaner
+* many, many silly, insignificant and probably unnoticeable tweaks all over the place
+
+h3. August 17th, 2013
+
+_Initial public release to github_
 
 …
 

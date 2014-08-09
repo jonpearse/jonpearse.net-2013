@@ -113,6 +113,12 @@
       "css": "twitter",
       "code": 59402,
       "src": "fontawesome"
+    },
+    {
+      "uid": "959c9a2360ed00ec9c0a75562d30edc4",
+      "css": "cc",
+      "code": 61439,
+      "src": "zocial"
     }
   ]
 }

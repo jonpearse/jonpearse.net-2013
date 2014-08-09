@@ -16,7 +16,7 @@ class Admin::PasswordController < Admin::AdminController
   def update
     @user = User.find(current_user.id)
         
-    if @user.update_with_password(params[:user])
+    if @user.update_with_password params.require(:user).permit(:current_password, :password, :password_confirmation)
       sign_in @user, :bypass => true
       flash[:notice] = "Your password has been updated"
       redirect_to 

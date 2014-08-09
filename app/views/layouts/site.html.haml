@@ -55,7 +55,7 @@
       %footer.chrome{ :role => 'contentinfo' }
         = render :partial => 'layouts/site/footer'
       
-    = javascript_include_tag 'site'
+    = javascript_include_tag 'site', :async => (Rails.env.production? ? true : nil)
     - if Rails.env.production?
       = render :partial => 'layouts/site/ga'
     = yield :additional_foot
