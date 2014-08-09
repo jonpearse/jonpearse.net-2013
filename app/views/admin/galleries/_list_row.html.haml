@@ -1,0 +1,7 @@
+%tr{ :id => "media-#{content.id}" }
+  %th{ :scope => 'row' }
+    = link_to content.title, edit_admin_gallery_path(content)
+  %td=  content.created_at.strftime('%-e %b, %Y')
+  %td.act
+    = link_to_with_icon '', edit_admin_gallery_path(content), 'pencil-square-o', :title => 'edit this gallery', :class => '-safe'
+    = link_to_with_icon '', admin_gallery_path(content), 'trash-o', :title => "delete this gallery", :class => '-warn', :method => :delete, :data => { :confirm => 'Are you sure you wish to delete this? It cannot be undone' }

@@ -3,5 +3,5 @@
   %ol
     - @articles.each do |article|
       %li.item
-        = render :partial => 'preview', :locals => { :article => article, :full => (idx == 0) }
+        = render :partial => 'preview', :locals => { :article => article, :full => (idx == 0) }	
         - idx += 1

@@ -10,10 +10,9 @@ class MediaController < ApplicationController
   #
   # [:size]   the current CSS breakpoint being used.
   def ping
-    head :no_content and return
-    
-    # 1. update the session
-    session[:resolution] = params[:size]
+        
+    # 1. update the cookie
+    cookies[:resolution] = params[:size]
     
     # 2. send a nocache header
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -22,6 +21,7 @@ class MediaController < ApplicationController
     
     # 3. and empty content
     head :no_content
+    
   end
   
   # Serves up an appropriately-sized version of the requested Media item.
@@ -40,7 +40,7 @@ class MediaController < ApplicationController
     begin
       @media = Media.find params[:id]
     rescue
-      not_found and return      
+      not_found and return
     end
     
     # 2. work out which size to use
@@ -49,10 +49,10 @@ class MediaController < ApplicationController
       # accessing from parameter
       size = params[:size]
       
-    elsif session[:resolution].present?
+    elsif cookies[:resolution].present?
       
-      # using size in session from previous ping
-      size = session[:resolution]
+      # using size in cookie from previous ping
+      size = cookies[:resolution]
       
     else
       
@@ -61,6 +61,8 @@ class MediaController < ApplicationController
       size = request.env['HTTP_USER_AGENT'] =~ /MSIE (6|7|8)/ ? 'desktop' : 'mobile'
       
     end
+    
+    puts "Pinging #{size}"
     
     # 3. check we have the correct path
     path = @media.file.path(size.to_sym)

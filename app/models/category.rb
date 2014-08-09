@@ -6,9 +6,6 @@ class Category < ActiveRecord::Base
   # relations
   has_and_belongs_to_many :articles
   
-  # accessible attributes
-  attr_accessible :title, :published, :url_slug
-  
   # hooks
   acts_as_renderable :fields => [ :description ]
   before_validation :generate_slug

@@ -1,4 +1,4 @@
-form li.content_selector {
+.single-media-selector {
     span.display {
         float: left;
         display: block;
@@ -8,29 +8,128 @@ form li.content_selector {
         text-align: center;
         background: #EEE;
         border: 1px solid #CCC;
+        margin-right: 1em;
     }
-    a.button { display: block; width: 60px; margin: 0 0 1em 190px; text-align: center; }
+    span { display: block; }
+    button { margin-bottom: .5em; width: 6em; text-align: center; }
 }
 
-.lb-container .lb-media-select {
-    .lb-content { overflow: visible; height: 500px; }
-    nav {
-        margin: -15px -15px 15px -15px;
-        @extend %subnav;
-        border-radius: 0;
-    }
-    .content { overflow-y: auto; }
+.media-select-list {
+    @include display(flex);
+    @include align-items(stretch);
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+    @include justify-content(flex-start);
     
-    ul.content_select {
-        li { float: left; margin: 0 20px 20px 0; }
-        a { 
-            text-align: center;
-            display: block;
-            width: 130px;
-            padding: 10px;
-            min-height: 130px;
-            background: #EEE;
-            border: 1px solid #CCC;
+    li {
+        position: relative;
+        
+        width: 120px;
+        padding: 1em !important;
+        margin: 1em .5em !important;
+        background: #EEE;
+        
+        border: 1px solid $uiBorder;
+        border-radius: 3px;
+        
+        text-align: center;
+    }
+        
+    img { display: block; margin: 0 auto .5em; position: relative; z-index: 5; }
+}
+
+.lb-media-selector {
+    .lb-content { margin: 0 !important; min-height: 500px; }
+    .header {
+        margin: 0;
+        @extend %subnav;
+        text-align: right;
+        border-radius: 0;
+        
+        ul { float: left; }
+        
+        form {
+            display: inline-block;
+            background: transparent;
+            font-size: .8em;
+            
+            input,button { padding: 0.3em .5em; }
+            input {
+                background: rgba(255,255,255,.4);
+                @include transition(background 200ms);
+                &:focus { @include linear-gradient(#FFF, rgba(0,0,0,.01)); }
+            }
+            button { padding: .3em 1em; }
         }
     }
+    
+    form { padding: 0; border: 0; }
+    .content { padding: 1em; }
+    
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        text-align: right;
+        padding: 1em 25px;
+        background: rgba(0,0,0,.5);
+        border-top: 1px solid #000;
+        @include border-bottom-radius(10px);
+    }
+        
+    ul.content_select { 
+        li:hover { border-color: $ifNotice; }
+        
+        label { margin: 0; width: auto; }
+        label,.faux { display: block; position: absolute; top: 0; bottom: 0; left: 0; right: 0; border-radius: 3px; }
+        .faux { z-index: 10; }
+        input {
+            position: absolute;
+            top: 30%;
+            left: 45%;
+            z-index: 1; 
+            
+            &:checked + .faux { 
+                &:before {
+                    @extend .#{$fa-css-prefix};
+                    content: $fa-var-check;
+                    color: #FFF;
+                    background: $ifInfo;
+                    position: absolute;
+                    top: -.5em;
+                    right: -.5em;
+                    padding: .5em;
+                    border-radius: 1em;
+                }
+                box-shadow: $ifInfo 0 0 3px 1px;
+            }
+        }
+    }
+}
+
+.multi-media-selector {
+    button.-inline {
+        position: absolute;
+        top: -.5em;
+        right: -.5em;
+        cursor: pointer;
+        &:before {
+            @extend .#{$fa-css-prefix};
+            content: $fa-var-trash-o;
+            color: #FFF;
+            background: $ifError;
+            position: absolute;
+            top: -.5em;
+            right: -.5em;
+            padding: .5em;
+            width: 1em;
+            border-radius: 1.5em;
+            font-size: 1.5em;
+            line-height: 1em;
+        }
+    }
+    
+    li.-unsaved { border-color: $ifNotice; }
 }

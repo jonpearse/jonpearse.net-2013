@@ -1,4 +1,5 @@
 = form_for [:admin, @content], :as => :content do |f|
+  = render :partial => 'admin/common/back_to'
   %ol
     %li.text.cf{ :class => (@content.error_class :title )}
       = f.label :title, "Title"
@@ -30,9 +31,12 @@
       - if @content.has_error? :body
         %em.error= @content.error_messages :body
         
-    %li.content_selector.cf{ :class => (@content.error_class :masthead_id ), :data => { :model => 'media', :filter => 'type=banner' }}
+    %li.single-media-selector.cf{ :class => (@content.error_class :masthead_id ), :data => { :type => 'banner', :title => 'Select masthead' }}
       = f.label :masthead_id, "Masthead"
-      = f.number_field :masthead_id
+      %select{ :size => 1, :name => "content[masthead_id]" }
+        %option{ :value => '' }  Select
+        - Media.banner.each do |m|
+          %option{ :value => m.id, :selected => (!@content.masthead_id.nil? and m.id == @content.masthead_id) }=  m.title
       - if @content.has_error? :masthead_id
         %em.error= @content.error_messages :masthead_id
         
@@ -61,7 +65,7 @@
           - if @content.has_error? :published_on
             %em.error= @content.error_messages :published_on
     
-        -#%li.check.cf{ :class => (@content.error_class :commentable )}
+        %li.check.cf{ :class => (@content.error_class :commentable )}
           %label
             = f.check_box :commentable
             can comment
@@ -70,4 +74,6 @@
 
   .buttons
     %button{ :type => :submit, :class => '-primary' } Save
-    %button{ :type => :submit, :class => 'icon -eye-open', :name => 'preview', :data => { :remote => true }}  Preview
+    %button{ :type => :submit, :name => 'preview', :data => { :remote => true }}
+      = fa_icon 'eye'
+      Preview

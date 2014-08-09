@@ -148,6 +148,9 @@ $(document).on('click', 'button[type=submit][data-remote]', function(event)
     if (button_name = button.attr('name'))
         settings.data.push({ name: button_name, value: button.val() });
     
+    // hack a header that the back-end can pick up
+    settings.headers = { "X-RJS": true }    
+    
     // Pickle request off
     $.ajax(settings);
     

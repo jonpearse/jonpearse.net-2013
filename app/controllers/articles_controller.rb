@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   #
   # This is also the default root for the site.
   def index
-    @articles = Article.where( :published => 1).order('published_on DESC, created_on DESC').limit(5)
+    @articles = Article.where( :published => 1 ).order('published_on DESC, created_on DESC').limit(5)
   end
   
   # Shows a paginated list of all published articles on the site, optionally filtered either by date (year/month) or
@@ -60,11 +60,8 @@ class ArticlesController < ApplicationController
       @sub_title = "/ #{cat.title}"
     end
     
-    @articles = Article.paginate(
-      :conditions => conditions,
-      :order  => 'published_on DESC, created_on DESC',
-      :page   => params[:page],
-      :joins  => join
+    @articles = Article.order('published_on DESC, created_on DESC').where(conditions).joins(join).paginate(
+      :page   => params[:page]
     )
     
     @page_title = "Archive"
@@ -88,6 +85,9 @@ class ArticlesController < ApplicationController
     @page_title = @article.title
     self.meta_description = @article.extract_rendered
     self.og_image = @article.masthead.file.url(:original) unless @article.masthead.nil?
+    
+    # comments
+    @comments = @article.comments.latest.limit(5)
   end
   
 end

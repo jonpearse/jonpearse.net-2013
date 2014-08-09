@@ -1,5 +1,6 @@
 %tr
-  %th{ :scope => 'col' }  Title
-  %th{ :scope => 'col' }  Date
-  %th{ :scope => 'col', :class => 'small' } Published
+  %th{ :scope => 'col' }= sortable('title')
+  %th{ :scope => 'col' }= sortable('date')
+  %th{ :scope => 'col', :class => 'small' }=  sortable('num_comments', 'Comments')
+  %th{ :scope => 'col', :class => 'small' }=  sortable('published')
   %th{ :scope => 'col', :class => 'act' }

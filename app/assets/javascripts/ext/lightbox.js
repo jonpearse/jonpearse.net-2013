@@ -202,7 +202,7 @@
             // trigger ‘complete’, if specified
             if (typeof option.complete === 'function')
             {
-                option.complete();
+                option.complete(oContent);
             }
 
             // if we’re set to autoclose, do so
@@ -229,7 +229,8 @@
         // 6. otherwise we’re loading from the server, which we do on a timeout… for some reason.
         setTimeout(function()
         {
-            $.ajax(option.sUri, {
+            $.ajax({
+                url:  option.sUri,
                 type: option.sMethod,
                 data: option.sData,
                 success: function(data)

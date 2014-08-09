@@ -1,7 +1,7 @@
 module RedCloth::Formatters::HTML
   # override for link, so external links open in a new window
   def link( opts )
-    target = opts[:href].start_with?('http://','https://') ? ' target="_blank"' : ''
+    target = opts[:href].start_with?('http://','https://') ? ' rel="external"' : ''
     
     "<a href=\"#{escape_attribute opts[:href]}\"#{pba(opts)}#{target}>#{opts[:name]}</a>"
   end
@@ -69,8 +69,6 @@ module RedCloth::Formatters::HTML
   
   def code(opts)
 
-    puts opts.inspect
-
     @in_bc ||= nil
     
     # if we're inline, grab the bracketed language off the front
@@ -89,6 +87,9 @@ module RedCloth::Formatters::HTML
         opts[:text].gsub!(/^\.$/, '')
         opts[:text] = opts[:text].split("\n").map{ |l| "<span class=\"code-line\">#{l}</span>" }.join("\n")
       end
+      
+      # grep for any tags
+      opts[:text].gsub!(/\<span class="tag"\>&lt;(\/)?([a-z1-6]+)/) { |match| "<span class=\"tag\">&lt;#{$1}</span><span class=\"tag-name\">#{$2}</span><span class=\"tag\">" }
       
     end
     

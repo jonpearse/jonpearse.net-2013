@@ -1,8 +1,7 @@
-- if searchable?
-  - data = request.xhr? ? { :remote => true } : nil
-  %form.quicksearch{ :method => :get, :data => data, :action => url_for( :action => params[:action] ) }
-    %label.a11y{ :for => 'quicksearch_search' } Search
-    %input{ :type => :search, :name => 'q', :id => 'quicksearch_search', :value => (params.key?('q') ? params[:q] : nil) }
-    %button{ :type => :submit, :class => '-small -green' } Search
-    - if params.key?('q')
-      = link_to 'cancel', { :q => nil, :sb => nil, :sd => nil, :page => nil }, :data => data
+- data = request.xhr? ? { :remote => true } : nil
+%form.quicksearch{ :method => :get, :data => data, :action => url_for( :action => params[:action] ) }
+  %label.a11y{ :for => 'quicksearch_search' } Search
+  %input{ :type => :search, :name => 'q', :id => 'quicksearch_search', :value => (params.key?('q') ? params[:q] : nil) }
+  %button{ :type => :submit, :class => '-blue' } Search
+  - if params.key?('q')
+    = link_to 'cancel', { :q => nil, :sb => nil, :sd => nil, :page => nil }, :data => data, :class => 'button'

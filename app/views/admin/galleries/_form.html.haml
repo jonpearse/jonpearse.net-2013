@@ -1,0 +1,29 @@
+= form_for [ :admin, @content ], :as => :content do |f|
+  %ol
+    %li.text.cf{ :class => (@content.error_class :title )}
+      = f.label :title, "Title"
+      = f.text_field :title
+      - if @content.has_error? :title
+        %em.error= @content.error_messages :title
+    
+    %li.text.cf{ :class => (@content.error_class :description )}
+      = f.label :description, "Description"
+      = f.text_area :description, :class => 'large'
+      - if @content.has_error? :description
+        %em.error= @content.error_messages :description
+    
+    %li.fieldset.cf.multi-media-selector{ :data => { :type => :responsive, :field => 'content[media_ids][]' }}
+      %h2 Media
+          
+      - if @content.media.empty?
+        %p.nothing  There are no images in this gallery
+      %ul.media-select-list
+        - @content.media.each do |media|
+          %li.item
+            %input{ :type => :checkbox, :name => 'content[media_ids][]', :value => media.id, :checked => true }
+            = image_tag media.file.url(:thumb)
+            %span=  media.title
+
+  .buttons
+    %button{ :type => :submit, :class => '-primary' } Save
+  

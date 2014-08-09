@@ -7,8 +7,8 @@
     %meta{ :name => "viewport", :content => "width=device-width,initial-scale=1,maximum-scale=1" }  
         
     = stylesheet_link_tag 'admin', :media => 'screen'
-    = javascript_include_tag 'modernizr'
     = csrf_meta_tags
+    = favicon_link_tag 'favicon.ico'
     
     :javascript
       var ROOT_URI = "#{admin_root_path}";
@@ -19,9 +19,9 @@
     
       %nav.user{ :role => 'menu' }
         %ul
-          %li=  link_to 'Main site', root_path, :class => 'icon -home -fixed-width'
-          %li=  link_to 'Change password', admin_change_password_path, :class => 'icon -user -fixed-width'
-          %li=  link_to 'Log out', destroy_user_session_path, :class => 'icon -signout -fixed-width'
+          %li= link_to_with_icon 'Main site', root_path, 'home'
+          %li= link_to_with_icon 'Change password', admin_change_password_path, 'user'
+          %li= link_to_with_icon 'Log out', destroy_user_session_path, 'sign-out'
 
     = render :partial => 'admin/nav'
 

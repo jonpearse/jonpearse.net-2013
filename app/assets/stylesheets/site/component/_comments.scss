@@ -1,0 +1,182 @@
+section.comments {
+    border-top: 1px solid rgba(0,0,0,0.05); 
+    padding-top: 1.5em;
+    
+    > header {
+        text-align: right;
+        margin-bottom: 1.5em;
+        h2 { float: left; margin: 0; }
+        a { font-size: .8em; line-height: 1.3em; &.-hide { display: none; }}
+    }
+    
+    p.empty {
+        font-size: 1.2em;
+        line-height: 1.3em;
+        opacity: .3;
+        text-align: center;
+        @include transition(opacity .5s);
+        &:hover { opacity: 1; }
+    }
+    
+    blockquote {
+        background: rgba(0,0,0,.05);
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: .3em;
+        margin: 1em;
+        padding: 1px .91em;
+        font-size: .91em;
+        line-height: 1.2em;
+    }
+}
+article.comment,
+form.new_comment,
+form.edit_comment {
+    @extend %box;
+    @include transition(opacity 3s linear);
+    
+    footer a.action,
+    button {
+        background: transparent;
+        padding: .25em .5em;
+        margin-right: 1em;
+        border: 1px solid #EEE;
+        border-radius: 3px;
+        color: $link;
+        font-size: 1em;
+        cursor: pointer;
+        @include transition(all 200ms);
+        
+        &:hover { text-decoration: underline; }
+        &:focus { outline: 0; border-color: $link; }
+        
+        &.-hide { display: none; }
+        
+        &:disabled { color: #666; i { margin-left: .5em; }}
+    }
+}
+
+article.comment {
+    @include transition(opacity .5s);
+    header {
+        padding: 0 0 10px 60px;
+        min-height: 50px;
+        position: relative;
+        border-bottom: 1px solid rgba(0,0,0,.05);
+        font-size: .91em;
+        line-height: 1.3em;
+        
+        .img { position: absolute; top: 0; left: 0; height: 50px; width: 50px; background: rgba(0,0,0,.05); }
+        
+        a.back-ref:hover
+		{
+			text-decoration: none;
+			&:after { content: "\2193"; }
+			body.comments.-index &:after { content: "\2191"; }
+		}
+		
+        strong { font-weight: $bold-weight; }
+    }
+    footer { font-size: .8em; line-height: 1.3em; }
+    
+    form {
+        margin-top: 2em;
+        padding: 1em 0 0;
+        border: 0;
+        border-top: 1px solid #D8D8D8;
+    }
+    
+    &.-screened { opacity: .5 }
+}
+form.new_comment,
+form.edit_comment {
+    h3 { font-size: 1.2em; line-height: 1.3em; margin: 0 0 1.5em; }
+    
+    li {
+        margin-bottom: .8em; 
+        
+        &.text {
+            margin-left: 7em;
+            label,.label { float: left; margin-left: -7em; line-height: 2em; }
+            &.error {
+                input,textarea { 
+                    border: 1px dashed $error; 
+                }
+            }
+        }
+        
+        &.check label {
+            display: block;
+            padding-left: 7em;
+            position: relative;
+            strong { font-weight: $bold-weight; display: block; }
+            input[type=checkbox] {
+                position: absolute;
+                top: .6em;
+                left: 8.4em;
+                height: 1px;
+                width: 1px;
+                
+                &:before {
+                    @extend .#{$fa-css-prefix};
+                    content: $fa-var-check;
+                    display: block;
+                    position: absolute;
+                    top: -.4em;
+                    left: -.4em;
+                    font-size: 1.2em;
+                    line-height: 1.3em;
+                    width: 1.3em;
+                    height: 1.3em;
+                    text-align: center;
+                    border: 1px solid #D8D8D8;
+                    border-radius: .2em;
+                    background: #FFF;
+                    color: transparent;
+                    @include transition(all 150ms);
+                }
+                
+                &:checked:before { color: $link; }
+                &:focus {
+                    outline: 0;
+                    &:before { border-color: $link; }
+                }
+            }
+        }
+        
+        abbr { font-weight: $base-weight; color: $link; }
+    }
+    .buttons { margin-left: 7em; }
+    
+    strong.label { font-weight: $base-weight; line-height: 1em; }
+    em,small { font-style: $base-weight; display: block; }
+    small { font-style: italic; font-size: .91em; line-height: 1.3em; }
+    p.note { margin: 1em 0; }
+
+
+    em.error:before {
+        @extend .#{$fa-css-prefix};
+        content: $fa-var-exclamation-triangle;
+        color: $error;
+        font-size: .8em;
+        line-height: 1.4em;
+        margin-right: .5em;
+    }
+
+    
+    input[type=text],
+    input[type=email],
+    input[type=url],
+    textarea {
+        font: $base-weight 1em/1.4em $bodyFont;
+        padding: .2em .4em;
+        border: 1px solid #D8D8D8;
+        border-radius: 3px;
+        @include box-sizing(border-box);
+        min-width: 12em;
+    }
+    input[type=text],input[type=email] { width: 30%; }
+    input[type=url] { width: 40%; }
+    textarea { width: 95%; height: 7em; }
+}
+form.edit_comment { border: 0 !important; padding: 0 !important; margin: 1em 0 0 !important; }
+

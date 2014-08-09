@@ -7,20 +7,15 @@ input[type=number]::-webkit-outer-spin-button {
 $defaultFormIndent: 150;
 $defaultFormGutter: 20;
 
-input[type=text],
-input[type=email],
-input[type=password],
-input[type=date],
-input[type=datetime],
-input[type=number],
+input,
 textarea,
-select { font-size: 1em; font-family: $bodyFont; }
+select { font: normal 1em/1.4em $bodyFont; }
 
 form {
-    padding: 10px 15px;
+    padding: 1em;
     background: #FFF;
     border: 1px solid $uiBorder;
-    margin: 0 0 20px;
+    margin: 0 0 1em;
     &>h2,
     header {
         @include linear-gradient(#eee,#e0e0e0);
@@ -39,11 +34,12 @@ form {
         margin-left: -#{$defaultFormIndent}px;
         width: #{$defaultFormIndent - $defaultFormGutter}px;
         text-align: right;
-        margin-top: 0.4em;
+        line-height: 1.4em;
+        margin-top: .6em;
     }
     
     li.fieldset li,
-    &>ol>li,
+    >ol>li,
     .pseudoLi {
         margin: 0 0 1.5em 0;
         padding-left: #{$defaultFormIndent}px;
@@ -53,21 +49,21 @@ form {
     input[type=text],
     input[type=email],
     input[type=password],
+    input[type=search],
+    input[type=url],
     textarea,
     select {
         border: 1px solid $uiBorder;
         border-radius: 3px;
-        height: 1.9em;
-        line-height: 1.9em;
-        padding: 0 0.5em;
+        padding: .5em .8em;
         background: #FFF;
-        @include linear-gradient(transparent 40%, rgba(0,0,0,.05));
+        @include linear-gradient(#FFF 40%, rgba(0,0,0,.05));
         width: 30%;
         max-width: 300px;
         min-width: 200px;
         @include box-sizing(border-box);
         
-        &:focus { outline: 0; border-color: $ifNotice; }
+        &:focus { outline: 0; border-color: $ifNotice; @include linear-gradient(#FFF, rgba(0,0,0,.01)); }
         
         &.tiny   { width: 3em; min-width: auto; }
         &.small  { width: 100px; min-width: auto; }
@@ -76,6 +72,9 @@ form {
         
         &[disabled] { border-color: lighten($uiBorder, 15%); }
         &[readonly] { border-color: transparent; }
+    }
+    input[type=file] {
+        padding: .3em 0;
     }
     textarea {
         height: 8em;
@@ -94,7 +93,8 @@ form {
     select {
         width: auto;
         max-width: auto;
-        font: 1em $bodyFont;
+        height: 2.6em;
+        padding: 0;
     }
     select[multiple] {
         padding: 0.25em 0;
@@ -134,22 +134,23 @@ form {
         em.error {
             font-size: 0.91em;
             display: block;
-            @extend %icon;
-            @extend .icon.-warning-sign;
             color: darken($ifError, 30%);
             margin-top: 0.3em;
+            
+            @extend .#{$fa-css-prefix};
+            &:before { content: $fa-var-exclamation-triangle; margin-right: .5em; }
         }
         
-        &.text em.error { margin-top: 0.5em; }
-        
+        &.text em.error { margin-top: 0.5em; }   
     }
+    li.output label { margin-top: 0; }
     
     // button bar
     .buttons {
-        margin: 1em -15px -10px;
+        margin: 1em -1em -1em;
         padding: 20px 15px;
         background: #F1F1F1;
-        border-top: 1px solid #CCC;
+        border-top: 1px solid lighten($uiBorder, 15%);
         padding-left: #{$defaultFormIndent + 15}px;
     }
     

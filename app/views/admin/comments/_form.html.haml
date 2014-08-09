@@ -1,0 +1,44 @@
+= form_for [:admin, @content], :as => :content do |f|
+  = render :partial => 'admin/common/back_to'
+  %ol
+    %li.text.cf
+      %strong.pseudoLabel On
+      = link_to @content.article.title, edit_admin_article_path(@content.article)
+    %li.text.cf{ :class => (@content.error_class :name )}
+      = f.label :name, "Name"
+      = f.text_field :name
+      - if @content.has_error? :name
+        %em.error= @content.error_messages :name
+    
+    %li.text.cf{ :class => (@content.error_class :email )}
+      = f.label :email, "Email"
+      = f.text_field :email
+      - if @content.has_error? :email
+        %em.error= @content.error_messages :email
+    
+    %li.text.cf{ :class => (@content.error_class :website )}
+      = f.label :website, "Website"
+      = f.text_field :website
+      - if @content.has_error? :website
+        %em.error= @content.error_messages :website
+    
+    %li.text.cf{ :class => (@content.error_class :comment )}
+      = f.label :comment, "Comment"
+      = f.text_area :comment
+      - if @content.has_error? :comment
+        %em.error= @content.error_messages :comment
+    
+    %li.text.cf
+      %strong.pseudoLabel IP
+      = @content.ip
+    
+    %li.fieldset.cf
+      %h2 Options
+      %ol
+        %li.check.cf
+          %label
+            = f.check_box :screened
+            screened
+
+  .buttons
+    %button{ :type => :submit, :class => '-primary' } Save

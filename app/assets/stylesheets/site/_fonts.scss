@@ -1,4 +1,16 @@
+$bodyFont:   Lato,Arial,sans-serif;
+$headerFont: Karma,Georgia,serif;
 
-@include font-face('Lato', 'lato-light', normal, $asset_pipeline:true);
-@include font-face('Lato', 'lato-lightitalic', normal, italic, $asset_pipeline:true);
-@include font-face('Lato', 'lato-bold', bold, $asset_pipeline:true);
+$base-weight: 300;
+$semi-weight: 400;
+$bold-weight: 700;
+
+$base-font: 20;
+
+// fonts
+@include font-face('Lato', 'lato-light',        $base-weight, $asset_pipeline:true);
+@include font-face('Lato', 'lato-lightitalic',  $base-weight, italic, $asset_pipeline:true);
+@include font-face('Lato', 'lato-regular',      $semi-weight, $asset_pipeline:true);
+@include font-face('Lato', 'lato-bold',         $bold-weight, $asset_pipeline:true);
+@include font-face('Karma', 'karma-bold',       $bold-weight, $asset_pipeline:true);
+@include font-face('FontAwesome', 'fontello',   normal, $asset_pipeline:true);

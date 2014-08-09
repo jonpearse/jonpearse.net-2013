@@ -1,0 +1,4 @@
+- if comment.screened
+  = link_to_with_icon 'Unscreen', admin_screen_comment_path(comment, 0), 'eye-slash', :method => :post, :data => { :remote => true }, :class => 'button -small -blue screen_unscreen'          
+- else
+  = link_to_with_icon 'Screen', admin_screen_comment_path(comment, 1), 'eye', :method => :post, :data => { :remote => true }, :class => 'button -small -blue screen_unscreen'

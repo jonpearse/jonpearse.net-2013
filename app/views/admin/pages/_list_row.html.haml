@@ -4,5 +4,5 @@
     %br
     %small= "/"+content.url_slug
   %td.act
-    = link_to '<span class="a11y">edit</span>'.html_safe, edit_admin_page_path(content), :class => 'icon -edit'
-    = link_to '<span class="a11y">delete</span>'.html_safe, admin_page_path(content), :class => 'icon -trash', :method => :delete, :data => { :confirm => 'Are you sure you wish to delete this? It cannot be undone' }
+    = link_to_with_icon '', edit_admin_page_path(content), 'pencil-square-o', :class => '-safe'
+    = link_to_with_icon '', admin_page_path(content), 'trash-o', :class => '-warn', :method => :delete, :data => { :confirm => 'Are you sure you wish to delete this? It cannot be undone' }

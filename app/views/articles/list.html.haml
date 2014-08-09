@@ -6,7 +6,7 @@
 %section.archive.cf
   %ol
     - @articles.each do |article|
-      %li.item{ :class => cycle('-odd', '-even') }
+      %li.item
         = render :partial => 'preview', :locals => { :article => article, :full => false }
   
   %footer

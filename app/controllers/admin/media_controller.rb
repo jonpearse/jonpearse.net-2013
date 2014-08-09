@@ -3,8 +3,13 @@ class Admin::MediaController < Admin::ContentController
   
   def initialize
     super
-    self.content_object       = Media
-    self.allow_create         = true
+    self.content_object = Media
+    self.allow_create   = true
+    self.choose_view    = 'list'
+  end
+  
+  def additional_params
+    [ :file ]
   end
     
   protected    

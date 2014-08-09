@@ -1,21 +1,15 @@
+h1 { margin: 0 0 1em;   font: $bold-weight 1.8em/1.2em $headerFont; }
+h2 { margin: 1.5em 0 0; font: $bold-weight 1.2em/1.2em $headerFont; }
+h3 { margin: 1.5em 0 0; font: $bold-weight   1em/1.2em   $headerFont; }
 
-h1,h2,h3 { font-weight: bold; }
-
-h1 { margin: 0 0 1.5em; font-size: 1.8em; line-height: 1em; }
-h2 { margin: 1.5em 0 0; font-size: 1.2em; line-height: 1.4em; }
-h3 { margin: 1.5em 0 .5em; font-size: 1em; line-height: 1.4em; }
-
-blockquote {
-    @extend %misty-box;
-    margin: 1em 1.5em !important;
-}
+blockquote { margin: 1em 1.5em; }
 
 small {
     font-size: .8em;
     &.very { font-size: .6em; }
 }
 
-b,strong { font-weight: bold; }
+b,strong { font-weight: $semi-weight; }
 i,em     { font-style:  italic; }
 
 .type {
@@ -24,7 +18,7 @@ i,em     { font-style:  italic; }
     ul,ol { margin: 0 0 1em 1.8em; }
     ul { list-style: disc outside; }
     ol { list-style: decimal outside; }
-    
+        
     div.hr {
         clear: both;
         &:before {
@@ -36,4 +30,12 @@ i,em     { font-style:  italic; }
         }
         hr { display: none; }
     }
+    
+    &.-article, &.-page { blockquote { @extend %misty-box; }}
+}
+
+dl.kv-pair {
+    dd,dt,ul,li { display: inline-block; }
+    dt { margin-right: .5em; }
+    dd { margin-right: 1.5em; }
 }

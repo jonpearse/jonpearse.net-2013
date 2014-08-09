@@ -1,0 +1,1 @@
+$('#comment-#{@comment.id}').toggleClass('-screened', #{@comment.screened}).find('a.action.screen').replaceWith('#{escape_javascript(render :partial => 'screen_link', :locals => { :comment => @comment })}');

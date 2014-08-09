@@ -12,8 +12,31 @@ en:
       create_p: "Create new %{model}"
       none:   "There are no %{model_p}"
       none_p: '—why not <a href="%{url}">create one</a>'
+      
+      no_results: "There were no results for ‘%{term}’"
   
   site:
     desc: >
       Hi! I’m a freelance web interaction developer specialising in the creation of beautiful, functional and usable
       websites that enable, empower and engage with their users.
+
+  activerecord:
+    errors:
+      messages:
+        blank:      This field is required
+        too_long:   Must be less than %{count} characters
+        too_short:  Must be at least %{count} characters
+        accepted:   You must check this to continue
+        invalid:    This is invalid
+        
+      models:
+        comment:
+          attributes:
+            is_human:
+              accepted: I know it sucks, but you need to check this…
+            website:
+              invalid:  That doesn’t look like a valid URL? (is this wrong? Let me know)
+            email:
+              blank:    You need to enter an email address—don’t worry, it’ll never be made public
+              invalid:  That doesn’t look like a valid email address, sorry!
+    

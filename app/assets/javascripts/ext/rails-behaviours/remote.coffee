@@ -174,6 +174,9 @@ $(document).on 'click', 'a[data-remote]', (event) ->
   if dataType = element.attr 'data-type'
     settings.dataType = dataType
 
+  # hack a header that the back-end can pick up
+  settings.headers = { "X-RJS": true }
+
   # Do it
   $.ajax settings
 
@@ -213,6 +216,9 @@ $(document).on 'submit', 'form[data-remote]', (event) ->
   #   <a href="/comment" data-remote data-type="json">
   if dataType = form.attr 'data-type'
     settings.dataType = dataType
+  
+  # hack a header that the back-end can pick up
+  settings.headers = { "X-RJS": true }
     
   # Do it
   $.ajax settings

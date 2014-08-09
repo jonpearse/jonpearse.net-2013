@@ -36,7 +36,7 @@ class Admin::PasswordController < Admin::AdminController
     
     if params[:user]
       params[:user][:updated] = true
-      if @user.update_attributes params[:user]
+      if @user.update_attributes params.require(:user).permit(:password, :password_confirmation)
         sign_in @user, :bypass => true
         redirect_to admin_twofa_path
         return
@@ -53,7 +53,7 @@ class Admin::PasswordController < Admin::AdminController
     @user = current_user
     
     if params[:user]
-      if @user.update_attributes params[:user]
+      if @user.update_attributes params.require(:user).permit(:gauth_enabled,:password,:password_confirmation)
         if (params[:user][:gauth_enabled] == '1')
           flash[:info] = "Two-factor authentication has been enabled"
         else

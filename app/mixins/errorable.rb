@@ -19,6 +19,12 @@ module Errorable
     unless self.has_error? property
       return nil
     end
+
+    # shortcut—if the user has entered nothing in a required field, just tell them that: it's pointless to tell them
+    # it's required, and in the wrong format...
+    if required?(property) && self[property].blank?
+      return self.errors.generate_message(property, :blank)
+    end
     
     ret = ''
     idx = 0
@@ -28,5 +34,10 @@ module Errorable
     end
     
     ret
+  end
+  
+  # Helper to find out if a field is required.
+  def required?( property )
+    self.class.validators_on(property).map(&:class).include?(ActiveModel::Validations::PresenceValidator)
   end
 end

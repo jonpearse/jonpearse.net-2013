@@ -1,5 +1,5 @@
 @import "bourbon";
-@import "ext/reset";
+@import "ext/reset", "ext/fontawesome/font-awesome";
 @import "admin/base/colours";
 
 .grid {
@@ -24,7 +24,7 @@
     }
 }
 
-@import "admin/base/fonts", "admin/base/base", "admin/base/mixins", "ext/fontawesome", "admin/base/animations";
+@import "admin/base/base", "admin/base/mixins", "admin/base/animations";
 @import "admin/design";
 @import "admin/mod/*";
 @import "ext/lightbox";

@@ -1,0 +1,3 @@
+%nav.section{ :role => 'menu' }
+  - if @article
+    = link_to_with_icon "return to article list", admin_articles_path, 'angle-left'

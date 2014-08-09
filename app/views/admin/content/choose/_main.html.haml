@@ -1,9 +1,27 @@
-#content-selector{ :class => "-#{@content_object.to_s.downcase}" }
-  - if createable?
-    = render :partial => 'admin/content/choose/nav'
+#content-selector.content-chooser{ :class => "-#{@content_object.to_s.downcase}" }
+  - if createable? or searchable? or subnav
+    .header.cf
+      - if createable?
+        %ul
+          %li{ :class => params.key?('upload') ? nil : 'current' }=  link_to_with_icon 'select', params.merge( :new => nil  ), 'search', :data => { :remote => true }
+          %li{ :class => params.key?('upload') ? 'current' : nil }=  link_to_with_icon 'create', params.merge( :new => true ), 'plus', :data => { :remote => true }
+      - if searchable?
+        = render :partial => 'quicksearch'
   
-  .content
-    - if params.key?('upload') and createable?
+  - if params.key?(:new) and createable?
+    .content
       = render :partial => 'form', :locals => { :remote => true }
-    - else
-      = render :partial => 'admin/content/choose/list'
+  - elsif @content.empty?
+    %p.nothing
+      - if params.key? 'q'
+        = admin_t @content_object, :no_results, :term => params[:q]
+      - else
+        = admin_t @content_object, :none
+  - else
+    %form.select{ :method => :post, :action => "#" }
+      .content
+        = render :partial => "admin/content/choose/#{choose_view}"
+        = will_paginate @content, :inner_window => 2, :outer_window => 0
+
+      .footer.cf
+        %button{ :type => :submit, :class => '-green' }  Select

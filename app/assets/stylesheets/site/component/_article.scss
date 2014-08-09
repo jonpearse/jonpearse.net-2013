@@ -1,0 +1,89 @@
+article.article,
+article.page {
+    margin-bottom: 3.75em;
+    
+    > header {
+        margin-bottom: 1.5em;
+        h1,h2 { margin: 0 0 .2em; a { color: $body; &:hover { color: $link; }}}
+        h2 { font-size: 1.4em; line-height: 1em; }
+        
+        .categories li {
+            padding: 0 .5em;
+            background: #FFF;
+            border-radius: .2em;
+            margin-right: .3em;
+            box-shadow: rgba(0,0,0,.1) 1px 1px 1px 0;
+        }
+        ul.actions { border-left: 1px solid #CCC; li { padding-left: 1em; }}
+        
+        p,dl { font-size: .8em; line-height: 1.4em; }
+        p time { margin-right: 1em; }
+        
+        i { color: $body; }
+    }
+    
+    .content {
+        margin-bottom: 2em;
+        p.more { margin-top: 2em; }
+        a.iso {
+            font-weight: $base-weight;
+            font-size:0.9em;
+            color: #FFF;
+            background: $link;
+            border-radius: 3px; 
+            padding: .2em .7em .3em; 
+            text-shadow: rgba(0,0,0,.2) 0 1px 1px,
+                         rgba(255,255,255,.8) 0 0 0;
+        }
+    }
+    
+    footer { margin-bottom: .5em; }
+    
+    // article with lead image
+    &.-has-masthead {
+        position: relative;
+        padding-top: 36%;
+        
+        >* { margin-left: 3.75em; margin-right: 3.75em; }
+        >header { padding-top: 1em; }
+        
+        .pull {
+            &.-left  { margin-left: -3.75em; }
+            &.-right { margin-right: -3.75em; }
+        }
+    }
+    .masthead {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        padding-top: 36%;
+        height: 1px;
+        margin: 0;
+        background-color: rgba(0,0,0,.8);
+    }
+    
+    // special cases
+    &[max-width~="700px"]>* { margin-left: 0; margin-right: 0; }
+    &[max-width~="400px"] {
+        margin-bottom: 1em;
+        header { margin-bottom: .75em; h2 { font-size: 1.2em; }}
+    }
+    
+    &.-has-masthead[max-width~="700px"] {
+        padding-top: 12.5em;
+        header { padding-top: 1em; }
+        .masthead { padding: 0; height: 12.5em; }
+        .pull {
+            &.-left { margin-left: 0; }
+            &.-right { margin-right: 0; }
+        }
+    }
+    &.-has-masthead[max-width~="400px"] {
+        padding-top: 7.25em;
+        
+        header { padding-top: .75em; }
+        .masthead { height: 7.25em; }
+    }
+}

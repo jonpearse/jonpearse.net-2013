@@ -2,21 +2,24 @@
 
 = render :partial => 'admin/common/status'
 
-= render :partial => 'quicksearch'
-
-- if createable?
-  = link_to admin_t(@content_object, :create_p), { :action => :new }, :class => 'button -create icon -plus -green'
+.manage-list-header.cf
+  - if searchable?
+    = render :partial => 'quicksearch'
+  - if createable?
+    = link_to_with_icon admin_t(@content_object, :create_p), { :action => :new }, 'plus', :class => 'button -create -green'
    
 - if @content.empty?
   %p.nothing
-    = admin_t(@content_object, :none)
-    - if createable?
-      = admin_t(@content_object, :none_p, :url => url_for( :action => :new )).html_safe
+    - if params.key? 'q'
+      = admin_t @content_object, :no_results, :term => params[:q]
+    - else
+      = admin_t @content_object, :none
+      - if createable?
+        = admin_t(@content_object, :none_p, :url => url_for( :action => :new )).html_safe
 - else
   %table{ :class => "list -#{@content_object}" }
     %thead
       = render :partial => 'list_head'
     %tbody
-      - @content.each do |content|
-        = render :partial => 'list_row', :locals => { :content => content }
+      = render :partial => 'list'
   = will_paginate @content, :inner_window => 2, :outer_window => 0

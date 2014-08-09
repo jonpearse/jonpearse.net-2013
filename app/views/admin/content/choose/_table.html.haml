@@ -1,0 +1,5 @@
+%table{ :class => "list -choose -#{@content_object}" }
+  %thead
+    = render :partial => "admin/#{@content_object.to_s.downcase}/choose/head"
+  %tbody
+    = render :partial => "admin/#{@content_object.to_s.downcase}/choose/item"

@@ -1,0 +1,29 @@
+- threading ||= false
+
+%section.comments#comments
+  %header.cf
+    %h2 Comments
+    - if @article.commentable?
+      = link_to_with_icon 'Add your comment', new_comment_path(@article), 'plus', :data => { :remote => true }, :rel => "nofollow"
+
+  - if @article.num_comments > 0
+    - if @comments.size < @article.num_comments
+      %p.prompt
+        Showing #{@comments.size} most recent comments:
+        = link_to "view all", article_comments_path(@article)+'?latest', :data => { :remote => true }, :rel => "nofollow"
+      
+  
+    %ol.comments
+      - @comments.each do |comment|
+        %li
+          = render :partial => 'comments/comment', :locals => { :comment => comment, :threading => threading }
+        
+        
+    - if @comments.size < @article.num_comments
+      %p.prompt= link_to "View all comments", article_comments_path(@article)+'?latest', :data => { :remote => true }, :rel => "nofollow"
+        
+  - else
+    %p.empty
+      There are no comments. Why not
+      = link_to "add your own", new_comment_path(@article), :data => { :remote => true }
+      ?

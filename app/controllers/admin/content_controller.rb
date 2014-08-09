@@ -5,8 +5,8 @@
 # things. It was a good learning experience, though…
 
 class Admin::ContentController < Admin::AdminController
-  helper_method :sort_column, :sort_direction, :searchable?, :createable?
-  attr_accessor :content_object, :default_sort_column, :default_sort_direction, :allow_create
+  helper_method :sort_column, :sort_direction, :searchable?, :createable?, :choose_view
+  attr_accessor :content_object, :default_sort_column, :default_sort_direction, :allow_create, :choose_view
 
   # search hooks-only respond to JSON, and don't worry about checksumming-it's only a GET
   respond_to :json, :only => :search
@@ -16,8 +16,9 @@ class Admin::ContentController < Admin::AdminController
     super
     self.default_sort_column    = 'created_on'
     self.default_sort_direction = 'd'
-    self.allow_create = false
-    self.default_sort_column = 'id'
+    self.allow_create           = false
+    self.default_sort_column    = 'id'
+    self.choose_view            = 'table'
   end
 
   # Displays a list of content, optionally sorted by criteria that will vary from model to model
@@ -38,6 +39,7 @@ class Admin::ContentController < Admin::AdminController
     respond_to do |format|
       format.html
       format.json { render :json => @content }
+      format.js
     end
   end
 
@@ -57,7 +59,7 @@ class Admin::ContentController < Admin::AdminController
   # method for more information  
   def choose
 
-    if createable? and params.key?('upload')
+    if createable? and params.key?('new')
       new
     else
       conditions = (searchable? and params.key?('q')) ? search_clause : ['1 = 1']
@@ -69,9 +71,7 @@ class Admin::ContentController < Admin::AdminController
       order = sort_column + " " + (sort_direction == 'u' ? 'ASC' : 'DESC')    
     
       # query
-      @content = content_object.paginate(
-        :conditions => conditions,
-        :order      => order,
+      @content = content_object.where(conditions).order(order).paginate(
         :page       => params[:page]
       )
     end
@@ -132,13 +132,13 @@ class Admin::ContentController < Admin::AdminController
   #
   # [content]      a hash containing the content to be persisted
   def create
-    @content = content_object.new params[:content]
+    @content = content_object.new object_params
   
     if params.key?('preview')
       prepare_preview and return
     end
   
-    if @content.save    
+    if @content.save
       clean_previews
       
       respond_to do |format|
@@ -176,7 +176,7 @@ class Admin::ContentController < Admin::AdminController
     
     # Grab our content and attempt to update it
     @content = content_object.find(params[:id])
-    @content.assign_attributes(params[:content])
+    @content.assign_attributes(object_params)
   
     if params.key?('preview')
       prepare_preview and return
@@ -204,7 +204,7 @@ class Admin::ContentController < Admin::AdminController
     flash[:notice] = t(:deleted)
     
     clean_previews
-
+    
     redirect_to after_destroy(@content) and return
   end
 
@@ -221,7 +221,11 @@ class Admin::ContentController < Admin::AdminController
     #
     # [c] the recently-created content
     def after_create( c )
-      get_index_path
+      if params.key?('back_to')
+        params[:back_to]
+      else
+        get_index_path
+      end
     end
   
     # Returns the path to which the user should be redirected after content has been updated. This is provided so
@@ -231,7 +235,11 @@ class Admin::ContentController < Admin::AdminController
     #
     # [c] the recently-updated content
     def after_update( c )
-      get_index_path
+      if params.key?('back_to')
+        params[:back_to]
+      else
+        get_index_path
+      end
     end
   
     # Returns the path to which the user should be redirected after content has been destroyed. This is provided so
@@ -241,7 +249,11 @@ class Admin::ContentController < Admin::AdminController
     #
     # [c] the recently-destroyed content
     def after_destroy( c )
-      get_index_path
+      if params.key?('back_to')
+        params[:back_to]
+      else
+        get_index_path
+      end
     end
 
     # Returns some kind of content/string that can be used as a @:condition@ for ActiveRecord#all that allows searching
@@ -261,6 +273,21 @@ class Admin::ContentController < Admin::AdminController
     end
     
     def choose_clause( conditions )
+    end
+    
+    def object_params
+      
+      # basic names
+      accepted_params = content_object.column_names.map { |field| field.to_sym }
+          
+      # additional params
+      accepted_params.concat additional_params
+      
+      params.require(:content).permit(accepted_params)
+    end
+    
+    def additional_params
+      []
     end
 
   private

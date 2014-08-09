@@ -19,4 +19,11 @@ class Admin::DashboardController < Admin::AdminController
     render :layout => nil
   end
   
+  # Returns a list of the five most recently-written {comments}[rdoc-ref:Comment]
+  def comments
+    @comments = Comment.order('created_at DESC').limit(5)
+    
+    render :layout => nil
+  end
+  
 end

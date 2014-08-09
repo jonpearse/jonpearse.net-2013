@@ -106,7 +106,22 @@ main {
     
 }
 
-body.a-index .button.-create { margin: 0 auto 1.5em; }
+.manage-list-header {
+    width: 90%;
+    margin: 1em auto;
+    text-align: left;
+    
+    .-create { margin-left: 0; }
+    
+    // quicksearch
+    .quicksearch {
+        float: right; 
+        background: transparent;
+        border: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
 
 @media (max-width: 895px)
 {

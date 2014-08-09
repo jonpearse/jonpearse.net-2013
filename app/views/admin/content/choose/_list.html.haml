@@ -1,12 +1,7 @@
-%h1=  admin_t(@content_object, :choose)
-
-= render :partial => 'quicksearch'
-   
-- if @content.empty?
-  %p.nothing
-    = admin_t(@content_object, :none)
-- else
-  %ul.cf{ :class => "content_select -#{@content_object}" }
-    - @content.each do |content|
-      = render :partial => 'choose_item', :locals => { :content => content }
-  = will_paginate @content, :inner_window => 2, :outer_window => 0
+%ul.cf{ :class => "content_select -#{@content_object} media-select-list" }
+  - @content.each do |content|
+    %li{ :id => "media-#{content.id}" }
+      %label.select{ :data => { :"content-id" => content.id }}
+        = select_control_for content
+        .faux
+      = render :partial => "admin/#{@content_object.to_s.downcase}/choose/item", :locals => { :content => content }

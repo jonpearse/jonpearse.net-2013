@@ -1,4 +1,4 @@
-$('.flashes li.-can-dismiss').append('<span class="icon -remove"></span>').on('click', function()
+$('.flashes li.-can-dismiss').append('<i class="fa fa-times" title="remove"></i>').on('click', function()
 {
     $(this).animate('fade-and-zip', { duration: 500, complete: function() { $(this).remove(); }});
 })
@@ -24,7 +24,7 @@ $('.widget.-dynamic').each(function()
     // 2. callback
     function _load()
     {
-        oWidget.addClass('-loading').removeClass('-loaded');
+        oWidget.addClass('-loading').removeClass('-loaded').find('.fa-refresh').addClass('fa-spin');
         $.ajax({
             type:       'GET',
             url:        sSource,
@@ -40,7 +40,7 @@ $('.widget.-dynamic').each(function()
             },
             complete:   function()
             {
-                oWidget.removeClass('-loading');
+                oWidget.removeClass('-loading').find('.fa-refresh').removeClass('fa-spin');
             }
         });
         return false;
@@ -48,5 +48,5 @@ $('.widget.-dynamic').each(function()
     _load();    
     
     // 3. append to header
-    $('<a href="#" class="icon -refresh"></a>').on('click', _load).appendTo(oHead).wrap('<span>');
+    $('<a href="#" class="act-refresh"><i class="fa fa-refresh"/></a>').on('click', _load).appendTo(oHead).wrap('<span>');
 });

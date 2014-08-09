@@ -1,0 +1,4 @@
+- target = @comment.reply_to_id.nil? ? '#comments>ol,#comments>p.empty' : "#comment-#{@comment.reply_to_id} footer"
+$('#{target.html_safe}').siblings('form').remove();
+jjp.comments.openForm($('#{escape_javascript(render :partial => 'new' )}').insertBefore('#{target.html_safe}'));
+jjp.comments.markLoaded();

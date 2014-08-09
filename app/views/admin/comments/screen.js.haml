@@ -1,0 +1,1 @@
+$('#comment-#{@comment.id}>footer a.screen_unscreen, #comment-#{@comment.id}>header a.screen_unscreen').replaceWith('#{escape_javascript( render :partial => 'admin/comments/screen_link', :locals => { :comment => @comment })}')

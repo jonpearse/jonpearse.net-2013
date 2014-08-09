@@ -1,0 +1,6 @@
+%h1 Comment ##{@content.id}
+
+= render :partial => 'admin/common/status'
+
+%ol.comments
+  = render :partial => 'comment', :locals => { :comment => @content, :single_comment => true }

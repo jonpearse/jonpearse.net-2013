@@ -18,7 +18,7 @@ class Admin::ArticlesController < Admin::ContentController
     
     begin
       Article.find(params[:id]).publish!
-    rescue e
+    rescue
     end
     
     if params.key?('home')
@@ -39,8 +39,8 @@ class Admin::ArticlesController < Admin::ContentController
   # [id]  the ID of the Article to publish
   def unpublish
     begin
-      Article.find(params[:id]).update_attribute(:published, false)
-    rescue e
+      Article.find(params[:id]).update_attribute(:published, 0)
+    rescue
     end
     
     if params.key?('home')
@@ -53,7 +53,15 @@ class Admin::ArticlesController < Admin::ContentController
     end
   end
   
+  def additional_params
+    [ :category_ids => [] ]
+  end
+  
   protected
+    def search_clause
+      [ '(title LIKE ?) OR (extract LIKE ?)', "%#{params['q']}%", "%#{params['q']}%" ]
+    end
+  
     def after_destroy c
       
       if params.key?('home')

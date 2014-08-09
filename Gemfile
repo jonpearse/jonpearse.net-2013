@@ -1,37 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '~> 4.1.0'
 
 gem 'mysql2'
-gem 'devise', '~> 2.2.0'
-gem 'devise_google_authenticator', '0.3.5'
+gem 'devise'
+gem 'devise_google_authenticator', '0.3.14'
 gem 'haml-rails'
 gem 'will_paginate'
 gem 'paperclip'
+gem 'paperclip-meta'
 gem 'daemons'
 gem 'babosa'
 gem 'coderay'
 gem 'RedCloth'
+#gem 'renderable', :path => "/Users/jon/Sites/@gems/renderable"
 gem "renderable", :git => "git://github.com/jonpearse/renderable.git"
 gem 'remotipart'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'bourbon'
-  gem 'sass-rails'
-  gem 'coffee-rails'
+# asset gems
+gem 'bourbon'
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '>= 4.0.0'
+#gem 'therubyracer', :platforms => :ruby
+gem 'uglifier', '>= 1.3.0'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
 
 group :development do
   gem 'quiet_assets'
   gem 'thin'
+  gem 'spring'
 end

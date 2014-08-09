@@ -1,19 +1,22 @@
-button,
+button:not(.-inline),
 input[type=submit],
 input[type=reset],
 .button {
-    font-size: 1em;
+    @include box-sizing(border-box);
     display: inline-block;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    border: 1px solid $uiBorder;
+    border: 0;
+    padding: .5em 1em;
+    font: normal 1em/1.4em $bodyFont;
     color: $body;
-    margin: 0 5px;
+    border: 1px solid $uiBorder;
+    border-radius: 5px;
     cursor: pointer;
+    margin: 0 .25em;
+    text-decoration: none;
     
-    text-shadow: rgba(0,0,0,0.1) 0 1px 1px;
-    box-shadow: rgba(0,0,0,0.1) 0 0 10px inset;
-    background: #FFF;
+    text-shadow: rgba(0,0,0,.1) 0 1px 1px;
+    box-shadow:  rgba(0,0,0,.1) 0 0 10px inset;
+    background:  #FFF;
     @include linear-gradient(rgba(0,0,0,0.1), rgba(255,255,255,0.05) 25%, rgba(0,0,0,0.1));
     
     &:hover  { @include linear-gradient(rgba(0,0,0,0.05), rgba(255,255,255,.1) 25%, rgba(0,0,0,0.05)); }
@@ -37,22 +40,25 @@ input[type=reset],
         @include interface-bar-colour-set($ifNotice);
         text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
         color: #FFF;
-        font-weight: bold;
+//        font-weight: bold;
     }
     &.-green { 
         @include interface-bar-colour-set($ifInfo);
         text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
         color: #FFF;
-        font-weight: bold;
+//        font-weight: bold;
     }
     &.-red { 
         @include interface-bar-colour-set($ifError);
         text-shadow: rgba(0,0,0,0.3) 0 -1px 1px;
         color: #FFF;
-        font-weight: bold;
-    }
-    
-    &.-centred { margin: 0 auto; }
+//        font-weight: bold;
+    } 
+}
 
-    
+button.-inline {
+    border: 0;
+    padding: 0;
+    display: inline;
+    background: transparent;
 }

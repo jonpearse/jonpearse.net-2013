@@ -1,17 +1,6 @@
 # Provides view functions used all over the site.
 module ApplicationHelper
-  
-  # Wraps ActionView::Helpers::AssetUrlHelper#image_path and returns an absolute URL to a specific image, including
-  # current hostname and protocol.
-  #
-  # === Parameters
-  #
-  # [path]  the path to the image we wish to get the URL for
-  #
-  def image_url( path )
-    "#{root_url}#{image_path(path)}".gsub(/([0-9a-z])\/\//, '\1/')
-  end
-  
+    
   # Wraps ActionView::Helpers::UrlHelper#link_to to produce a link with an additional ‘current’ style if it links to
   # the page currently being viewed. This is useful for navigation sections
   #
@@ -33,31 +22,14 @@ module ApplicationHelper
     link_to text, path, options
   end
   
-  # Convenience function that returns the URL path for the provided article.
-  #
-  # === Parameters
-  #
-  # [article]   the Article to generate the path to
-  def article_path( article )
-    _article_path(:slug => article.full_url)
-  end
-  
-  # Convenience function that returns the URL path for the provided category.
-  #
-  # === Parameters
-  #
-  # [article]   the Category to generate the path to
-  def category_path( category )
-    _category_path(:slug => category.url_slug)
-  end
-  
   # Formats a date into the form "Mar 5th, 2013"
   #
   # === Parameters
   #
   # [date]  the DateTime object to format
-  def form_date( date )
-    date.strftime("%b #{date.day.ordinalize}, %Y")
+  def form_date( date, include_time = false )
+    ret = include_time ? date.strftime('%H.%M, ') : ''
+    ret + date.strftime("%b #{date.day.ordinalize}, %Y")
   end
   
   # Goes through text and replaces any dynamic references to Media items with appropriate markup.
@@ -90,6 +62,25 @@ module ApplicationHelper
       end
     end
     
+    # render galleries
+    markup.gsub!(/\$gallery\.(\d+)(?:#(.*?))?\$/) do |m|    
+      processed = true
+      
+      #begin
+        # load media
+        gallery = Gallery.find($1)
+        
+        # locals
+        title = $2
+        
+        # return code
+        render( :partial => "galleries/embed", :locals => { :gallery => gallery, :title => title } )
+      #rescue
+        # something went wrong, so return nothing
+        #''
+      #end
+    end
+    
     # tidy markup…
     if processed
       markup.gsub!(/<p><aside/, '<aside')
@@ -104,7 +95,47 @@ module ApplicationHelper
   #
   # [markup]  the markup from which to remove Media references
   def remove_media( markup )
-    markup.gsub(/\$(?:\&(g|l)t;(!)?:)?media\.(\d+)(?:#(.*?))?\$/, '')
+    markup.gsub(/\$(?:\&(g|l)t;(!)?:)?(media|gallery)\.(\d+)(?:#(.*?))?\$/, '')
+  end
+
+  # Returns a gravatar for the specified email address
+  #
+  # === Parameters
+  #
+  # [email] the email address to return the gravatar for
+  def gravatar_for( email, size = nil )
+    url = "http://www.gravatar.com/avatar/"+Digest::MD5.hexdigest(email)+"?d=blank"+(size.nil? ? '' : '&s='+size.to_s )
+    
+    '<img src="'+url+'" alt="">'
   end
   
+  # Provides a link with a fontawesome icon prepended
+  def link_to_with_icon( body, url, icon, html_options = {})
+    
+    link_text = html_options.key?(:icon_after) ? "#{body} "+fa_icon(icon) : fa_icon(icon)+" #{body}"
+    html_options.delete(:icon_after)
+    
+    link_to link_text.html_safe, url, html_options
+    
+  end
+  
+  # Helper function to wrap FontAwesome-ness =)
+  def fa_icon( icon, html_options = {} )
+    
+    html_options[:class] ||= ""
+    html_options[:class] += " fa fa-#{icon.split(/\s+/).join(' fa-')}"
+    html_options[:'aria-hidden'] = "true"
+    
+    tag('i', html_options, false)+'</i>'.html_safe
+    
+  end
+  
+  def google_authenticator_qrcode(user,qualifier=nil)
+    username = username_from_email(user.email)
+    app =   Rack::Utils.escape "jjp-lite"+("/dev" if Rails.env=='development')
+    data = "otpauth://totp/#{app}#{qualifier}?secret=#{user.gauth_secret}"
+    data = Rack::Utils.escape(data)
+    url = "https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=#{data}"
+    return image_tag(url, :alt => 'Google Authenticator QRCode')
+  end
 end

@@ -8,20 +8,26 @@
       %header
         %span.icons
           %span
-            = link_to '', new_admin_article_path, :class => 'icon -fixed-width -plus'
-        %h2.icon.-edit.-fixed-width Drafts
+            = link_to_with_icon '', new_admin_article_path, 'plus'
+        %h2
+          = fa_icon 'edit'
+          Drafts
       .content
         %p.loading  Loading…
         
     %section#latest-articles.widget.-dynamic{ :data => { :src => admin_articles_feed_path }}
       %header
-        %h2.icon.-book.-fixed-width Latest articles
+        %h2
+          = fa_icon 'book'
+          Latest articles
       .content
         %p.loading  Loading…
 
   .col
-    %section#latest-comments.widget.-dynamic
+    %section#latest-comments.widget.-dynamic{ :data => { :src => admin_comments_feed_path }}
       %header
-        %h2.icon.-comments.-fixed-width Latest comments
+        %h2
+          = fa_icon 'comments'
+          Latest comments
       .content
-        %p.blah Not implemented yet :)
+        %p.loading  Loading…

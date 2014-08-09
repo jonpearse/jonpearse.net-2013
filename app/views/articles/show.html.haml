@@ -1,21 +1,55 @@
 %article.cf.article{ :id => "article-#{@article.id}", :class => @article.masthead.nil? ? nil : ' -has-masthead' }
   %header.cf
     %h1=  @article.title
-    %dl.cf
+    %dl.cf.kv-pair
       - unless @article.published_on.nil?
         %dt.a11y  Posted
-        %dd.icon.-calendar-empty
+        %dd
+          = fa_icon 'calendar-o'
           %time{ :datetime => @article.published_on.strftime('%FT%T'), :pubdate => true }= form_date @article.published_on
       
       - unless @article.categories.empty?
-        %dt.icon.-fixed-with.-tags Filed under
+        %dt
+          = fa_icon 'tags'
+          Filed under
         %dd
-          %ul
+          %ul.categories
             - @article.categories.each do |c|
               %li=  link_to c.title.downcase, category_path(c)
+      
+      - if @article.commentable or @article.num_comments > 0
+        %dt.a11y Comments
+        %dd
+          = fa_icon 'comments'
+          %a{ :href => '#comments' }
+            - if @article.num_comments == 0
+              = "no comments"
+            - else
+              = pluralize(@article.num_comments, "comment")
+          - unless @article.commentable
+            %small (closed)
+      
+      - if current_user
+        %dt.a11y  Actions
+        %dd
+          %ul.actions
+            %li= link_to_with_icon 'edit', edit_admin_article_path(@article), 'pencil'
+            - if @article.num_comments > 0
+              %li= link_to_with_icon 'all comments', admin_article_comments_path(@article), 'comments-o'
+            %li= link_to_with_icon 'unpublish', admin_unpublish_article_path(@article, :home => true), 'ban', :data => { :method => :post }
 
   - unless @article.masthead.nil?
     = render :partial => 'application/masthead', :locals => { :media => @article.masthead }
     
-  .content.type
+  .content.type.-article
     ~ process_media(@article.body_rendered).html_safe
+    
+  - unless @article.masthead.nil? or @article.masthead.attribution_text.blank?
+    %footer
+      %small
+        %strong Header image:
+        = link_to_unless @article.masthead.attribution_url.nil?, @article.masthead.attribution_text, @article.masthead.attribution_url, :target => '_blank'
+    
+  - unless @comments.nil?
+    - if @article.commentable or (@article.num_comments > 0)
+      = render :partial => 'comments'

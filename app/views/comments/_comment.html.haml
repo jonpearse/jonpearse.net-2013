@@ -1,0 +1,45 @@
+- threading ||= false
+%article.comment.box{ :id => "comment-#{comment.id}", :data => { :parent_id => comment.reply_to_id }, :class => (comment.screened ? '-screened' : '')}
+  %header.cf
+    %p
+      %strong= link_to_unless comment.website.nil?, comment.name, comment.website, :target => '_blank'
+      - unless comment.reply_to_id.nil? or threading
+        %span.reply_wrap
+          in response to
+          - if comment.parent.nil?
+            %span.deleted   [deleted]
+          - elsif comment.parent.screened
+            %span.screened  [screened]
+          - else
+            - url = @comments.nil? || @comments.include?(comment.parent) ? "#comment-#{comment.parent.id}" : article_comments_path(comment.article, comment.parent.id)
+            = link_to comment.parent.name, url, :data => { :comment_id => comment.parent.id }, :class => 'back-ref', :rel => "nofollow"
+      %br
+      %span.a11y  at 
+      %time{ :datetime => comment.created_at.strftime('%FT%T'), :pubdate => true }
+        = form_date comment.created_at, true
+    .img
+      = gravatar_for(comment.email, 50).html_safe
+  .content.type
+    ~ comment.comment_rendered.html_safe
+    
+  %footer.reply_wrap.cf
+    - if comment.article.commentable?
+      = link_to_with_icon 'reply', new_comment_path(comment.article, comment.id), 'reply', :data => { :remote => true }, :class => 'action', :rel => "nofollow"
+    - if current_user
+      = link_to_with_icon 'edit', edit_comment_path(comment), 'pencil', :data => { :remote => true }, :class => 'action'
+      = render :partial => 'comments/screen_link', :locals => { :comment => comment }
+      = link_to_with_icon 'delete', comment_path(comment), 'trash-o', :data => { :method => :delete, :remote => true, :confirm => 'Are you sure you wish to do this?' }, :class => 'action'
+      
+    - if false && comment.children.size > 0
+      %strong responses:
+      %ol.children
+        - comment.children.each do |child|
+          - unless child.screened
+            - url = @comments.include?(child) ? "#comment-#{child.id}" : article_comments_path(comment.article, child.id)
+            %li= link_to child.name, url, :data => { :comment_id => child.id }, :class => 'fwd-ref'
+      
+  - if threading && comment.children.size > 0
+    %ol.comments
+      - comment.children.each do |child|
+        %li
+          = render :partial => 'comments/comment', :locals => { :comment => child, :threading => threading }

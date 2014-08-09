@@ -5,14 +5,12 @@ class Article < ActiveRecord::Base
   # relations
   has_and_belongs_to_many :categories
   belongs_to              :masthead, :foreign_key => :masthead_id, :class_name => Media
-  
-  # accessible stuff
-  attr_accessible :title, :commentable, :published, :url_slug, :category_ids, :published_on, :masthead_id
-  
+  has_many                :comments
+    
   # hooks
   acts_as_renderable  :fields => [ :extract, :body, :teaser ]
   before_validation   :set_pub_date, :generate_slug, :generate_teaser
-  after_render        :clean_teaser_split
+  after_body_render   :clean_teaser_split
   
   # validation
   validates :title, :body, :extract, :url_slug, :presence => true
@@ -76,6 +74,11 @@ class Article < ActiveRecord::Base
     )
   end
   
+  # Updates comment count for this article.
+  def count_comments!
+    self.update_attribute(:num_comments, comments.viewable.size)
+  end
+  
   private
     def set_pub_date
 
@@ -94,7 +97,7 @@ class Article < ActiveRecord::Base
         slug = title.downcase.slugify
         
         # lookup conditions
-        cond = [ 'url_slug = ?', slug ]
+        cond = [ "url_slug = ?", slug ]
         if persisted?
           cond[0] << ' AND id != ?'
           cond << id
@@ -103,7 +106,7 @@ class Article < ActiveRecord::Base
         # enforce uniqueness
         i = 2
         suff = ''
-        until Article.all(:conditions => cond).empty? do
+        until Article.where(cond).empty? do
           # append numbers
           suff = "-#{i}"
           cond[1] = slug+suff

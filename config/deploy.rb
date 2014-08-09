@@ -15,8 +15,7 @@ set :use_sudo, false
 set :normalize_asset_timestamps, false
 
 after "deploy:restart",             "deploy:cleanup"
-after "deploy:update_code",         "db:symlink"
-before "deploy:assets:precompile",  "db:symlink"    # sigh
+before "deploy:assets:precompile",  "db:symlink"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts

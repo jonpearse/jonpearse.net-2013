@@ -1,36 +1,61 @@
 !!!
-%html{ :lang => 'en-GB' }
+%html{ :lang => 'en-GB', :class => (request.env['HTTP_USER_AGENT'].match(/MSIE/) ? '-ie' : nil) }
+  /
+    :plain
+      Well, hello there adventurous source-code browser: welcome behind the scenes of this website. Feel free to take
+      a poke around, see what you find—it’s how I started out all those years ago, after all…
+      
+      If you’re curious as to what exists behind the mark-up, the source code for this site is available on github:
+        https://github.com/jonpearse/jonpearse.net
+        
+      Feel free to give me a shout with any comments/questions/offers of work =)
+      
+      /jdp
   %head
     %meta{ :charset => 'utf-8' }
+    = csrf_meta_tags
+
     %title
       - unless @page_title.nil?
         = "#{@page_title} :: "
       jonpearse.net
-      
+
     %meta{ :"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
-    %meta{ :name => "viewport", :content => "width=device-width,initial-scale=1,maximum-scale=1" }
-    
+    %meta{ :name => "viewport", :content => "width=device-width,initial-scale=1" }
+
     -# meta stuff
     %meta{ :name => "description", :content => strip_tags(@meta_description) }    
     %meta{ :property => "og:image", :content => image_url(@og_image) }
-    
-    = stylesheet_link_tag 'screen', :media => 'screen'
-    = javascript_include_tag 'modernizr'
-    = csrf_meta_tags
 
-  %body
+    -# CSS and favicon
+    = stylesheet_link_tag 'screen', :media => 'screen'
+    = favicon_link_tag 'favicon.ico'
+    
+    :plain
+      <!--
+            oo0 (º¿º) 0oo 
+          wat? no modernizr‽
+      -->
+      
+    = yield :additional_head
+
+  %body{ :class => "#{controller_name} -#{action_name}"}
     #sense
     #container
-      %header.chrome.cf
+      %header.chrome.cf{ :role => 'banner' }
         .i.cf
-          %h1=  link_to_unless_current "Jon Pearse", root_path
+          %h1
+            = link_to_unless_current 'Jon Pearse', root_path, :title => "Return to home page"
+         
           = render :partial => 'layouts/site/nav'
     
-      %main
+      %main{ :role => 'main' }
         = yield
-      
-      = render :partial => 'layouts/site/footer'
+        
+      %footer.chrome{ :role => 'contentinfo' }
+        = render :partial => 'layouts/site/footer'
       
     = javascript_include_tag 'site'
     - if Rails.env.production?
       = render :partial => 'layouts/site/ga'
+    = yield :additional_foot

@@ -1,0 +1,27 @@
+- single_comment ||= false
+%li
+  %article.comment{ :id => "comment-#{comment.id}", :data => { :parent_id => comment.reply_to_id }}
+    %header
+      %p
+        %strong= comment.name
+        - unless comment.reply_to_id.nil? or !single_comment
+          %span.reply_wrap
+            %span.a11y  replying to
+            = link_to comment.parent.name, admin_comment_path(comment.parent), :class => 'icon -long-arrow-up'
+        %br
+        %span.a11y  at 
+        %time{ :datetime => comment.created_at.strftime('%FT%T'), :pubdate => true }
+          = form_date comment.created_at, true
+      .img
+        = gravatar_for(comment.email, 40).html_safe
+      %ul.actions
+        %li= link_to_with_icon 'Edit', edit_admin_comment_path(comment), 'pencil-square-o', :class => 'button -small -blue'
+        %li= render :partial => 'admin/comments/screen_link', :locals => { :comment => comment } 
+        %li= link_to_with_icon 'Delete', admin_comment_path(comment), 'trash-o', :method => :delete, :confirm => 'Are you sure you wish to delete this comment—this cannot be undone', :class => 'button -small -red'
+    .content.type
+      ~ comment.comment_rendered.html_safe
+      
+    - if comment.children.size > 0
+      %ol.children
+        - comment.children.each do |child|
+          = render :partial => 'comment', :locals => { :comment => child }

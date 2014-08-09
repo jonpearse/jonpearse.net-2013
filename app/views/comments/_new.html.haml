@@ -1,0 +1,74 @@
+= form_for @comment, :url => article_comments_path(@article), :html => { :novalidate => true, :data => { :remote => true }} do |f|
+  - unless @comment.reply_to_id.nil?
+    = f.hidden_field :reply_to_id
+
+  %fieldset
+    %h3 
+      - if @comment.reply_to_id.nil?
+        Add your comment
+      - else
+        Reply to #{@reply_to.name}
+
+    - unless @comment.errors.empty?
+      %p.error
+        = fa_icon 'exclamation-triangle'
+        Your comment could not be submitted—please check the form and try again
+        
+    %ol
+      %li.text.cf{ :class => (@comment.error_class :name )}
+        = f.label :name do
+          Your name
+          %abbr{ :title => "required field"} *
+        = f.text_field :name, :maxlength => 32, :size => nil, :required => true
+        - if @comment.has_error? :name
+          %em.error= @comment.error_messages :name
+    
+      %li.text.cf{ :class => (@comment.error_class :email )}
+        = f.label :email do
+          Your email
+          %abbr{ :title => "required field"} *
+        = f.email_field :email, :maxlength => 64, :size => nil, :required => true
+        - if @comment.has_error? :email
+          %em.error= @comment.error_messages :email
+        - else
+          %small  This will never be shown
+    
+      %li.text.cf{ :class => (@comment.error_class :website )}
+        = f.label :website, "Website"
+        = f.url_field :website, :maxlength => 64, :size => nil
+        - if @comment.has_error? :website
+          %em.error= @comment.error_messages :website
+        - else
+          %small  Optional
+    
+      %li.text.cf{ :class => (@comment.error_class :comment )}
+        = f.label :comment do 
+          Comment
+          %abbr{ :title => "required field"} *
+        = f.text_area :comment, :required => true
+        %small
+          Basic formatting available using
+          = link_to "Textile", "http://en.wikipedia.org/wiki/Textile_(markup_language)", :target => '_blank'
+        - if @comment.has_error? :comment
+          %em.error= @comment.error_messages :comment
+    
+      %li.check.cf{ :class => (@comment.error_class :is_human )}
+        %label
+          = f.check_box :is_human, :required => true
+          %strong 
+            I’m human!
+            %abbr{ :title => "required field" } *
+          - if @comment.has_error? :is_human
+            %em.error= @comment.error_messages :is_human
+          - else
+            Please check this to submit your comment (bots—no cheating)
+        
+      %li.check.cf
+        %label
+          = f.check_box :save_deets
+          %strong Save my details
+          Store your details so you don’t need to enter them again. Not recommended for public computers.
+
+    .buttons
+      %button{ :type => :submit } Submit
+      = link_to	'Cancel', request.referer, :class => 'act-cancel'

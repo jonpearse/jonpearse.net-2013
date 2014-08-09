@@ -1,1 +1,8 @@
-$.lightbox({ oDom: "#{escape_javascript render(:partial => 'admin/content/choose/main')}", sTitle: "#{ admin_t(@content_object, :select) }", sAddnClass: 'lb-media-select' });
+:plain
+  $.lightbox({
+      oDom:       '#{escape_javascript( render :partial => 'admin/content/choose/main' )}',
+      sAddnClass: 'lb-media-selector',
+      sTitle:     '#{ admin_t @content_object, :select }',
+    
+      complete:   function() { $(window).trigger('content-selector-loaded'); }
+  });

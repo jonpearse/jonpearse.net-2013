@@ -1,0 +1,51 @@
+/*!
+ *  Font Awesome 4.1.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+
+@import "fontawesome/variables";
+
+// overrides for fontello
+$fa-var-plus: "\e800"; 
+$fa-var-phone: "\e801"; 
+$fa-var-tags: "\e802"; 
+$fa-var-eye: "\e803"; 
+$fa-var-eye-slash: "\e804"; 
+$fa-var-pencil: "\e805"; 
+$fa-var-trash-o: "\e806"; 
+$fa-var-calendar-o: "\e807"; 
+$fa-var-reply: "\e808"; 
+$fa-var-refresh: "\e809"; 
+$fa-var-twitter: "\e80a"; 
+$fa-var-exclamation-triangle: "\e80b"; 
+$fa-var-angle-left: "\e80c"; 
+$fa-var-angle-right: "\e80d"; 
+$fa-var-comments-o: "\e80e"; 
+$fa-var-comments: "\e80f"; 
+$fa-var-ban: "\e810"; 
+$fa-var-envelope: "\e811";
+
+@import "fontawesome/mixins";
+@import "fontawesome/core";
+@import "fontawesome/fixed-width";
+@import "fontawesome/spinning";
+
+// fontello icons here
+.#{$fa-css-prefix}-plus:before { content: '\e800'; } 
+.#{$fa-css-prefix}-phone:before { content: '\e801'; } 
+.#{$fa-css-prefix}-tags:before { content: '\e802'; } 
+.#{$fa-css-prefix}-eye:before { content: '\e803'; } 
+.#{$fa-css-prefix}-eye-slash:before { content: '\e804'; } 
+.#{$fa-css-prefix}-pencil:before { content: '\e805'; } 
+.#{$fa-css-prefix}-trash-o:before { content: '\e806'; } 
+.#{$fa-css-prefix}-calendar-o:before { content: '\e807'; } 
+.#{$fa-css-prefix}-reply:before { content: '\e808'; } 
+.#{$fa-css-prefix}-refresh:before { content: '\e809'; } 
+.#{$fa-css-prefix}-twitter:before { content: '\e80a'; } 
+.#{$fa-css-prefix}-exclamation-triangle:before { content: '\e80b'; } 
+.#{$fa-css-prefix}-angle-left:before { content: '\e80c'; } 
+.#{$fa-css-prefix}-angle-right:before { content: '\e80d'; } 
+.#{$fa-css-prefix}-comments-o:before { content: '\e80e'; } 
+.#{$fa-css-prefix}-comments:before { content: '\e80f'; } 
+.#{$fa-css-prefix}-ban:before { content: '\e810'; } 
+.#{$fa-css-prefix}-envelope:before { content: '\e811'; } 

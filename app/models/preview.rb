@@ -17,10 +17,7 @@ class Preview < ActiveRecord::Base
   
   # Relations
   belongs_to  :user
-  
-  # accessors
-  attr_accessible :user_id, :model_name, :model_data, :created_on
-  
+    
   # parse the data on load
   after_find  :parse_data
   

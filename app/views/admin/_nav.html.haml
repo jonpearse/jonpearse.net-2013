@@ -2,12 +2,16 @@
 %nav.chrome.cf{ :role => 'menu' }
   %ul
     %li{ :class => @current_section == 'dashboard' ? 'current' : nil }
-      =  link_to  'Dashboard', admin_root_path, :class => 'icon -fixed-width -dashboard'
+      = link_to_with_icon 'Dashboard', admin_root_path, 'tachometer fw' 
+      
     %li{ :class => @current_section == 'blog' ? 'current' : nil }
-      =  link_to  'Blog', admin_articles_path, :class => 'icon -fixed-width -book'
+      =  link_to_with_icon 'Blog', admin_articles_path, 'book fw'
+      
     %li{ :class => @current_section == 'pages' ? 'current' : nil }
-      =  link_to  'Pages', admin_pages_path, :class => 'icon -fixed-width -file-alt'
+      =  link_to_with_icon  'Pages', admin_pages_path, 'file-o fw'
+      
     %li{ :class => @current_section == 'media' ? 'current' : nil }
-      =  link_to  'Media', admin_media_index_path, :class => 'icon -fixed-width -picture'
+      =  link_to_with_icon  'Media', admin_media_index_path, 'picture-o fw'
+      
     -#%li{ :class => @current_section == 'snippets' ? 'current' : nil }
-      =  link_to  'Snippets', '#', :class => 'icon -fixed-width -code'
+      =  link_to_with_icon  'Snippets', '#', :class => 'code'

@@ -1,4 +1,5 @@
 = form_for [:admin, @content], :as => :content do |f|
+  = render :partial => 'admin/common/back_to'
   %ol
     %li.text.cf{ :class => (@content.error_class :title )}
       = f.label :title, "Title"

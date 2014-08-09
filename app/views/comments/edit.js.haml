@@ -1,0 +1,1 @@
+$('#comment-#{@comment.id}').children('footer').remove().end().find('.content,form').replaceWith('#{escape_javascript(render :partial => 'edit')}');

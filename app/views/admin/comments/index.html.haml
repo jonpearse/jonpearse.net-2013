@@ -1,0 +1,8 @@
+%h1 Comments on #{@article.title}
+
+- if @comments.empty?
+  %p.empty  There are no comments
+- else
+  %ol.comments
+    - @comments.each do |comment|
+      = render comment

@@ -11,7 +11,7 @@
             = a.extract_rendered.html_safe
           %footer
             %ul
-              %li=  link_to 'Preview', preview_admin_article_path(a), :class => 'button -small icon -eye-open'
-              %li=  link_to 'Edit', edit_admin_article_path(a), :class => 'button -small icon -edit -blue'
-              %li=  link_to 'Publish', admin_publish_article_path(a, :home => true), :method => :post, :class => 'button -small icon -thumbs-up-alt -green'
-              %li=  link_to 'Delete', admin_article_path(a, :home => true), :method => :delete, :confirm => 'Are you sure you wish to delete this draft—this cannot be undone', :class => 'button -small icon -remove-circle -red'
+              %li=  link_to_with_icon 'Preview', preview_admin_article_path(a), 'eye', :class => 'button -small'
+              %li=  link_to_with_icon 'Edit', edit_admin_article_path(a), 'pencil-square-o', :class => 'button -small -blue'
+              %li=  link_to_with_icon 'Publish', admin_publish_article_path(a, :home => true), 'thumbs-o-up', :class => 'button -small -green', :method => :post, :data => { :remote => true }
+              %li=  link_to_with_icon 'Delete', admin_article_path(a, :home => true), 'trash-o', :method => :delete, :confirm => 'Are you sure you wish to delete this draft—this cannot be undone', :class => 'button -small -red'

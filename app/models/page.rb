@@ -5,9 +5,6 @@ class Page < ActiveRecord::Base
   # relations
   belongs_to              :masthead, :foreign_key => :masthead_id, :class_name => Media
   
-  # accessible stuff
-  attr_accessible :title, :url_slug, :masthead_id
-  
   # hooks
   acts_as_renderable :fields => [ :body ]
   before_validation :generate_slug
@@ -17,7 +14,7 @@ class Page < ActiveRecord::Base
   validates :url_slug,  :presence => true,
                         :uniqueness => true,
                         :length => { :in => 2..64 },
-                        :format => { :with => /^(?!(articles))/ }
+                        :format => { :with => /\A(?!(articles))/ }
   
   private
     def generate_slug

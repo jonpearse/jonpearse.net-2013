@@ -1,0 +1,38 @@
+= form_for @comment, :html => { :novalidate => true, :data => { :remote => true }} do |f|
+  %fieldset    
+    %ol
+      %li.text.cf{ :class => (@comment.error_class :name )}
+        = f.label :name, "Name"
+        = f.text_field :name, :maxlength => 32, :size => nil, :required => true
+        - if @comment.has_error? :name
+          %em.error= @comment.error_messages :name
+    
+      %li.text.cf{ :class => (@comment.error_class :email )}
+        = f.label :email, "Email"
+        = f.email_field :email, :maxlength => 64, :size => nil, :required => true
+        - if @comment.has_error? :email
+          %em.error= @comment.error_messages :email
+        - else
+          %small  This will never be shown
+    
+      %li.text.cf{ :class => (@comment.error_class :website )}
+        = f.label :website, "Website"
+        = f.url_field :website, :maxlength => 64, :size => nil
+        - if @comment.has_error? :website
+          %em.error= @comment.error_messages :website
+        - else
+          %small  Optional
+    
+      %li.text.cf{ :class => (@comment.error_class :comment )}
+        = f.label :comment, "Comment"
+        = f.text_area :comment, :required => true
+        - if @comment.has_error? :comment
+          %em.error= @comment.error_messages :comment
+
+      %li.text.cf
+        %strong.label IP
+        = @comment.ip
+
+    .buttons
+      %button{ :type => :submit } Submit
+      = link_to	'Cancel', comment_path(@comment), :class => 'act-cancel', :data => { :remote => true }

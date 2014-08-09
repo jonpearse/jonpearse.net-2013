@@ -15,17 +15,24 @@ class Media < ActiveRecord::Base
   }
   
   # relations
-  
-  # accessors
-  attr_accessible :title, :alt_text, :title_text, :media_type, :file, :default_align
-  
+  has_and_belongs_to_many :galleries
+    
   # hooks
   has_attached_file :file,
-                    :styles => lambda { |attachment| t = (attachment.instance.media_type.empty? ? :general : attachment.instance.media_type.to_sym); return Media::TYPES[t] }
+                    :path   => ":rails_root/public/system/media/:id_partition/file/:style.:extension",
+                    :url    => "/system/media/:id_partition/file/:style.:extension",
+                    :styles => lambda { |attachment| t = (attachment.instance.media_type.empty? ? :general : attachment.instance.media_type.to_sym); return Media::TYPES[t] },
+                    :convert_options => {
+                      :all    => '-strip -quality 70'
+                    }
   
   # validation
   validates :title, :media_type, :file, :presence => true
   validates_attachment :file, :content_type => { :content_type => /^image\/(png|gif|jpeg)/ },
-                              :size => { :in => 0..512.kilobytes }
-  
+                              :size => { :in => 0..1024.kilobytes }
+
+  # scopes
+  scope :general,     -> { where(:media_type => 'general'   ).order('title ASC') }
+  scope :responsive,  -> { where(:media_type => 'responsive').order('title ASC') }
+  scope :banner,      -> { where(:media_type => 'banner'    ).order('title ASC') }
 end

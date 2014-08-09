@@ -1,0 +1,4 @@
+- if comment.screened
+  = link_to_with_icon 'unscreen', screen_comment_path(comment, 0), 'eye-slash', :data => { :method => :post, :remote => true }, :class => 'action screen'
+- else
+  = link_to_with_icon 'screen', screen_comment_path(comment, 1), 'eye', :data => { :method => :post, :remote => true }, :class => 'action screen'

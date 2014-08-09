@@ -5,5 +5,5 @@
   - unless @page.masthead.nil?
     = render :partial => 'application/masthead', :locals => { :media => @page.masthead }
     
-  .content.type
+  .content.type.-page
     ~ process_media(@page.body_rendered).html_safe

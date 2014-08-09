@@ -3,11 +3,15 @@
     %h2=  link_to article.title, article
     %p
       %time{ :datetime => article.published_on.strftime('%FT%T'), :pubdate => true }= form_date article.published_on
+      
+      - if article.num_comments > 0
+        = fa_icon 'comments'
+        = article.num_comments
 
   - unless article.masthead.nil?
     = render :partial => 'application/masthead', :locals => { :media => article.masthead, :link => article_path(article) }
 
-  .content.type
+  .content.type.-article
     - if full
       - if article.teaser_rendered.nil?
         ~ remove_media(article.body_rendered).html_safe

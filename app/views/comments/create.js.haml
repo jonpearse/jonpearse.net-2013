@@ -1,0 +1,10 @@
+:plain
+  // kill any forms and append new comment
+  var oCommentList = $('#comments').find('form').parent().find('a.-hide').removeClass('-hide').end().end().remove().end().find('ol.comments');
+  if (oCommentList.length == 0)
+  {
+    var oHolder = $('#comments p.empty');
+    oCommentList = $('<ol class="comments"/>').insertBefore(oHolder);
+    oHolder.remove();
+  }
+  oCommentList.prepend('<li class="-new">#{escape_javascript( render :partial => 'comment', :locals => { :comment => @comment })}</li>');

@@ -15,37 +15,57 @@
       - if @content.has_error? :media_type
         %em.error= @content.error_messages :media_type
         
-    %li.text.cf{ :class => (@content.error_class :file )}
-      = f.label :file, "File"
-      - unless @content.file.blank?
-        = image_tag @content.file.url(:thumb)
-        %br
-      = f.file_field :file
-      - if @content.has_error? :file
-        %em.error= @content.error_messages :file
+    %li.fieldset.cf
+      %h2 File
+      
+      %ol
+        %li.text.cf{ :class => (@content.error_class :file )}
+          = f.label :file, "File"
+          - unless @content.file.blank?
+            = image_tag @content.file.url(:thumb)
+            %br
+          = f.file_field :file
+          - if @content.has_error? :file
+            %em.error= @content.error_messages :file
         
-    %li.text.cf{ :class => (@content.error_class :default_align )}
-      = f.label :default_align, "Default alignment"
-      %select{ :size => 1, :name => "content[default_align]", :id => 'content_default_align' }
-        - %w(center left right).each do |type|
-          %option{ :value => type, :selected => (@content.default_align == type) }=  type
-      - if @content.has_error? :default_align
-        %em.error= @content.error_messages :default_align
+        %li.text.cf{ :class => (@content.error_class :default_align )}
+          = f.label :default_align, "Default alignment"
+          %select{ :size => 1, :name => "content[default_align]", :id => 'content_default_align' }
+            - %w(center left right).each do |type|
+              %option{ :value => type, :selected => (@content.default_align == type) }=  type
+          - if @content.has_error? :default_align
+            %em.error= @content.error_messages :default_align
     
     %li.fieldset.cf
       %h2 HTML options
       %ol
         %li.text.cf{ :class => (@content.error_class :alt_text )}
           = f.label :alt_text, "Alt. Text"
-          = f.text_field :alt_text
+          = f.text_field :alt_text, :class => 'medium'
           - if @content.has_error? :alt_text
             %em.error= @content.error_messages :alt_text
         
         %li.text.cf{ :class => (@content.error_class :title_text )}
           = f.label :title_text, "Title text"
-          = f.text_field :title_text
+          = f.text_field :title_text, :class => 'medium'
           - if @content.has_error? :title_text
             %em.error= @content.error_messages :title_text
+    
+    %li.fieldset.cf
+      %h2 Attribution
+      
+      %ol
+        %li.text.cf{ :class => (@content.error_class :attribution_text )}
+          = f.label :attribution_text, "Text"
+          = f.text_field :attribution_text, :class => 'medium'
+          - if @content.has_error? :attribution_text
+            %em.error= @content.error_messages :attribution_text
+      
+        %li.text.cf{ :class => (@content.error_class :attribution_url )}
+          = f.label :attribution_url, "URL"
+          = f.url_field :attribution_url
+          - if @content.has_error? :attribution_url
+            %em.error= @content.error_messages :attribution_url
   
   .buttons
     %button{ :type => :submit, :class => '-primary' } Save

@@ -1,19 +1,20 @@
-%footer.chrome
-  .i
-    %p
-      %strong.fn Jon Pearse
-      Developer /
-      %abbr{:title => 'Interaction Designer' } IxD
+.i
+  %p
+    %strong.fn Jon Pearse
+    Developer /
+    %abbr{:title => 'Interaction Designer' } IxD
 
-    %ul
-      %li.p
-        %strong.a11y  Phone
-        %span.tel.icon.-phone 0701 424 5537
-    
-      %li.e
-        %strong.a11y  Email
-        = mail_to 'hello@jonpearse.net', 'hello@jonpearse.net', :class => 'icon -envelope'
+  %ul
+    %li.p
+      %strong.a11y  Phone
+      = fa_icon 'phone'
+      %span.tel
+        0701 424 5537
   
-      %li.t
-        %strong.a11y  Twitter
-        = link_to '@jonpearse', 'http://twitter.com/jonpearse', :class => 'icon -twitter', :target => '_blank'
+    %li.e
+      %strong.a11y  Email
+      = mail_to 'hello@jonpearse.net', (fa_icon 'envelope')+'hello@jonpearse.net'
+
+    %li.t
+      %strong.a11y  Twitter
+      = link_to_with_icon '@jonpearse', 'http://twitter.com/jonpearse', 'twitter', :target => '_blank'
