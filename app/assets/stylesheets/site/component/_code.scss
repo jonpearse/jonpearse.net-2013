@@ -30,6 +30,7 @@ code.block {
         
         &:before {
             content: counter(code-hilite);
+            color: #DDD;
             float: left;
             display: block;
             margin-left: -37px;
@@ -37,8 +38,15 @@ code.block {
             text-align: right;
             font-size: 0.8em;
         }
+        
+        span.code-line { padding-left: 0; }
     }
     
+    
     // secondary content
-    .comment { color: #999; }
+    .comment {
+        color: #999; 
+        
+        ~ .code-line { color: #999; }
+    }
 }

@@ -10,7 +10,7 @@ class Article < ActiveRecord::Base
   # hooks
   acts_as_renderable  :fields => [ :extract, :body, :teaser ]
   before_validation   :set_pub_date, :generate_slug, :generate_teaser
-  after_body_render   :clean_teaser_split
+  after_body_render   :clean_teaser_split, :tidy_blockcode
   
   # validation
   validates :title, :body, :extract, :url_slug, :presence => true
@@ -134,6 +134,19 @@ class Article < ActiveRecord::Base
     def clean_teaser_split
       
       self.body_rendered = body_rendered.gsub /<p>===<\/p>\n?/, ''
+      
+    end
+    
+    def tidy_blockcode
+      
+      # fix issue with empty newlines in code starting new blocks issue
+      self.body_rendered = body_rendered.gsub (/<\/code>\n(\s+)\n<code(.*?)>/m) do |m|  
+        logger.debug "..#{$1}.."      
+        ('<span class="code-line"> </span>' * $1.each_line.count)
+      end
+      
+      # remove newlines out of code blocks
+      self.body_rendered = body_rendered.gsub /\n/, ""
       
     end
 end
