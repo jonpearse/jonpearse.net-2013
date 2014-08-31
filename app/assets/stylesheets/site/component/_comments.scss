@@ -29,8 +29,7 @@ section.comments {
     }
 }
 article.comment,
-form.new_comment,
-form.edit_comment {
+form.comment {
     @extend %box;
     @include transition(opacity 3s linear);
     
@@ -87,8 +86,7 @@ article.comment {
     
     &.-screened { opacity: .5 }
 }
-form.new_comment,
-form.edit_comment {
+form.comment {
     h3 { font-size: 1.2em; line-height: 1.3em; margin: 0 0 1.5em; }
     
     li {
@@ -104,10 +102,12 @@ form.edit_comment {
             }
         }
         
-        &.check label {
-            display: block;
-            padding-left: 7em;
-            position: relative;
+        &.check {
+            label {
+                display: block;
+                padding-left: 7em;
+                position: relative;
+            }
             strong { font-weight: $bold-weight; display: block; }
             input[type=checkbox] {
                 position: absolute;

@@ -25,6 +25,7 @@ $fa-var-comments: "\e80f";
 $fa-var-ban: "\e810"; 
 $fa-var-envelope: "\e811";
 $fa-var-cc: "\efff";
+$fa-var-check: "\e812";
 
 @import "fontawesome/mixins";
 @import "fontawesome/core";
@@ -51,3 +52,4 @@ $fa-var-cc: "\efff";
 .#{$fa-css-prefix}-ban:before { content: '\e810'; } 
 .#{$fa-css-prefix}-envelope:before { content: '\e811'; } 
 .#{$fa-css-prefix}-cc:before { content: '\efff'; }
+.#{$fa-css-prefix}-check:before { content: '\e812'; }

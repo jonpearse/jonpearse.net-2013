@@ -140,8 +140,7 @@ class Article < ActiveRecord::Base
     def tidy_blockcode
       
       # fix issue with empty newlines in code starting new blocks issue
-      self.body_rendered = body_rendered.gsub (/<\/code>\n(\s+)\n<code(.*?)>/m) do |m|  
-        logger.debug "..#{$1}.."      
+      self.body_rendered = body_rendered.gsub (/<\/code>\n(\s+)\n<code(.*?)>/m) do |m|
         ('<span class="code-line"> </span>' * $1.each_line.count)
       end
       

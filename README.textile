@@ -13,6 +13,10 @@ If you like what you’ve seen here and want to talk to me about how I might be 
 
 h2. Updates
 
+h3. August 31st, 2014
+
+Fixing mobile CSS a little
+
 h3. August 30th, 2014
 
 * adding post-render hook on Article model to deal with RedCloth breaking blocks of code on empty lines (see "ticket #222":http://jgarber.lighthouseapp.com/projects/13054-redcloth/tickets/222 )

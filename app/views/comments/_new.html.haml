@@ -1,4 +1,4 @@
-= form_for @comment, :url => article_comments_path(@article), :html => { :novalidate => true, :data => { :remote => true }} do |f|
+= form_for @comment, :url => article_comments_path(@article), :html => { :novalidate => true, :class => 'comment', :data => { :remote => true }} do |f|
   - unless @comment.reply_to_id.nil?
     = f.hidden_field :reply_to_id
 

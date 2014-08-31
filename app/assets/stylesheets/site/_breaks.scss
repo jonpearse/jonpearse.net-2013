@@ -49,4 +49,19 @@
         p { float: none; margin: 0 0 0.3em; display: block; }
         li { margin: 0; }
     }
+    
+    form.comment {
+        li.text { 
+            margin-left: 0;
+            width: 100%;
+            label,.label { display: block; width: auto; float: none; margin: 0 0 .2em; line-height: 1.3em; }
+            input,textarea { width: 100%; min-width: 0; }
+        }
+        li.check {
+            label { padding: 0; }
+            strong { padding-left: 1.5em; }
+            input[type=checkbox] { left: 0; }
+        }
+        .buttons { margin-left: 0; text-align: center; }
+    }
 }
