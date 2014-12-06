@@ -110,6 +110,13 @@ module ApplicationHelper
   end
   
   # Provides a link with a fontawesome icon prepended
+  #
+  # === Parameters
+  #
+  # [body]          the text that should be linked
+  # [url]           the URL of the link
+  # [icon]          the icon that should be appended/prepended
+  # [html_options]  any options that should be passed to link_to
   def link_to_with_icon( body, url, icon, html_options = {})
     
     link_text = html_options.key?(:icon_after) ? "#{body} "+fa_icon(icon) : fa_icon(icon)+" #{body}"
@@ -120,13 +127,18 @@ module ApplicationHelper
   end
   
   # Helper function to wrap FontAwesome-ness =)
+  #
+  # === Parameters
+  #
+  # [icon]          the icon that should be displayed. Separate multiple icons with spaces
+  # [html_options]  any options that should be passed to the tag() function
   def fa_icon( icon, html_options = {} )
     
     html_options[:class] ||= ""
     html_options[:class] += " fa fa-#{icon.split(/\s+/).join(' fa-')}"
     html_options[:'aria-hidden'] = "true"
     
-    tag('i', html_options, false)+'</i>'.html_safe
+    tag('i', html_options, true)+'</i>'.html_safe
     
   end
   

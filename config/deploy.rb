@@ -8,7 +8,7 @@ set :scm, :git
 
 set :deploy_to, "/home/jon/sites/jjp-lite"
 
-server "ehlana.jonpearse.net", :app, :web, :db, :primary => true
+server "elysoun.jonpearse.net", :app, :web, :db, :primary => true
 
 set :user, 'jon'
 set :use_sudo, false

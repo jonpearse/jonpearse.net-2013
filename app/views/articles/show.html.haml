@@ -7,7 +7,7 @@
         %dt.a11y  Posted
         %dd
           = fa_icon 'calendar-o'
-          %time{ :datetime => @article.published_on.strftime('%FT%T'), :pubdate => true }= form_date @article.published_on
+          %time{ :datetime => @article.published_on.strftime('%FT%T') }= form_date @article.published_on
       
       - unless @article.categories.empty?
         %dt

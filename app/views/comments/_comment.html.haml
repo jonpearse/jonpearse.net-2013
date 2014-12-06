@@ -15,7 +15,7 @@
             = link_to comment.parent.name, url, :data => { :comment_id => comment.parent.id }, :class => 'back-ref', :rel => "nofollow"
       %br
       %span.a11y  at 
-      %time{ :datetime => comment.created_at.strftime('%FT%T'), :pubdate => true }
+      %time{ :datetime => comment.created_at.strftime('%FT%T') }
         = form_date comment.created_at, true
     .img
       = gravatar_for(comment.email, 50).html_safe

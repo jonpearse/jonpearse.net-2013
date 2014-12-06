@@ -147,5 +147,8 @@ class Article < ActiveRecord::Base
       # remove newlines out of code blocks
       self.body_rendered = body_rendered.gsub /\n/, ""
       
+      # remove @lang from <code>
+      self.body_rendered = body_rendered.gsub /\<code([^>]+?)lang="(.+?)"\>/, '<code\1>'
+      
     end
 end

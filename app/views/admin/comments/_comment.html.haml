@@ -10,7 +10,7 @@
             = link_to comment.parent.name, admin_comment_path(comment.parent), :class => 'icon -long-arrow-up'
         %br
         %span.a11y  at 
-        %time{ :datetime => comment.created_at.strftime('%FT%T'), :pubdate => true }
+        %time{ :datetime => comment.created_at.strftime('%FT%T') }
           = form_date comment.created_at, true
       .img
         = gravatar_for(comment.email, 40).html_safe
