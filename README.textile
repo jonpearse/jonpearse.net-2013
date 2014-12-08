@@ -13,6 +13,17 @@ If you like what you’ve seen here and want to talk to me about how I might be 
 
 h2. Updates
 
+h3. December 8th, 2014
+
+Altering method of styling checkbox on comment form so it actually works in IE—really embarrassed it took this long to realise it wasn’t working :s
+
+h3. December 6th, 2014
+
+* updating Rails & other gems to latest
+* removing pubdate attr from front-end
+* fixing a couple odd bugs
+* adding favicon
+
 h3. August 31st, 2014
 
 Fixing mobile CSS a little

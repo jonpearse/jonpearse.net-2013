@@ -104,42 +104,36 @@ form.comment {
         
         &.check {
             label {
-                display: block;
+                display:  block;
                 padding-left: 7em;
-                position: relative;
             }
             strong { font-weight: $bold-weight; display: block; }
             input[type=checkbox] {
                 position: absolute;
-                top: .6em;
-                left: 8.4em;
+                opacity:  0;
+                
                 height: 1px;
-                width: 1px;
+                width:  1px;
+                                
+                &:checked ~ span.check { color:        $link; }
+                &:focus ~ span.check   { border-color: $link; }
+            }
+            span.check {
+                display: block;
+                float:   left;
                 
-                &:before {
-                    @extend .#{$fa-css-prefix};
-                    content: $fa-var-check;
-                    display: block;
-                    position: absolute;
-                    top: -.4em;
-                    left: -.4em;
-                    font-size: 1.2em;
-                    line-height: 1.3em;
-                    width: 1.3em;
-                    height: 1.3em;
-                    text-align: center;
-                    border: 1px solid #D8D8D8;
-                    border-radius: .2em;
-                    background: #FFF;
-                    color: transparent;
-                    @include transition(all 150ms);
-                }
+                margin: .4em 0 0 rem(-40);
+                width:  1.3em;
+                height: 1.3em;
+                border: 1px solid #D8D8D8;
+                border-radius: .2em;
                 
-                &:checked:before { color: $link; }
-                &:focus {
-                    outline: 0;
-                    &:before { border-color: $link; }
-                }
+                font-size:   rem(10.5);
+                line-height: 1.3em;
+                text-align:  center;
+                
+                color: transparent;
+                @include transition(all 150ms);
             }
         }
         

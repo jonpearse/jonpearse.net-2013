@@ -53,8 +53,9 @@
           %em.error= @comment.error_messages :comment
     
       %li.check.cf{ :class => (@comment.error_class :is_human )}
-        %label
+        %label{ :for => :comment_is_human }
           = f.check_box :is_human, :required => true
+          %span.check.fa.fa-check
           %strong 
             I’m human!
             %abbr{ :title => "required field" } *
@@ -64,8 +65,9 @@
             Please check this to submit your comment (bots—no cheating)
         
       %li.check.cf
-        %label
+        %label{ :for => :comment_save_deets }
           = f.check_box :save_deets
+          %span.check.fa.fa-check
           %strong Save my details
           Store your details so you don’t need to enter them again. Not recommended for public computers.
 
