@@ -4,8 +4,8 @@ common: &SHARED
   pool: 5
   host: localhost
   reconnect: false
-  
+
 development: &DEV
   <<: *SHARED
-  database: 
+  database:
   username:

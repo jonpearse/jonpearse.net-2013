@@ -31,4 +31,10 @@ group :development do
   gem 'quiet_assets'
   gem 'thin'
   gem 'spring'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-passenger'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
 end

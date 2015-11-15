@@ -16,6 +16,7 @@ h2. Updates
 h3. November 15th, 2015
 
 * updating to Rails 4.2
+* updating Capistrano to something a little more modern
 * replacing icon fonts with SVGs
 * rewriting HTML/CSS to contain 100% more BEM
 * rewriting JS to be more behaviour-driven/optimised
