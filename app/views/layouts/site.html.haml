@@ -1,15 +1,15 @@
 !!!
-%html{ :lang => 'en-GB', :class => (request.env['HTTP_USER_AGENT'].match(/MSIE/) ? '-ie' : nil) }
+%html{ :lang => 'en-GB' }
   /
     :plain
       Well, hello there adventurous source-code browser: welcome behind the scenes of this website. Feel free to take
       a poke around, see what you find—it’s how I started out all those years ago, after all…
-      
+
       If you’re curious as to what exists behind the mark-up, the source code for this site is available on github:
         https://github.com/jonpearse/jonpearse.net
-        
+
       Feel free to give me a shout with any comments/questions/offers of work =)
-      
+
       /jdp
   %head
     %meta{ :charset => 'utf-8' }
@@ -24,38 +24,37 @@
     %meta{ :name => "viewport", :content => "width=device-width,initial-scale=1" }
 
     -# meta stuff
-    %meta{ :name => "description", :content => strip_tags(@meta_description) }    
+    %meta{ :name => "description", :content => strip_tags(@meta_description) }
     %meta{ :property => "og:image", :content => image_url(@og_image) }
 
     -# CSS and favicon
     = stylesheet_link_tag 'screen', :media => 'screen'
     = favicon_link_tag 'favicon.ico'
-    
+
     :plain
       <!--
-            oo0 (º¿º) 0oo 
+            oo0 (º¿º) 0oo
           wat? no modernizr‽
       -->
-      
-    = yield :additional_head
 
-  %body{ :class => "#{controller_name} -#{action_name}"}
-    #sense
-    #container
-      %header.chrome.cf{ :role => 'banner' }
-        .i.cf
-          %h1
+    = yield :additional_head
+  %body{ :class => "rb-c_#{controller_name} #{action_name}"}
+    .cr-site_container
+      %header.cr-header{ :role => 'banner' }
+        .cr-header__inner.cf
+          %h1.cr-header__home-link
             = link_to_unless_current 'Jon Pearse', root_path, :title => "Return to home page"
-         
+
           = render :partial => 'layouts/site/nav'
-    
-      %main{ :role => 'main' }
+
+      %main.cr-main{ :role => 'main' }
         = yield
-        
-      %footer.chrome{ :role => 'contentinfo' }
+
+      %footer.cr-footer{ :role => 'contentinfo' }
         = render :partial => 'layouts/site/footer'
-      
+
     = javascript_include_tag 'site', :async => (Rails.env.production? ? true : nil)
     - if Rails.env.production?
       = render :partial => 'layouts/site/ga'
     = yield :additional_foot
+    = embed_svg 'icons.svg', 'i__source'

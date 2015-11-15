@@ -1,76 +1,81 @@
-= form_for @comment, :url => article_comments_path(@article), :html => { :novalidate => true, :class => 'comment', :data => { :remote => true }} do |f|
+- subdue_title ||= false
+= form_for @comment, :url => article_comments_path(@article), :html => { :novalidate => true, :class => 'u-box c-form o-comment__form -a-new' } do |f|
   - unless @comment.reply_to_id.nil?
     = f.hidden_field :reply_to_id
 
-  %fieldset
-    %h3 
-      - if @comment.reply_to_id.nil?
-        Add your comment
-      - else
-        Reply to #{@reply_to.name}
+  %fieldset.c-form__wrapper
+    - unless subdue_title
+      %h3.c-form__title
+        - if @comment.reply_to_id.nil?
+          Add your comment
+        - else
+          Reply to #{@reply_to.name}
 
     - unless @comment.errors.empty?
-      %p.error
+      %p.c-form__error--box.u-box.-alt
         = fa_icon 'exclamation-triangle'
         Your comment could not be submitted—please check the form and try again
-        
-    %ol
-      %li.text.cf{ :class => (@comment.error_class :name )}
-        = f.label :name do
-          Your name
-          %abbr{ :title => "required field"} *
-        = f.text_field :name, :maxlength => 32, :size => nil, :required => true
+
+    %ol.c-form__fields
+      %li.c-form__field{ :class => (@comment.error_class :name )}
+        = f.label :name, "Your name", :class => 'c-form__label'
+        = f.text_field :name, :maxlength => 32, :size => nil, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :name
-          %em.error= @comment.error_messages :name
-    
-      %li.text.cf{ :class => (@comment.error_class :email )}
-        = f.label :email do
-          Your email
-          %abbr{ :title => "required field"} *
-        = f.email_field :email, :maxlength => 64, :size => nil, :required => true
+          %em.c-form__error
+            = fa_icon 'exclamation-triangle'
+            = @comment.error_messages :name
+
+      %li.c-form__field{ :class => (@comment.error_class :email )}
+        = f.label :email, "Your email", :class => 'c-form__label'
+        = f.email_field :email, :maxlength => 64, :size => nil, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :email
-          %em.error= @comment.error_messages :email
+          %em.c-form__error
+            = fa_icon 'exclamation-triangle'
+            = @comment.error_messages :email
         - else
-          %small  This will never be shown
-    
-      %li.text.cf{ :class => (@comment.error_class :website )}
-        = f.label :website, "Website"
-        = f.url_field :website, :maxlength => 64, :size => nil
+          %small.c-form__hint  This will never be shown
+
+      %li.c-form__field{ :class => (@comment.error_class :website )}
+        = f.label :website, "Website", :class => 'c-form__label'
+        = f.url_field :website, :maxlength => 64, :size => nil, :class => 'c-form__input'
         - if @comment.has_error? :website
-          %em.error= @comment.error_messages :website
+          %em.c-form__error
+            = fa_icon 'exclamation-triangle'
+            = @comment.error_messages :website
         - else
-          %small  Optional
-    
-      %li.text.cf{ :class => (@comment.error_class :comment )}
-        = f.label :comment do 
-          Comment
-          %abbr{ :title => "required field"} *
-        = f.text_area :comment, :required => true
-        %small
-          Basic formatting available using
-          = link_to "Textile", "http://en.wikipedia.org/wiki/Textile_(markup_language)", :target => '_blank'
+          %small.c-form__hint  Optional
+
+      %li.c-form__field{ :class => (@comment.error_class :comment )}
+        = f.label :comment, "Comment", :class => 'c-form__label'
+        = f.text_area :comment, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :comment
-          %em.error= @comment.error_messages :comment
-    
-      %li.check.cf{ :class => (@comment.error_class :is_human )}
+          %em.c-form__error
+            = fa_icon 'exclamation-triangle'
+            = @comment.error_messages :comment
+        - else
+          %small.c-form__hint
+            Basic formatting available using
+            = link_to "Textile", "http://en.wikipedia.org/wiki/Textile_(markup_language)", :target => '_blank'
+
+      %li.c-form__field.-reverse{ :class => (@comment.error_class :is_human )}
         %label{ :for => :comment_is_human }
-          = f.check_box :is_human, :required => true
-          %span.check.fa.fa-check
-          %strong 
-            I’m human!
-            %abbr{ :title => "required field" } *
+          = f.check_box :is_human, :required => true, :class => 'c-form__input'
+          = fa_icon 'check', :class => 'check'
+          %strong.c-form__label I’m human!
           - if @comment.has_error? :is_human
-            %em.error= @comment.error_messages :is_human
+            %em.c-form__error
+              = fa_icon 'exclamation-triangle'
+              = @comment.error_messages :is_human
           - else
-            Please check this to submit your comment (bots—no cheating)
-        
-      %li.check.cf
+            %small.c-form__hint Please check this to submit your comment (bots—no cheating)
+
+      %li.c-form__field.-reverse
         %label{ :for => :comment_save_deets }
           = f.check_box :save_deets
-          %span.check.fa.fa-check
-          %strong Save my details
-          Store your details so you don’t need to enter them again. Not recommended for public computers.
+          = fa_icon 'check', :class => 'c-form__input'
+          %strong.c-form__label Save my details
+          %small.c-form__hint Store your details so you don’t need to enter them again. Not recommended for public computers.
 
-    .buttons
-      %button{ :type => :submit } Submit
-      = link_to	'Cancel', request.referer, :class => 'act-cancel'
+    .c-form__buttons
+      %button{ :type => :submit, :class => 'u-btn u-btn--primary' } Submit
+      = link_to	'Cancel', request.referer, :data => { :'comments-action' => :cancel }

@@ -1,25 +1,34 @@
-%article.cf.preview.article{ :id => "article-#{article.id}", :class => article.masthead.nil? ? nil : ' -has-masthead' }
-  %header
-    %h2=  link_to article.title, article
-    %p
-      %time{ :datetime => article.published_on.strftime('%FT%T') }= form_date article.published_on
-      
-      - if article.num_comments > 0
-        = fa_icon 'comments'
-        = article.num_comments
-
+- full ||= false
+%article.o-content.-preview.-article{ :id => "article-#{article.id}" }
   - unless article.masthead.nil?
     = render :partial => 'application/masthead', :locals => { :media => article.masthead, :link => article_path(article) }
 
-  .content.type.-article
+  %header.o-content__header
+    %h2.o-content__title=  link_to article.title, article
+    %dl.cf.u-kv_pair.o-content__meta
+      - unless article.published_on.nil?
+        %dt.u-a11y  Posted
+        %dd
+          %time{ :datetime => article.published_on.strftime('%FT%T') }= form_date article.published_on
+
+      - if (article.num_comments > 0)
+        %dt.u-a11y Comments
+        %dd
+          = fa_icon 'comments'
+          = article.num_comments
+          %span.u-a11y
+            = "comment".pluralize(article.num_comments)
+          - unless article.commentable
+            %small (closed)
+
+  .o-content__content.u-type.-article
     - if full
       - if article.teaser_rendered.nil?
         ~ remove_media(article.body_rendered).html_safe
-        
+
       - else
         ~ process_media(article.teaser_rendered).html_safe
-        %p.more= link_to "Continue reading", article, :title => "Continue reading ‘#{article.title}’", :class => 'iso'  
-        
+        %p.u-more= link_to "Continue reading", article, :title => "Continue reading ‘#{article.title}’", :class => 'u-btn u-btn--lozenge'
+
     - else
       ~ article.extract_rendered.html_safe
-  

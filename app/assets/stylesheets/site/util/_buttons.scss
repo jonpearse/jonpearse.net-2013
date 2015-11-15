@@ -1,0 +1,50 @@
+button,
+.u-btn {
+	display: inline-block;
+	vertical-align: top;
+
+	padding:       0 .5em;
+	border-radius: rem(3);
+	border:        1px solid $borderColor;
+	background:    transparent;
+
+	cursor: pointer;
+
+	@include fsz(small);
+	@include transition(border 150ms);
+
+	&:active {
+		border-color: $linkPrimary;
+	}
+
+	&--lozenge[class] {
+		border:  0;
+
+		background: $linkPrimary;
+		color:      #FFF;
+		text-shadow: rgba(0,0,0,.2) 0 1px 1px,
+                     rgba(255,255,255,.8) 0 0 0;
+
+		@include transition(background 150ms);
+
+		&:hover {
+			background: darken($linkPrimary, 5%);
+			color: #FFF;
+		}
+	}
+
+	&--action {
+		& + & { margin-left: 1em; }
+	}
+
+	&--primary {
+		@include fsz(secondaryHeader);
+
+		margin: rem(-7.5) 1em rem(-7.5) 0;
+		padding: rem(7.5) 1em;
+
+		color: $linkPrimary;
+
+		&:hover { border-color: $linkPrimary; }
+	}
+}

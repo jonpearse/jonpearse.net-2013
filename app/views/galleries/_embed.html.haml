@@ -4,6 +4,6 @@
 		%ul.images
 			- gallery.media.each do |m|
 				%li
-					.resimg{ :style => "background-image: url('#{media_path(m)}');", :class => " -#{m.default_align}", :data => { :"media-id" => m.id }}
+					%div{ :style => "background-image: url('#{media_path(m)}');", :class => " -#{m.default_align}", :data => { :"media-id" => m.id, :behaviour => "responsive-media" }}
 						= image_tag media_path(m), :alt => m.alt_text, :title => (m.title_text.blank? ? nil : m.title_text), :data => { :"media-id" => m.id }
 					%p= m.title

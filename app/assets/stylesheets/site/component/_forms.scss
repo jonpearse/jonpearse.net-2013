@@ -1,0 +1,106 @@
+$ns: "c-form";
+.#{$ns} {
+	padding: rem(30);
+
+	&__field {
+		margin-bottom: rem(15);
+
+		&.has-error {
+			.#{$ns}__input {
+				border-color: $errorHighlight;
+				box-shadow:   $errorHighlight 0 0 1px 1px;
+			}
+		}
+	}
+	&__error {
+		display: block;
+		color:   $errorHighlight;
+
+		@include fsz(base);
+
+		&--box[class] {
+			text-align: center;
+			@include fsz(base);
+
+			margin: rem(30);
+		}
+	}
+	&__hint {
+		display: block;
+	}
+
+	&__input[type=text],
+	&__input[type=email],
+	&__input[type=url],
+	textarea,
+	select {
+		display:   block;
+
+		padding:   rem(6.5) rem(14);
+		border:    1px solid $borderColor;
+		min-width: 12em;
+		border-radius: 3px;
+
+		font-family: $ffmBase;
+		@include fsz(base);
+		font-weight: $fwtNormal;
+	}
+	textarea {
+		width:      95%;
+		min-height: rem(210);
+	}
+
+	@media screen and (min-width: $bpMobile)
+	{
+		&__field {
+			@include clearfix();
+			padding-left: rem(180);
+			margin-bottom: rem(30);
+
+			&.-reverse {
+				input[type=checkbox] {
+					position: absolute;
+					opacity:  0;
+
+					& ~ svg {
+						display: block;
+						float:   left;
+
+						margin:  0 0 0 rem(-60);
+						height:  rem(30);
+						width:   rem(30);
+						border:  1px solid $borderColor;
+						border-radius: 3px;
+
+						color: transparent;
+						@include transition(all 150ms);
+					}
+
+					&:checked ~ svg { color: $linkPrimary; }
+					&:focus   ~ svg { border-color: $linkPrimary; }
+				}
+				.#{$ns} {
+					&__label {
+						float:  none;
+
+						width:  auto;
+						margin: 0;
+					}
+				}
+			}
+		}
+
+		&__label {
+			float: left;
+
+			width: rem(150);
+			margin-left: rem(-180);
+			padding: rem(7.5) 0;
+		}
+
+		&__buttons {
+			padding-left: rem(180);
+		}
+	}
+
+}

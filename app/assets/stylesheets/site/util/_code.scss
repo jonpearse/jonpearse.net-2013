@@ -1,0 +1,57 @@
+.u-code {
+	position: relative;
+
+	// box styles
+	border-color: boxColor(border, code);
+	color: boxColor(text, code);
+	background: boxColor(background, code);
+
+	font-family: $ffmMono;
+	@include fsz(base);
+
+	// reset counter
+	counter-reset: code-hilite;
+
+	&:after {
+		content:  "";
+		position: absolute;
+
+		top:    rem(15);
+		bottom: rem(15);
+		left:   rem(60);
+		width:  1px;
+
+		background: rgba(0,0,0,.3);
+
+	}
+
+	span.code-line {
+		display: block;
+		counter-increment: code-hilite;
+
+		padding-left: rem(60);
+
+		white-space: pre-wrap;
+
+		&:before {
+			display: block;
+			float:   left;
+			content: counter(code-hilite);
+
+			width:         rem(30);
+			margin-left:   rem(-60);
+
+			color: boxColor(text, code);
+
+			@include fsz(very-small);
+			text-align: right;
+		}
+
+		span.code-line { padding-left: 0; }
+	}
+
+	// various types of code
+	.comment { font-style: italic; }
+    .string { font-weight: bold; .content { font-weight: normal; }}
+    .keyword, .tag-name, .attribute-name, .directive { font-weight: bold; }
+}

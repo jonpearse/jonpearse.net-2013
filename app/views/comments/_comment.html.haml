@@ -1,10 +1,10 @@
 - threading ||= false
-%article.comment.box{ :id => "comment-#{comment.id}", :data => { :parent_id => comment.reply_to_id }, :class => (comment.screened ? '-screened' : '')}
-  %header.cf
-    %p
-      %strong= link_to_unless comment.website.nil?, comment.name, comment.website, :target => '_blank'
+%article.o-comment.u-box{ :id => "comment-#{comment.id}", :data => { :parent_id => comment.reply_to_id }, :class => (comment.screened ? '-screened' : '')}
+  %header.o-comment__header
+    %p.o-comment__metadata
+      %strong= link_to_unless comment.website.empty?, comment.name, comment.website, :target => '_blank'
       - unless comment.reply_to_id.nil? or threading
-        %span.reply_wrap
+        %span
           in response to
           - if comment.parent.nil?
             %span.deleted   [deleted]
@@ -14,32 +14,24 @@
             - url = @comments.nil? || @comments.include?(comment.parent) ? "#comment-#{comment.parent.id}" : article_comments_path(comment.article, comment.parent.id)
             = link_to comment.parent.name, url, :data => { :comment_id => comment.parent.id }, :class => 'back-ref', :rel => "nofollow"
       %br
-      %span.a11y  at 
+      %span.u-a11y  at
       %time{ :datetime => comment.created_at.strftime('%FT%T') }
         = form_date comment.created_at, true
-    .img
-      = gravatar_for(comment.email, 50).html_safe
-  .content.type
+    .o-comment__avatar
+      = gravatar_for(comment.email, 60).html_safe
+  .o-comment__content.u-type.-comment
     ~ comment.comment_rendered.html_safe
-    
-  %footer.reply_wrap.cf
+
+  %footer.o-comment__footer
     - if comment.article.commentable?
-      = link_to_with_icon 'reply', new_comment_path(comment.article, comment.id), 'reply', :data => { :remote => true }, :class => 'action', :rel => "nofollow"
+      = link_to_with_icon 'reply', new_comment_path(comment.article, comment.id), 'reply', :data => { :'comments-action' => :reply }, :class => 'u-btn u-btn--action', :rel => "nofollow"
     - if current_user
-      = link_to_with_icon 'edit', edit_comment_path(comment), 'pencil', :data => { :remote => true }, :class => 'action'
-      = render :partial => 'comments/screen_link', :locals => { :comment => comment }
-      = link_to_with_icon 'delete', comment_path(comment), 'trash-o', :data => { :method => :delete, :remote => true, :confirm => 'Are you sure you wish to do this?' }, :class => 'action'
-      
-    - if false && comment.children.size > 0
-      %strong responses:
-      %ol.children
-        - comment.children.each do |child|
-          - unless child.screened
-            - url = @comments.include?(child) ? "#comment-#{child.id}" : article_comments_path(comment.article, child.id)
-            %li= link_to child.name, url, :data => { :comment_id => child.id }, :class => 'fwd-ref'
-      
+      = link_to_with_icon 'edit', edit_comment_path(comment), 'pencil', :data => { :'comments-action' => :edit }, :class => 'u-btn u-btn--action'
+      = render :partial => 'comments/screen_link.html.haml', :locals => { :comment => comment }
+      = link_to_with_icon 'delete', comment_path(comment), 'trash-o', :data => { :'comments-action' => :delete }, :class => 'u-btn u-btn--action'
+
   - if threading && comment.children.size > 0
-    %ol.comments
+    %ol.o-comment__children
       - comment.children.each do |child|
-        %li
+        %li.o-comment__child
           = render :partial => 'comments/comment', :locals => { :comment => child, :threading => threading }

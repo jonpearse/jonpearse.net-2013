@@ -1,5 +1,5 @@
 - link ||= nil
 - if link.nil?
-  .masthead.resimg{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id }}
+  .o-content__masthead{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id, :behaviour => "responsive-media" }}
 - else
-  %a.masthead.resimg{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id }, :href => link }
+  %a.o-content__masthead{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id, :behaviour => "responsive-media" }, :href => link }

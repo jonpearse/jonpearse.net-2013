@@ -1,13 +1,7 @@
-%h1 Comments on #{@article.title}
+%h1.cr-page__title
+  Comments on
+  = link_to @article.title, @article, :rel => "back"
 
-%article.cf.article{ :id => "article-#{@article.id}"  }
-  .content.type.-article
-    - if @article.teaser_rendered.nil?
-      ~ remove_media(@article.extract_rendered).html_safe
-    - else
-      ~ remove_media(@article.teaser_rendered).html_safe
-    
-    %p.more= link_to "Return to article", @article, :title => "Return to reading ‘#{@article.title}’", :class => 'iso icon -undo'  
+= render :partial => 'articles/preview', :locals => { :article => @article }
 
-
-= render :partial => 'articles/comments'#, :locals => { :threading => true }
+= render :partial => 'articles/comments'

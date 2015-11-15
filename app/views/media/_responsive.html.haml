@@ -1,5 +1,5 @@
-%aside.media.-responsive{ :id => "media-#{media.id}-holder", :class => "-#{align}" }
-  .resimg{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id }}
+%aside.o-media.-responsive{ :id => "media-#{media.id}-holder", :class => "-#{align}" }
+  %div{ :style => "background-image: url('#{media_path(media)}');", :class => " -#{media.default_align}", :data => { :"media-id" => media.id, :behaviour => "responsive-media" }}
     = image_tag media_path(media), :alt => media.alt_text, :title => (media.title_text.empty? ? nil : media.title_text), :data => { :"media-id" => media.id }
 
   - unless caption.nil?

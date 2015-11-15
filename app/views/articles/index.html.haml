@@ -1,8 +1,8 @@
-%h1.a11y  Home
-%section.archive.-bigfirst.cf
+%h1.u-a11y.cr-page__title  Home
+%section.c-archive.is-primary.cf
   - idx = 0
-  %ol
+  %ol.c-archive__articles
     - @articles.each do |article|
-      %li.item
-        = render :partial => 'preview', :locals => { :article => article, :full => (idx == 0) }	
+      %li.c-archive__item
+        = render :partial => 'preview', :locals => { :article => article, :full => (idx == 0) }
         - idx += 1

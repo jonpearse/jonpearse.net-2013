@@ -1,0 +1,77 @@
+/**
+ * Main variables
+ */
+
+/* COLOURS */
+// backgrounds
+$siteBackground: #F6F6F6;
+$highlight:      #E44849;
+
+// text
+$textPrimary:    #444;
+
+// links
+$linkPrimary:    $highlight;
+
+// box colours
+$boxBackground:  rgba(255,255,255,.7);
+$boxBorder:      #D8D8D8;
+
+// other colours
+$errorHighlight: #F00;
+$borderColor:    #D8D8D8;
+
+// boxes
+$boxColours: (
+	base: (
+		border:     $borderColor,
+		background: rgba(255,255,255,.7)
+	),
+	alt: (
+		text:       #111,
+		border:     transparentize($highlight, .7),
+		background: transparentize(darken($highlight, 10%), .9)
+	),
+	code: (
+		text: 		#DDD,
+		border: 	#222,
+		background: rgba(48,48,48,.95)
+	),
+	smoke: (
+		border: 	rgba(0,0,0,.08),
+		background: rgba(0,0,0,.05)
+	)
+);
+
+
+/* FONTS + TYPE */
+// faces
+$ffmBase:   	Lato,Arial,sans-serif;
+$ffmHeader: 	Karma,Georgia,serif;
+$ffmMono:		monospace;
+
+// weights
+$fwtNormal: 	300;
+$fwtSemi:       400;
+$fwtBold:   	700;
+
+// sizes
+$fontSizes: (
+	base:            ( size: 20, leading: 30  ),
+	small:           ( size: 16, leading: 30  ),
+	very-small:      ( size: 14, leading: 30  ),
+
+	primaryHeader:   ( size: 36, leading: 45  ),
+	secondaryHeader: ( size: 24, leading: 30  ),
+	tertiaryHeader:  ( size: 20, leading: 30  )
+);
+
+
+/* DIMENSIONS */
+$siteWidth:          rem(1050);
+
+$bpDesktop:          rem(960);
+$bpTablet:			 rem(780);
+$bpMobile:           rem(500);
+
+$mastheadRatio:		 14/5;

@@ -1,29 +1,22 @@
-- threading ||= false
-
-%section.comments#comments
-  %header.cf
-    %h2 Comments
+%section.o-content__comments.c-comments#comments{ :data => { :behaviour => 'comments' }}
+  %header.c-comments__header
+    %h2.c-comments__header__title Comments
     - if @article.commentable?
-      = link_to_with_icon 'Add your comment', new_comment_path(@article), 'plus', :data => { :remote => true }, :rel => "nofollow"
+      = link_to_with_icon 'Add your comment', new_comment_path(@article), 'plus', :data => { :'comments-action' => 'new' }, :rel => "nofollow", :class => 'c-comments__header__add-button'
 
   - if @article.num_comments > 0
     - if @comments.size < @article.num_comments
-      %p.prompt
+      %aside.u-box.c-comments__prompt
         Showing #{@comments.size} most recent comments:
-        = link_to "view all", article_comments_path(@article)+'?latest', :data => { :remote => true }, :rel => "nofollow"
-      
-  
-    %ol.comments
-      - @comments.each do |comment|
-        %li
-          = render :partial => 'comments/comment', :locals => { :comment => comment, :threading => threading }
-        
-        
+        = link_to "view all", article_comments_path(@article)+'?latest', :data => { :'comments-action' => 'load-all' }, :rel => "nofollow"
+
+    = render :partial => 'comments/list'
+
     - if @comments.size < @article.num_comments
-      %p.prompt= link_to "View all comments", article_comments_path(@article)+'?latest', :data => { :remote => true }, :rel => "nofollow"
-        
+      %aside.u-box.c-comments__prompt= link_to "View all comments", article_comments_path(@article)+'?latest', :data => { :'comments-action' => 'load-all' }, :rel => "nofollow"
+
   - else
-    %p.empty
+    %p.c-comments__empty
       There are no comments. Why not
-      = link_to "add your own", new_comment_path(@article), :data => { :remote => true }
+      = link_to "add your own", new_comment_path(@article), :data => { :'comments-action' => 'new' }
       ?

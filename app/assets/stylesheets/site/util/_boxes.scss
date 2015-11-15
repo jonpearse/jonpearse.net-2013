@@ -1,0 +1,32 @@
+.u-box {
+	display: block;
+
+	padding: rem(14);
+	border:  1px solid boxColor(border);
+	border-radius: 3px;
+
+	background: boxColor(background);
+
+	&__header {
+		padding: 0 0 rem(7.5);
+		margin:  0 0 rem(7.5);
+		border-bottom: 1px solid boxColor(border);
+	}
+
+	&.-alt {
+		background: boxColor(background, alt);
+		color:      boxColor(text, alt);
+		border:     0;
+		padding:    rem(15);
+
+		box-shadow: boxColor(border, alt) 0 0 0 1px;
+
+		@include fsz(small);
+
+		.u-box__header { border: 0; }
+	}
+	&.-smoke {
+		border:  1px solid boxColor(border, smoke);
+		background: boxColor(background, smoke);
+	}
+}

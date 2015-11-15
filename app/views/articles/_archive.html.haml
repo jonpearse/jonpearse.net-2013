@@ -1,25 +1,26 @@
 - unless @archive.empty?
-  %section.archive-by-month.cf
-    %header
-      %h2 Archive by month
-    %ol
+  %section.u-box.-alt.c-month_archive
+    %header.c-month_archive__header.u-box__header
+      %h2.u-box__title Archive by month
+    %ol.c_month_archive__year-list.u-box__content
       - now = DateTime.now
       - curr = 0
       - @archive.each_pair do |year, months|
         - curr = curr + 1
-        %li
-          = link_to year, articles_path(:year => year)
-          (#{months[:_total]})
-          %ol.cf
+        %li.c-month_archive__year
+          .c-month_archive__year__header
+            %strong.c-month_archive__year__year= link_to year, articles_path(:year => year)
+            (#{months[:_total]})
+          %ol.c-month_archive__month-list
             - display = false
             - max = (year == now.year) ? now.month : 12
-            
+
             - for month in Range.new(1, max)
               - if !display and !months.key?(month) and (curr == @archive.size)
                 - next
               - display = true
-              
-              %li
+
+              %li.c-month_archive__month
                 - if months.key?(month)
                   = link_to t('date.abbr_month_names')[month], articles_path(:year => year, :month => format('%02d', month))
                   (#{months[month]})

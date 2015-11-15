@@ -1,13 +1,13 @@
 - @activeNav ||= params[:controller]
 
-%nav{ :role => 'navigation' }
-  %ul.cf
-    %li
-      = link_to_with_current 'Home', root_path
-    %li
-      = link_to 'Archive', articles_path, :class => (params[:controller] == 'articles' and params[:action] != 'index' ? 'current' : nil)
-    %li
-      = link_to 'About', '/about', :class => (@activeNav == 'page' and !@page.nil? and @page.url_slug == 'about' ? 'current' : nil)
+%nav.cr-header__navigation{ :role => 'navigation' }
+  %ul.cr-header__navigation__list
+    %li.cr-header__navigation__item
+      = link_to_with_current 'Home', root_path, :class => 'cr-header__navigation__link', :addClass => '-current'
+    %li.cr-header__navigation__item
+      = link_to 'Archive', articles_path, :class => "cr-header__navigation__link#{((params[:controller] == 'articles' and params[:action] != 'index') ? ' -current' : '')}"
+    %li.cr-header__navigation__item
+      = link_to 'About', '/about', :class => "cr-header__navigation__link#{((@activeNav == 'page' and !@page.nil? and @page.url_slug == 'about') ? ' -current' : '')}"
     - if current_user
-      %li
-        = link_to 'Manage', admin_root_path
+      %li.cr-header__navigation__item
+        = link_to 'Manage', admin_root_path, :class => "cr-header__navigation__link"

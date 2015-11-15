@@ -2,22 +2,19 @@
 
 // third party
 @import "bourbon",
-        "ext/reset",
-        "ext/fontello";
+        "contrib/reset";
+
+// variables
+@import "site/variables";
 
 // basic stuff
-@import "site/fonts",
-        "site/vars",
-        "site/base",
-        "site/type";
+@import "site/base/mixins",
+        "site/base/animations",
+        "site/base/base",
+        "site/base/icons",
+        "site/base/type";
 
 // components
-@import "site/component/article",
-        "site/component/archive",
-        "site/component/code",
-        "site/component/images",
-        "site/component/comments",
-        "site/component/galleries";
-
-// breaks
-@import "site/breaks";
+@import "site/util/*";
+@import "site/component/*";
+@import "site/object/*";

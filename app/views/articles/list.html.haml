@@ -1,15 +1,15 @@
-%h1
+%h1.cr-page__title
   = link_to_unless_current "Archive", articles_path
   = @sub_title
 
 - reset_cycle
-%section.archive.cf
-  %ol
+%section.c-archive.cf
+  %ol.c-articles
     - @articles.each do |article|
-      %li.item
+      %li.c-archive__item
         = render :partial => 'preview', :locals => { :article => article, :full => false }
-  
-  %footer
+
+  %footer.c-archive__footer
     = will_paginate @content, :inner_window => 2, :outer_window => 0
 
 = render :partial => 'archive'

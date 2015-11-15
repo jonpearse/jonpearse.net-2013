@@ -1,0 +1,5 @@
+- threading ||= false
+%ol.c-comments__list
+  - @comments.each do |comment|
+    %li.c-comments__list__item
+      = render :partial => 'comments/comment', :locals => { :comment => comment, :threading => threading }

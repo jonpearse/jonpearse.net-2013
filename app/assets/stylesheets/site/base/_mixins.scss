@@ -1,0 +1,41 @@
+@mixin fsz( $style )
+{
+	@if map-has-key($fontSizes, $style)
+	{
+		$def: map-get($fontSizes, $style);
+
+		font-size:  rem(map-get($def, 'size'));
+		@if (map-get($def, 'leading') < 5)
+		{
+			line-height: #{map-get($def, 'leading')}em;
+		}
+		@else
+		{
+			line-height: rem(map-get($def, 'leading'));
+		}
+	}
+	@else
+	{
+		@warn "Trying to use undefined font style #{$style}!";
+	}
+}
+
+@function boxColor($param, $style: base)
+{
+	@if map-has-key($boxColours, $style)
+	{
+		$def: map-get($boxColours, $style);
+		@if (map-get($def, $param))
+		{
+			@return map-get($def, $param);
+		}
+		@else
+		{
+			@warn "No color for #{$style}/#{$param}"
+		}
+	}
+	@else
+	{
+		@warn "No box style for #{$style}"
+	}
+}

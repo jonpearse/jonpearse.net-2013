@@ -1,10 +1,11 @@
 @import "bourbon";
-@import "ext/reset", "ext/fontawesome/font-awesome";
+@import "ext/reset",
+        "ext/fontawesome/font-awesome";
 @import "admin/base/colours";
 
 .grid {
     .col { @include box-sizing(border-box); }
-    
+
     &.-two-col,
     &.-three-col {
         .col {
@@ -14,7 +15,7 @@
             &:last-child  { padding-right: 0; }
         }
     }
-    
+
     &.-two-col {
         .col { width: 50%; }
         &.-left  .col:nth-child(1),

@@ -1,53 +1,33 @@
-.archive {
-    >ol {
-        margin-left: -2.5em; 
-        @include display(flex);
-        @include flex-wrap(wrap);
-    }
-    li.item {
-        width: calc(50% - 2.5em);
-        margin-left: 2.5em;
-    }
-    
-    &.-bigfirst li.item:first-child { width: 100%; }
-    
-    &[max-width~="900px"] {
-        ol { margin-left: 0; @include flex-direction(column); }
-        li.item { width: 100%; margin-left: 0; }
-    }
-    
-    // override for old IEs that don't flex properly
-    html.-ie & {
-        ol { display: block; }
-        li.item { float: left; }
-    }
-}
+$ns: "c-archive";
+.#{$ns} {
+	// basic styles
+	&__item {
+		margin-bottom: rem(60);
+	}
 
-.archive-by-month {
-    @extend %misty-box;
-    padding: .5em 1em;
-    margin-bottom: 2em;
-    
-    h2 { margin: 0 0 .5em; padding: 0 0 .3em; border-bottom: 1px solid rgba(0,0,0,.1); }
-    a { font-weight: $semi-weight; }
-    
-    ol {
-        display: block;
-        
-        li { margin: 0 0 .2em; }
-        
-        ol {
-            margin: .2em 0 0 .5em;
-            
-            li {
-                float: left;
-                border-right: 1px solid rgba(0,0,0,.2);
-                margin: 0 .5em 0 0;
-                padding: 0 .5em 0 0;
-                
-                &:last-child { margin: 0; border: 0; padding: 0; }
-            }
-            a { font-weight: $base-weight; }
-        }
-    }
+	// hacks for large desktop
+	@media screen and (min-width: $bpDesktop)
+	{
+		// primary version
+		&.is-primary {
+			.#{$ns}__item {
+				&:nth-child(n+2) {
+					float: left;
+					width: calc(50% - #{rem(30.1)});
+				}
+				&:nth-child(2n) { margin-right: rem(60); clear: left; }
+			}
+		}
+
+		// non-primary version
+		&:not(.is-primary) {
+			.#{$ns}__item {
+				float: left;
+				width: calc(50% - #{rem(30.1)});
+
+				&:nth-child(2n+1) { margin-right: rem(60); clear: left; }
+			}
+		}
+	}
+
 }

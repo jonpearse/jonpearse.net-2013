@@ -17,3 +17,4 @@
 
 # Ignore live db conf
 config/database.yml
+app/assets/stylesheets/site-old

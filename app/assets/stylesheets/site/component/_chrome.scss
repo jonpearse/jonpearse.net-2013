@@ -1,0 +1,200 @@
+.cr {
+	// overall site container
+	&-site_container {
+		position: relative;
+
+		min-height:     100%;
+		padding-bottom: rem(135);
+
+		@media screen and (max-width: $bpTablet) { padding-bottom: rem(175); }
+
+		@media screen and (max-width: $bpMobile) { padding-bottom: rem(165); }
+	}
+
+	// common ‘inner’ elements
+	&-header__inner,
+	&-footer__inner,
+	&-main {
+		max-width: calc(#{$siteWidth} + #{rem(30)});
+		margin:    0 auto;
+		padding:   0 rem(15);
+
+		@media screen and (max-width: $bpMobile)
+		{
+			padding: 0 rem(30);
+		}
+	}
+
+	// header specifics
+	&-header {
+		margin-bottom: rem(60);
+		border-top:    15px solid #000;
+		border-bottom: 1px solid rgba(0,0,0,.1);
+
+		background:    #FFF;
+		box-shadow:    rgba(255,255,255,.6) 0 1px 0 0;
+
+		&__home-link {
+			float: left;
+
+			margin: rem(15) 0 0;
+
+			font-weight: $fwtBold;
+			font-family: $ffmBase;
+			font-size:   rem(28);
+			line-height: rem(30);
+		}
+
+		&__navigation {
+			float: right;
+
+			padding-bottom: rem(15);
+
+			&__item {
+				display: inline-block;
+
+				& + & {
+					border-left: 1px solid rgba(0,0,0,.1);
+					margin-left: -.3rem;
+				}
+			}
+
+			&__link {
+				position: relative;
+				display:  block;
+
+				padding: rem(15) .75em 0;
+				//padding: .75em .75em .5em;
+
+				&:before {
+					content:  "";
+					position: absolute;
+
+					top:    -5px;
+					left:    0;
+					right:   0;
+					height:  5px;
+
+					background: #000;
+					@include transition(transform 150ms);
+				}
+
+				&:hover:before,
+				&.-current:before { @include transform(translateY(100%)); }
+			}
+		}
+
+		@media screen and (max-width: $bpMobile)
+		{
+			text-align: center;
+			margin-bottom: rem(30);
+
+			&__home-link,
+			&__navigation {
+				float: none;
+			}
+
+			&__navigation {
+				padding: 0 0 rem(15);
+
+				@include fsz(small);
+
+
+				&__link {
+					padding: 0 10px;
+                	&.current { font-weight: $fwtSemi; }
+                	&:before  { display: none; }
+				}
+			}
+		}
+	}
+
+	// main stuff
+	&-main {
+		color: $textPrimary;
+	}
+
+	// footer specifics
+	&-footer {
+		position: absolute;
+
+		bottom:   0;
+		left:     0;
+		right:    0;
+		width:  100%;
+		padding:  rem(7.5) 0;
+		border-top: 1px solid rgba(0,0,0,.1);
+
+		@include fsz('small');
+		text-align: right;
+
+		box-shadow:  rgba(255,255,255,.6) 0 -1px 0 0;
+		text-shadow: rgba(0,0,0,.2) 0 0 1px;
+		background:  #FFF;
+
+		&__copyright {
+			float: left;
+
+			strong {
+				font-weight: $fwtNormal;
+
+				&:after { content: ":: "; padding: 0 .5em; }
+			}
+
+			@media screen and (max-width: $bpMobile)
+			{
+				float: none;
+
+				margin: 0 0 rem(7.5);
+			}
+		}
+
+		&__contact {
+			&__item {
+				display: inline-block;
+
+				margin-left: .2rem;
+
+				& + &:before {
+					content: "- ";
+
+					padding-right: .4rem;
+				}
+
+				@media screen and (max-width: $bpTablet)
+				{
+					display: block;
+					&:before { display: none; }
+				}
+
+				@media screen and (max-width: $bpMobile)
+				{
+					&.-phone { margin-bottom: rem(7.5); }
+					&:not(.-phone) {
+						display:  inline-block;
+						overflow: hidden;
+						vertical-align: top;
+
+						width:    1em;
+						height:   rem(30);
+						margin:   0 rem(15);
+
+						@include fsz(base);
+					}
+				}
+			}
+
+		}
+
+		svg { @include transition(fill 150ms); }
+		a:hover svg { fill: $linkPrimary; }
+		.i--twitter[class] { fill: #4099FF; }
+
+		@media screen and (max-width: $bpMobile)
+		{
+			padding: rem(15) 0;
+
+			text-align: center;
+		}
+	}
+}

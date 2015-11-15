@@ -1,7 +1,7 @@
-- pull = pull ? 'pull ' : ''
-%aside.media.-general{ :id => "media-#{media.id}-holder", :class => "#{pull} -#{align}" }
-  .i
-    = image_tag media_path(media), :alt => media.alt_text, :title => (media.title_text.empty? ? nil : media.title_text), :data => { :"media-id" => media.id }
-  
+- pull = pull ? 'u-pull ' : ''
+%aside.o-media.-general{ :id => "media-#{media.id}-holder", :class => "#{pull} -#{align}" }
+  .o-media__inner
+    = image_tag media_path(media), :alt => media.alt_text, :title => (media.title_text.empty? ? nil : media.title_text), :data => { :"media-id" => media.id, :behaviour => "responsive-media" }, :class => 'o-media__image'
+
     - unless caption.nil?
-      %p= caption.empty? ? media.title : caption
+      %p.o-media__caption= caption.empty? ? media.title : caption

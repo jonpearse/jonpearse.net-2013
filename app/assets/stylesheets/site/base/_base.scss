@@ -1,0 +1,70 @@
+/**
+ * Base HTML elements
+ */
+html,body { height: 100%; }
+
+body {
+	font-family: $ffmBase;
+	@include fsz('base');
+	font-weight: $fwtNormal;
+
+	background: /*asset_url('grid.png') center 15px repeat,*/
+				$siteBackground asset_url('bg.png') center center repeat;
+
+	@media screen and (max-width: $bpTablet)
+	{
+		background-position: left 15px, center center;
+	}
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	@include transition(color 150ms);
+
+	&:hover { color: $linkPrimary; }
+}
+
+// common CSS classes
+.cf { @include clearfix(); }
+.u-a11y {
+	position: absolute;
+	overflow: hidden;
+
+	height: 0;
+	width:  0;
+
+	opacity: .00001;
+}
+.js-hide {
+	display: none;
+}
+.js-loading {
+	svg:not(.-spin) { display: none; }
+}
+
+/* breakpoints */
+body:before {
+	content: "desktop";
+	position: absolute;
+	overflow: hidden;
+
+	height:   0;
+	width:    0;
+
+	background: url('/media/ping/desktop');
+
+	.js & { background-image: none !important; }
+
+	@media screen and (max-width: $bpTablet)
+	{
+		content: "tablet";
+		background-image: url('/media/ping/tablet');
+	}
+
+	@media screen and (max-width: $bpMobile)
+	{
+		content: "mobile";
+		background-image: url('/media/ping/mobile');
+	}
+}

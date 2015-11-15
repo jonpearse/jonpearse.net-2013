@@ -7,7 +7,7 @@
     border: 1px solid #000;
     @include interface-bar-colour-set($ifNeutral);
     &:before { @extend .#{$fa-css-prefix}; margin-right: .5em; }
-    
+
 }
 %interface-bar-notice {
     @extend %interface-bar;
@@ -29,18 +29,18 @@
 %interface-bar-error {
     @extend %interface-bar;
     @include interface-bar-colour-set($ifError);
-    &:before { content: $fa-var-exclamation-triangle; } 
+    &:before { content: $fa-var-exclamation-triangle; }
 }
 
 ul.flashes {
     margin: 0 0 2em;
     padding: 0 1em;
     @extend %lno;
-    
+
     li {
         @extend %interface-bar;
         margin: 0 0 1em 0;
-        
+
         &.info { @extend %interface-bar-info; }
         &.notice { @extend %interface-bar-notice; }
         &.warn { @extend %interface-bar-warn; }
@@ -50,7 +50,7 @@ ul.flashes {
             padding-right: 2.5em;
             position: relative;
             cursor: pointer;
-            i {          
+            i {
                 position: absolute;
                 top: 0.5em;
                 right: 0.5em;
@@ -70,7 +70,7 @@ ul.flashes {
     border-radius: 5px;
     background: #FFF;
     box-shadow: rgba(0,0,0,0.15) 0 2px 5px 0;
-    
+
     &>header {
         @include border-top-radius(5px);
         @include linear-gradient(#eee,#e0e0e0);
@@ -86,7 +86,7 @@ ul.flashes {
             text-overflow: ellipsis;
             overflow: hidden;
         }
-        
+
         span.icons {
             float: right;
             span {
@@ -109,17 +109,17 @@ ul.flashes {
         margin: 0;
         box-shadow: none;
     }
-    
-    &.-loading header .-refresh { @include animation(spin 1s linear infinite); } 
+
+    &.-loading header .-refresh { @include animation(spin 1s linear infinite); }
     &.-accordion .widget>div.-close { padding: 0; height: 0; overflow: hidden; }
     &.-loaded {
         &,&>header,&>header span { @include animation(pulse-border-yft 2s linear both); }
     }
     &.-error {
-        header { 
+        header {
             h2,h3 {
                 padding-left: 10px;
-                @extend %icon;
+                //@extend %icon;
                 //@extend .icon.-warning-sign;
                 &:before { color: #F00; }
             }
@@ -140,7 +140,7 @@ ul.flashes {
             margin-top: .5em;
             font-size: .91em;
             text-align: right;
-            
+
             li { display: inline; }
         }
     }
@@ -166,7 +166,7 @@ ul.flashes {
         padding: 10px 15px;
         text-align: right;
     }
-    
+
     &.-warn {
         header { @extend %interface-bar-warn; }
         &>div,footer { border-color: darken($ifWarn, 10%); }

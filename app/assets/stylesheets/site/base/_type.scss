@@ -1,0 +1,93 @@
+/**
+ * Typographical classes
+ */
+
+// font definitions
+@include font-face('Lato', 'lato-light',        $fwtNormal,         $asset_pipeline:true, $file-formats: eot woff);
+@include font-face('Lato', 'lato-lightitalic',  $fwtNormal, italic, $asset_pipeline:true, $file-formats: eot woff);
+@include font-face('Lato', 'lato-regular',      $fwtSemi,           $asset_pipeline:true, $file-formats: eot woff);
+@include font-face('Lato', 'lato-bold',         $fwtBold,           $asset_pipeline:true, $file-formats: eot woff);
+@include font-face('Karma', 'karma-bold',       $fwtBold,           $asset_pipeline:true, $file-formats: eot woff);
+
+// headers
+h1, h2, h3 { font-weight: $fwtBold; font-family: $ffmHeader; }
+
+h1 {
+	@include fsz('primaryHeader');
+
+	&.cr-page__title { margin: 0 0 rem(45); }
+}
+h2 { @include fsz('secondaryHeader'); }
+h3 { @include fsz('tertiaryHeader');  }
+
+// stylings
+small {
+	@include fsz('small');
+
+	&.-very { @include fsz('verySmall'); }
+}
+
+b,strong { font-weight: $fwtSemi; line-height: 1em; }
+i,em     { font-style:  italic;   line-height: 1em; }
+
+// blockquotes
+blockquote[class] {
+	margin: rem(30) rem(45) !important;
+
+	p {
+		margin: 0;
+
+		& + p { margin-top: rem(15); }
+	}
+}
+
+// link stuff
+%bodyLink {
+	color: $linkPrimary;
+	&:hover {
+		color:           lighten($linkPrimary, 10);
+		text-decoration: underline;
+	}
+}
+
+/* specific type blocks */
+.u-type {
+	h2 {
+		margin: rem(45) 0 rem(15);
+
+		& + p { margin-top: 0; }
+	}
+	h3 {
+		margin: rem(30) 0 rem(15);
+
+		& + p { margin-top: 0; }
+	}
+
+	p {
+		margin: rem(30) 0;
+
+		&.-extra { margin-top: 1.5em; }
+	}
+
+	ul,ol { margin: 0 0 1em 1.8em; }
+	ul { list-style: disc outside; }
+	ol { list-style: decimal outside; }
+
+	>*:first-child { margin-top: 0; }
+	>*:last-child  { margin-bottom: 0; }
+
+	a {
+		color: $linkPrimary;
+		&:hover { color: lighten($linkPrimary, 10%); text-decoration: underline; }
+	}
+
+	&.-article blockquote {
+		padding: rem(14);
+		border:  1px solid boxColor(border, alt);
+		border-radius: 3px;
+
+		background: boxColor(background, alt);
+
+		font-size: rem(18);
+	}
+}

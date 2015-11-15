@@ -1,9 +1,8 @@
-%article.cf.page{ :id => "page-#{@page.id}", :class => @page.masthead.nil? ? nil : ' -has-masthead' }
-  %header.cf
-    %h1=  @page.title
-
+%article.o-content.-page{ :id => "page-#{@page.id}" }
   - unless @page.masthead.nil?
     = render :partial => 'application/masthead', :locals => { :media => @page.masthead }
-    
-  .content.type.-page
+  %header.o-content__header
+    %h1.o-content__title.cr-page__title=  @page.title
+
+  .o-content__content.u-type
     ~ process_media(@page.body_rendered).html_safe

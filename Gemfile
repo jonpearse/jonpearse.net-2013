@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 gem 'devise'
 gem 'devise_google_authenticator', '0.3.14'
 gem 'haml-rails'
@@ -16,10 +16,11 @@ gem 'RedCloth'
 #gem 'renderable', :path => "/Users/jon/Sites/@gems/renderable"
 gem "renderable", :git => "git://github.com/jonpearse/renderable.git"
 gem 'remotipart'
+gem 'jbuilder'
 
 # asset gems
 gem 'bourbon'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.0'
 gem 'coffee-rails', '>= 4.0.0'
 gem 'therubyracer', :platforms => :ruby
 gem 'uglifier', '>= 1.3.0'

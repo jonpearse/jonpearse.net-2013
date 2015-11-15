@@ -15,13 +15,13 @@ header.chrome {
     @include linear-gradient(#333,#222);
     color: #FFF;
     position: relative;
-    
+
     h1 { font-size: 2em; line-height: 1em; }
     nav {
         position: absolute;
         top: .625em;
         right: 1.5625em;
-        font-size: .875em; 
+        font-size: .875em;
         a { color: #CCC; @include transition(color 200ms); &:hover { color: #FFF; }}
         li { display: inline-block; margin-left: 1em; }
     }
@@ -34,7 +34,7 @@ nav.chrome {
     border-top: 1px solid #111;
     padding: 1.5625em .625em;
     @include box-sizing(border-box);
-    
+
     a {
         color: rgba(255,255,255,0.6);
         position: relative;
@@ -45,8 +45,8 @@ nav.chrome {
         border-width: 0 1px 1px;
         @include linear-gradient(rgba(0,0,0,0.015), rgba(255,255,255,0.015));
         @include transition(all 200ms);
-        @extend %icon-large-fixed;
-        
+        //@extend %icon-large-fixed;
+
         &:before {
             color: #999;
             text-shadow: rgba(0,0,0,0.5) 0 0 10px;
@@ -63,7 +63,7 @@ nav.chrome {
             content: " ";
             background: rgba(0,0,0,0.3);
         }
-        
+
         &:hover {
             color: #FFF;
             @include linear-gradient(rgba(255,255,255,0.015), rgba(255,255,255,0.02));
@@ -71,7 +71,7 @@ nav.chrome {
         }
     }
     li:first-child a { border-top-width: 1px; }
-    
+
     li.current a:after {
         background: #09C;
         box-shadow: #000 0 0 5px inset, transparentize(#09C, .6) 0 0 5px;
@@ -89,9 +89,9 @@ main {
     float: left;
     width: 100%;
     @include box-sizing(border-box);
-    
+
     nav { @extend %subnav; }
-    
+
     h1 {
         margin: 0 -25px 1em;
         border-top-left-radius: 15px;
@@ -103,19 +103,19 @@ main {
         line-height: 1em;
     }
     &>nav + h1 { border-radius: 0; }
-    
+
 }
 
 .manage-list-header {
     width: 90%;
     margin: 1em auto;
     text-align: left;
-    
+
     .-create { margin-left: 0; }
-    
+
     // quicksearch
     .quicksearch {
-        float: right; 
+        float: right;
         background: transparent;
         border: 0;
         padding: 0;
@@ -128,9 +128,9 @@ main {
     $indent: 80px;
     body { padding-left: $indent; }
     .chrome { margin-left: -$indent; }
-    
+
     header.chrome h1 { visibility: hidden; }
-    
+
     nav.chrome {
         width: $indent;
         a { height: 22px; width: 25px; overflow: hidden; white-space: nowrap; }

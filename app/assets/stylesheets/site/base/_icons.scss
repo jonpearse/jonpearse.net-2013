@@ -1,0 +1,29 @@
+.i__source { position: absolute; top: 0; left: 0; height: 0; width: 0; }
+svg[class^=i--] {
+	display: inline-block;
+	vertical-align: text-bottom;
+
+	width: 1em;
+	height: 1em;
+
+	margin-right: .2em;
+
+	line-height: inherit;
+
+	fill: currentColor;
+
+	&.-spin { @include animation(spin 2s infinite linear); }
+}
+
+.i--trash-o     { width: 0.7861328125em; }
+.i--refresh     { width: 0.8571428571428572em; }
+.i--tags        { width: 1.0712890625em; }
+.i--pencil      { width: 0.8571428571428572em; }
+.i--ban         { width: 0.8571428571428572em; }
+.i--plus        { width: 0.7861328125em; }
+.i--phone       { width: 0.7861328125em; }
+.i--twitter     { width: 0.9287109375em; }
+.i--github      { width: 0.8571428571428572em; }
+.i--angle-left  { width: 0.357421875em; }
+.i--angle-right { width: 0.357421875em; }
+.i--calendar-o  { width: 0.9287109375em; }

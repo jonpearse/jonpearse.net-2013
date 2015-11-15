@@ -1,176 +1,37 @@
-section.comments {
-    border-top: 1px solid rgba(0,0,0,0.05); 
-    padding-top: 1.5em;
-    
-    > header {
-        text-align: right;
-        margin-bottom: 1.5em;
-        h2 { float: left; margin: 0; }
-        a { font-size: .8em; line-height: 1.3em; &.-hide { display: none; }}
-    }
-    
-    p.empty {
-        font-size: 1.2em;
-        line-height: 1.3em;
-        opacity: .3;
-        text-align: center;
-        @include transition(opacity .5s);
-        &:hover { opacity: 1; }
-    }
-    
-    blockquote {
-        background: rgba(0,0,0,.05);
-        border: 1px solid rgba(0,0,0,.08);
-        border-radius: .3em;
-        margin: 1em;
-        padding: 1px .91em;
-        font-size: .91em;
-        line-height: 1.2em;
-    }
+$ns: 'c-comments';
+.#{$ns} {
+	a { @extend %bodyLink; }
+
+	&__header {
+		@include clearfix();
+
+		margin-bottom: rem(30);
+		text-align: right;
+
+		&__title { float: left; }
+	}
+
+	&__list__item:nth-child(n+2) {
+		margin-top: rem(30);
+	}
+
+	&__empty {
+		opacity: .5;
+
+		@include fsz(secondaryHeader);
+		text-align: center;
+
+		@include transition(opacity .5s);
+
+		&:hover { opacity: 1; }
+	}
+
+	&__prompt {
+		margin: rem(30) 0;
+		padding: rem(7.5) rem(14);
+
+		background: rgba(255,255,255,.2);
+
+		@include fsz(small);
+	}
 }
-article.comment,
-form.comment {
-    @extend %box;
-    @include transition(opacity 3s linear);
-    
-    footer a.action,
-    button {
-        background: transparent;
-        padding: .25em .5em;
-        margin-right: 1em;
-        border: 1px solid #EEE;
-        border-radius: 3px;
-        color: $link;
-        font-size: 1em;
-        cursor: pointer;
-        @include transition(all 200ms);
-        
-        &:hover { text-decoration: underline; }
-        &:focus { outline: 0; border-color: $link; }
-        
-        &.-hide { display: none; }
-        
-        &:disabled { color: #666; i { margin-left: .5em; }}
-    }
-}
-
-article.comment {
-    @include transition(opacity .5s);
-    header {
-        padding: 0 0 10px 60px;
-        min-height: 50px;
-        position: relative;
-        border-bottom: 1px solid rgba(0,0,0,.05);
-        font-size: .91em;
-        line-height: 1.3em;
-        
-        .img { position: absolute; top: 0; left: 0; height: 50px; width: 50px; background: rgba(0,0,0,.05); }
-        
-        a.back-ref:hover
-		{
-			text-decoration: none;
-			&:after { content: "\2193"; }
-			body.comments.-index &:after { content: "\2191"; }
-		}
-		
-        strong { font-weight: $bold-weight; }
-    }
-    footer { font-size: .8em; line-height: 1.3em; }
-    
-    form {
-        margin-top: 2em;
-        padding: 1em 0 0;
-        border: 0;
-        border-top: 1px solid #D8D8D8;
-    }
-    
-    &.-screened { opacity: .5 }
-}
-form.comment {
-    h3 { font-size: 1.2em; line-height: 1.3em; margin: 0 0 1.5em; }
-    
-    li {
-        margin-bottom: .8em; 
-        
-        &.text {
-            margin-left: 7em;
-            label,.label { float: left; margin-left: -7em; line-height: 2em; }
-            &.error {
-                input,textarea { 
-                    border: 1px dashed $error; 
-                }
-            }
-        }
-        
-        &.check {
-            label {
-                display:  block;
-                padding-left: 7em;
-            }
-            strong { font-weight: $bold-weight; display: block; }
-            input[type=checkbox] {
-                position: absolute;
-                opacity:  0;
-                
-                height: 1px;
-                width:  1px;
-                                
-                &:checked ~ span.check { color:        $link; }
-                &:focus ~ span.check   { border-color: $link; }
-            }
-            span.check {
-                display: block;
-                float:   left;
-                
-                margin: .4em 0 0 rem(-40);
-                width:  1.3em;
-                height: 1.3em;
-                border: 1px solid #D8D8D8;
-                border-radius: .2em;
-                
-                font-size:   rem(10.5);
-                line-height: 1.3em;
-                text-align:  center;
-                
-                color: transparent;
-                @include transition(all 150ms);
-            }
-        }
-        
-        abbr { font-weight: $base-weight; color: $link; }
-    }
-    .buttons { margin-left: 7em; }
-    
-    strong.label { font-weight: $base-weight; line-height: 1em; }
-    em,small { font-style: $base-weight; display: block; }
-    small { font-style: italic; font-size: .91em; line-height: 1.3em; }
-    p.note { margin: 1em 0; }
-
-
-    em.error:before {
-        @extend .#{$fa-css-prefix};
-        content: $fa-var-exclamation-triangle;
-        color: $error;
-        font-size: .8em;
-        line-height: 1.4em;
-        margin-right: .5em;
-    }
-
-    
-    input[type=text],
-    input[type=email],
-    input[type=url],
-    textarea {
-        font: $base-weight 1em/1.4em $bodyFont;
-        padding: .2em .4em;
-        border: 1px solid #D8D8D8;
-        border-radius: 3px;
-        @include box-sizing(border-box);
-        min-width: 12em;
-    }
-    input[type=text],input[type=email] { width: 30%; }
-    input[type=url] { width: 40%; }
-    textarea { width: 95%; height: 7em; }
-}
-form.edit_comment { border: 0 !important; padding: 0 !important; margin: 1em 0 0 !important; }
-

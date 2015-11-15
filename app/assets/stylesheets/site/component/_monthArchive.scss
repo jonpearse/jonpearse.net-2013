@@ -1,0 +1,23 @@
+$ns: "c-month_archive";
+.#{$ns} {
+	a { @extend %bodyLink; }
+
+	&__year:nth-child(n+2) { margin-top: rem(15); }
+	&__year__header {
+		@include fsz(tertiaryHeader);
+
+	}
+	&__month {
+		display: inline-block;
+
+		&:nth-child(n+2) {
+			border-left:  1px solid boxColor(border, alt);
+			margin-left:  .5em;
+			padding-left: .5em;
+		}
+
+		&-list {
+			margin-left: rem(15);
+		}
+	}
+}

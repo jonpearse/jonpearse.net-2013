@@ -1,25 +1,28 @@
 - preview ||= false
-%article.cf.article{ :id => "article-#{@article.id}", :class => @article.masthead.nil? ? nil : ' -has-masthead' }
-  %header.cf
-    %h1=  @article.title
-    %dl.cf.kv-pair
+%article.o-content.-article{ :id => "article-#{@article.id}" }
+  - unless @article.masthead.nil?
+    = render :partial => 'application/masthead', :locals => { :media => @article.masthead }
+
+  %header.o-content__header
+    %h1.o-content__title=  @article.title
+    %dl.cf.u-kv_pair.o-content__meta
       - unless @article.published_on.nil?
-        %dt.a11y  Posted
+        %dt.u-a11y  Posted
         %dd
           = fa_icon 'calendar-o'
           %time{ :datetime => @article.published_on.strftime('%FT%T') }= form_date @article.published_on
-      
+
       - unless @article.categories.empty?
         %dt
           = fa_icon 'tags'
           Filed under
         %dd
-          %ul.categories
+          %ul.o-content__categories
             - @article.categories.each do |c|
               %li=  link_to c.title.downcase, category_path(c)
-      
+
       - if (@article.commentable or @article.num_comments > 0) and !preview
-        %dt.a11y Comments
+        %dt.u-a11y Comments
         %dd
           = fa_icon 'comments'
           %a{ :href => '#comments' }
@@ -31,28 +34,25 @@
             %small (closed)
 
       - if current_user && !preview
-        %dt.a11y  Actions
-        %dd
-          %ul.actions
-            %li= link_to_with_icon 'edit', edit_admin_article_path(@article), 'pencil'
+        %dt.u-a11y  Actions
+        %dd.o-content__admin-actions__wrapper
+          %ul.o-content__admin-actions
+            %li.o-content__admin-action= link_to_with_icon 'edit', edit_admin_article_path(@article), 'pencil'
             - if @article.num_comments > 0
-              %li= link_to_with_icon 'all comments', admin_article_comments_path(@article), 'comments-o'
-            %li= link_to_with_icon 'unpublish', admin_unpublish_article_path(@article, :home => true), 'ban', :data => { :method => :post }
+              %li.o-content__admin-action= link_to_with_icon 'all comments', admin_article_comments_path(@article), 'comments-o'
+            %li.o-content__admin-action= link_to_with_icon 'unpublish', admin_unpublish_article_path(@article, :home => true), 'ban', :data => { :method => :post }
 
-  - unless @article.masthead.nil?
-    = render :partial => 'application/masthead', :locals => { :media => @article.masthead }
-    
-  .content.type.-article
+  .o-content__content.u-type.-article
     ~ process_media(@article.body_rendered).html_safe
-    
+
   - unless @article.masthead.nil? or @article.masthead.attribution_text.blank?
-    %footer
-      %small
+    %footer.o-content__footer
+      %small.o-content__attributions
         %strong Header image:
         = link_to_unless @article.masthead.attribution_url.blank?, @article.masthead.attribution_text.html_safe, @article.masthead.attribution_url, :target => '_blank'
         - unless @article.masthead.attribution_license.nil?
           = fa_icon @article.masthead.attribution_license.icon, :title => @article.masthead.attribution_license.title, :class => 'lix'
-    
+
   - unless @comments.nil?
     - if @article.commentable or (@article.num_comments > 0)
       = render :partial => 'comments'

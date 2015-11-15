@@ -1,0 +1,103 @@
+$ns: "o-content";
+.#{$ns} {
+	&__header {
+		margin-bottom: rem(15);
+
+		a:hover { color: $linkPrimary; }
+	}
+
+	&__meta {
+		@include fsz(small);
+		dt,dd { display: inline-block; }
+
+		dd:not(:last-child) { margin-right: 1em; }
+
+		a { @extend %bodyLink; }
+	}
+	&__categories {
+		li {
+			display: inline-block;
+			margin: 0 0 0 .3em;
+		}
+		a {
+			padding: .2em .5em;
+
+			box-shadow: rgba(0,0,0,0.1) 1px 1px 1px 0;
+			background: #FFF;
+		}
+	}
+	&__admin {
+		&-actions__wrapper {
+			float: right;
+		}
+		&-action {
+			display: inline-block;
+			overflow: hidden;
+			vertical-align: top;
+
+			width: 1.1em;
+			margin-left: 1em;
+
+			white-space: nowrap;
+
+			svg { fill: #000; @include transition(fill 150ms); }
+
+			a:hover {
+				.i--pencil     { fill: #090; }
+				.i--comments-o { fill: $linkPrimary; }
+				.i--ban        { fill: #F00; }
+			}
+		}
+	}
+
+	&__masthead {
+		display: block;
+
+		padding-top: percentage(1/$mastheadRatio);
+		margin:      0 0 rem(30);
+		min-height:  rem(270);
+
+		background-color: rgba(0,0,0,.8);
+		box-shadow: rgba(0,0,0,.15) 0 1px 5px 0;
+
+		@include transition(box-shadow 150ms);
+
+		& ~ * {
+			margin-left: rem(70); margin-right: rem(70);
+
+			.u-pull {
+				&.-left  { margin-left:  rem(-70); }
+				&.-right { margin-right: rem(-70); }
+			}
+		}
+
+		&[max-width~="750px"] ~ * {
+			margin-left: 0;
+			margin-right: 0;
+
+			.u-pull {
+				&.-left  { margin-left:  0; }
+				&.-right { margin-right: 0; }
+			}
+		}
+
+		@media screen and (max-width: $bpMobile)
+		{
+			margin:     0 rem(-30) rem(30);
+			min-height: rem(195);
+		}
+	}
+
+	&__footer {
+		margin-top: rem(45);
+
+		a { @extend %bodyLink; }
+	}
+
+	&__comments {
+		margin-top: rem(60);
+	}
+}
+a.#{$ns}__masthead:hover {
+	box-shadow: lighten(desaturate($linkPrimary, 20%), 20%) 0 1px 5px 0
+}

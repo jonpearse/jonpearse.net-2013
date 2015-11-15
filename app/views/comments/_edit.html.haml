@@ -1,38 +1,38 @@
-= form_for @comment, :html => { :novalidate => true, :class => 'comment', :data => { :remote => true }} do |f|
-  %fieldset    
-    %ol
-      %li.text.cf{ :class => (@comment.error_class :name )}
-        = f.label :name, "Name"
-        = f.text_field :name, :maxlength => 32, :size => nil, :required => true
+= form_for @comment, :html => { :novalidate => true, :class => 'c-form u-box o-comment__form -a-edit' } do |f|
+  %fieldset.c-form__wrapper
+    %ol.c-form__fields
+      %li.c-form__field{ :class => (@comment.error_class :name )}
+        = f.label :name, "Name", :class => 'c-form__label'
+        = f.text_field :name, :maxlength => 32, :size => nil, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :name
-          %em.error= @comment.error_messages :name
-    
-      %li.text.cf{ :class => (@comment.error_class :email )}
-        = f.label :email, "Email"
-        = f.email_field :email, :maxlength => 64, :size => nil, :required => true
+          %em.c-form__error= @comment.error_messages :name
+
+      %li.c-form__field{ :class => (@comment.error_class :email )}
+        = f.label :email, "Email", :class => 'c-form__label'
+        = f.email_field :email, :maxlength => 64, :size => nil, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :email
-          %em.error= @comment.error_messages :email
+          %em.c-form__error= @comment.error_messages :email
         - else
-          %small  This will never be shown
-    
-      %li.text.cf{ :class => (@comment.error_class :website )}
-        = f.label :website, "Website"
-        = f.url_field :website, :maxlength => 64, :size => nil
+          %small.c-form__hint  This will never be shown
+
+      %li.c-form__field{ :class => (@comment.error_class :website )}
+        = f.label :website, "Website", :class => 'c-form__label'
+        = f.url_field :website, :maxlength => 64, :size => nil, :class => 'c-form__input'
         - if @comment.has_error? :website
-          %em.error= @comment.error_messages :website
+          %em.c-form__error= @comment.error_messages :website
         - else
-          %small  Optional
-    
-      %li.text.cf{ :class => (@comment.error_class :comment )}
-        = f.label :comment, "Comment"
-        = f.text_area :comment, :required => true
+          %small.c-form__hint  Optional
+
+      %li.c-form__field{ :class => (@comment.error_class :comment )}
+        = f.label :comment, "Comment", :class => 'c-form__label'
+        = f.text_area :comment, :required => true, :class => 'c-form__input'
         - if @comment.has_error? :comment
           %em.error= @comment.error_messages :comment
 
-      %li.text.cf
-        %strong.label IP
+      %li.c-form__field
+        %strong.c-form__label IP
         = @comment.ip
 
-    .buttons
-      %button{ :type => :submit } Submit
-      = link_to	'Cancel', comment_path(@comment), :class => 'act-cancel', :data => { :remote => true }
+    .c-form__buttons
+      %button{ :type => :submit, :class => 'u-btn u-btn--primary' } Submit
+      = link_to	'Cancel', comment_path(@comment), :data => { :'comments-action' => :cancel }
