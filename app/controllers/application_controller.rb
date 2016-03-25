@@ -44,8 +44,7 @@ class ApplicationController < ActionController::Base
     def render_error( code, action )
       respond_to do |format|
         format.html { render :action => action, :layout => 'site', :status => code }
-        format.json { render :status => code }
-        format.js   { render :status => code,   :layout => nil }
+        format.all  { render :nothing => true,  :status => code }
       end
     end
     

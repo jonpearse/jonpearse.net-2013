@@ -30,7 +30,7 @@ server 'elysoun', user: 'jon', roles: %w{app db web}
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
-set :branch,    :live
+set :branch,    :master
 set :deploy_to, '/home/jon/sites/jjp-lite'
 
 

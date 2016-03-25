@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
-gem 'mysql2', '~> 0.3.20'
+gem 'mysql2'
 gem 'devise'
 gem 'devise_google_authenticator', '0.3.14'
 gem 'haml-rails'
