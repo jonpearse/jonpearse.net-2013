@@ -13,6 +13,11 @@ If you like what you’ve seen here and want to talk to me about how I might be 
 
 h2. Updates
 
+h3. March 25th, 2016
+
+* bumping gems to latest version
+* fixing 500 when requesting non-existent content
+
 h3. November 15th, 2015
 
 * updating to Rails 4.2
