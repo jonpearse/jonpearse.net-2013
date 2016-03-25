@@ -5,6 +5,8 @@
 
 App.Ajax = (function()
 {
+	"use strict";
+
 	var oBody = $('body');
 
 	function bindBeforeSend()

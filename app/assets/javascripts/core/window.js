@@ -3,6 +3,8 @@
  */
 App.Window = (function()
 {
+	"use strict";
+    
 	var oBody    = null;
 	var oTo      = null;
 	var sSize    = null;

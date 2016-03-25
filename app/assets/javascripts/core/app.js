@@ -4,6 +4,8 @@
 // root namespace
 var App = (function()
 {
+    "use strict";
+
     var aBehaviours = {};
     var aHandlers   = {};
     var oDoc        = $(document);

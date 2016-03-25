@@ -66,7 +66,7 @@ JjpLite::Application.routes.draw do
   end
   
   # failthru to pages
-  get '*slug' => 'page#show', :constraints => { :slug => /[a-z0-9\-_\/]+/i }, :as => '_page'
+  get '*slug' => 'page#show', :constraints => { :slug => /[a-z0-9\-_\/]+/i, :format => :html }, :as => '_page'
   
   # home page
   root :to => 'articles#index'
