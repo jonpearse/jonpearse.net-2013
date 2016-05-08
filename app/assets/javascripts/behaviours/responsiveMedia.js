@@ -7,18 +7,18 @@ registerBehaviour("responsiveMedia", function()
 	var bImg  = (this.nodeName.toLowerCase() === 'img');
 
 	// 2. if the URL doesn’t look like something we care about, bail
-	var sStartUrl = (bImg) ? this.src : this.style.backgroundImage.replace(/url\((.*?)\)/, '$1');
-	if (sStartUrl.match(/^((?:http:\/\/(?:.*?))?\/media\/(?:\d+))(?:\/([a-z])+)?$/i) === null)
+	var sStartUrl = (bImg) ? this.src : this.style.backgroundImage.replace(/url\((.*?)\)/, '$1').replace(/['"]/g, '');
+	if (sStartUrl.match(/\/media\/(?:\d+)(?:\/([a-z])+)?$/i) === null)
 		return;
 
 	// 3. bind to resize event
 	$('body').on('viewportChange', function(ev, sNewSize)
 	{
 		// a. get the new URL
-		var sUrl = (bImg) ? self.src : self.style.backgroundImage.replace(/url\((.*?)\)/, '$1');
+		var sUrl = (bImg) ? self.src : self.style.backgroundImage.replace(/url\((.*?)\)/, '$1').replace(/['"]/g, '');
 
 		// b. try to find the correct size
-		var aM = sUrl.match(/^((?:http:\/\/(?:.*?))?\/media\/(?:\d+))(?:\/([a-z])+)?$/i);
+		var aM = sUrl.match(/^((?:https?:\/\/(?:.*?))?\/media\/(?:\d+))(?:\/([a-z])+)?$/i);
 
 		// c. if it failed, or the current size matches our new size…
 		if ((aM === null) || (aM[2] === sNewSize))

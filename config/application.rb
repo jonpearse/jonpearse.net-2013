@@ -20,18 +20,21 @@ module JjpLite
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
+
     # devise overrides
     config.to_prepare do
-      Devise::SessionsController.layout "devise" 
+      Devise::SessionsController.layout "devise"
     end
-    
+
     # remove field with errors nonsense
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
       html_tag
     }
-    
+
     # which aseets to precompile
     config.assets.precompile += %w( screen.css admin.css site.js admin.js )
+
+    # new callback behaviour
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

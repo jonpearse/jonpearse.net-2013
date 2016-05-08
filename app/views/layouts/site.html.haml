@@ -30,13 +30,7 @@
     -# CSS and favicon
     = stylesheet_link_tag 'screen', :media => 'screen'
     = favicon_link_tag 'favicon.ico'
-
-    :plain
-      <!--
-            oo0 (º¿º) 0oo
-          wat? no modernizr‽
-      -->
-
+    
     = yield :additional_head
   %body{ :class => "rb-c_#{controller_name} #{action_name}"}
     .cr-site_container
@@ -47,7 +41,7 @@
 
           = render :partial => 'layouts/site/nav'
 
-      %main.cr-main{ :role => 'main' }
+      %main.cr-main
         = yield
 
       %footer.cr-footer{ :role => 'contentinfo' }
