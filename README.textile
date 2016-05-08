@@ -13,6 +13,11 @@ If you like what you’ve seen here and want to talk to me about how I might be 
 
 h2. Updates
 
+h3. May 8th, 2016
+
+* bumping gems to latest version
+* fixing responsive image shenanigans (you should no longer always see mobile versions)
+
 h3. March 25th, 2016
 
 * bumping gems to latest version
