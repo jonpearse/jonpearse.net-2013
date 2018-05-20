@@ -1,5 +1,9 @@
 h1. jonpearse.net
 
+*Note:* I’m aware that there are security issues with dependencies in this project. I’m in the process of rebuilding everything, but leave this repo here for curiousity. Caveat lector, or something.
+
+---
+
 This is the source code behind my website at "jonpearse.net":http://jonpearse.net.
 
 I decided to publish it after seeing "Julie Ann Horvath":http://julieannhorvath.com/ speak at "HybridConf 2013":http://www,hybridconf.net/ because I started out in this game by hacking at other people’s code, so I thought it fair to let others do the same to me.
