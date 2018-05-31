@@ -1,6 +1,8 @@
 h1. jonpearse.net
 
-*Note:* I’m aware that there are security issues with dependencies in this project. I’m in the process of rebuilding everything, but leave this repo here for curiousity. Caveat lector, or something.
+This is the source code for the old version of my website, launched 2013. The code for newer (2018) version will be made available at some point in the near future. 
+
+This codebase has been abandoned, and will not be updated further—those wishing to take inspiration should ensure any dependencies are updated before use.
 
 ---
 
